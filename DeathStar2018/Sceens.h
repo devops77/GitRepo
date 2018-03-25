@@ -4,6 +4,9 @@
 #ifndef SCEENS_H
 #define SCEENS_H
 
+#include "TieFighterExplode.h"
+
+
 
 /**
   * class Sceens

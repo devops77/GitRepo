@@ -10,21 +10,12 @@ TieFighter::TieFighter (uint8_t newTargetNumber) {
 
 TieFighter::~TieFighter () { }
 
-//  
-// Methods
-//  
-
-
-// Accessor methods
-//  
-
-
-// Other methods
-//  
 
 void TieFighter::initAttributes ()
 {
-
+	// set up valid Sceens
+	tieFighterExplodes = new TieFighterExplode();
+	//offSceen = new OffSceen();
 }
 
 
@@ -86,7 +77,6 @@ void TieFighter::changeSceen (uint8_t newSceen)
 			currentSceen = tieFighterExplode;
 			currentSceen->start();
 			break;
-
 	};
 
 

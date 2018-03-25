@@ -8,7 +8,7 @@
   * 
   */
 
-class VentPort
+class VentPort :  public Actor
 {
 
 private:

@@ -3,6 +3,7 @@
 #define TIEFIGHTER_H
 #include <stdint.h>
 #include "Actor.h"
+#include "Sceens.h"
 
 
 /**
@@ -12,14 +13,17 @@
 #define TieFighterNumberOfLightsInner 2
 #define TieFighterNumberOfLightsOuter 6
 
-class TieFighter :  public Actor
+class TieFighter:  public Actor
 {
-
 private:
 	// lights for inner explosion
 	uint8_t  innerLightsIds  [TieFighterNumberOfLightsInner];
 	uint8_t  outerLightIds[TieFighterNumberOfLightsOuter];
 	uint8_t targetNumber;
+
+	//valid sceens
+	TieFighterExplode tieFighterExplodes;
+
 
 	void initAttributes () ;
 
