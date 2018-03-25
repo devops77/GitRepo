@@ -30,7 +30,9 @@ public:
   virtual ~NeoPixelColor ();
 
 
+  void splitColor(uint32_t input, int & red, int & green, int & blue );
 
+  uint8_t shiftOneColor(int start, int delta, int min, int max);
 
 
   /**
@@ -52,30 +54,8 @@ public:
    * @param  min
    * @param  max
    */
-  NeoPixelColor shiftColor (uint32_t Delta, uint32_t min = 0x000000, uint32_t max = 0xffffff);
+  uint32_t shiftColor(int32_t start, uint32_t Delta, uint32_t min, uint32_t max);
 
-
-
-  /**
-   * call coolor shift for subset of  ligts in a given noepixel object
-   * 
-   * @param  lights
-   * @param  lightIds
-   * @param  numberOfLights
-   * @param  delta
-   * @param  min
-   * @param  max
-   */
-  void colorShiftSetOfLights (Adafruit_NeoPixel & lights, uint8_t  lightIds, uint8_t numberOfLights, uint32_t delta, uint32_t min = 0x000000, uint32_t max = 0xffffff);
-
-
-  /**
-   * set a sub group of lights
-   * @param  lights li
-   * @param  lightIds
-   * @param  color
-   */
-  void setLightsToSameColor (Adafruit_NeoPixel & lights, uint8_t  lightIds, uint32_t color);
 
 
 };
