@@ -1,9 +1,11 @@
 
-#ifndef TIEFIGHTER_H
-#define TIEFIGHTER_H
 #include <stdint.h>
 #include "Actor.h"
 #include "Sceens.h"
+
+
+#ifndef TIEFIGHTER_H
+#define TIEFIGHTER_H
 
 
 /**
@@ -22,7 +24,7 @@ private:
 	uint8_t targetNumber;
 
 	//valid sceens
-	TieFighterExplode tieFighterExplodes;
+	TieFighterExplode* pTieFighterExplodes;
 
 
 	void initAttributes () ;

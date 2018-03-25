@@ -1,4 +1,5 @@
-DeathRay.cpp.o: ..\DeathRay.cpp ..\DeathRay.h ..\TieFighter.h ..\Actor.h \
+TieFighter.cpp.o: ..\TieFighter.cpp ..\Sceens.h ..\TieFighterExplode.h \
+ ..\SceenBase.h ..\TieFighter.h ..\Actor.h \
  C:\E\sloeber\arduinoPlugin\packages\arduino\hardware\avr\1.6.21\cores\arduino/Arduino.h \
  C:\E\sloeber\arduinoPlugin\packages\arduino\hardware\avr\1.6.21\cores\arduino/binary.h \
  C:\E\sloeber\arduinoPlugin\packages\arduino\hardware\avr\1.6.21\cores\arduino/WCharacter.h \
@@ -10,10 +11,13 @@ DeathRay.cpp.o: ..\DeathRay.cpp ..\DeathRay.h ..\TieFighter.h ..\Actor.h \
  C:\E\sloeber\arduinoPlugin\packages\arduino\hardware\avr\1.6.21\cores\arduino/USBAPI.h \
  C:\E\sloeber\arduinoPlugin\packages\arduino\hardware\avr\1.6.21\cores\arduino/Arduino.h \
  C:\E\sloeber\arduinoPlugin\packages\arduino\hardware\avr\1.6.21\variants\standard/pins_arduino.h \
- C:\E\Libs\AdaFruitNeoPixels/Adafruit_NeoPixel.h ..\NeoPixelColor.h \
- ..\SceenBase.h ..\Sceens.h ..\TieFighterExplode.h
+ C:\E\Libs\AdaFruitNeoPixels/Adafruit_NeoPixel.h ..\NeoPixelColor.h
 
-..\DeathRay.h:
+..\Sceens.h:
+
+..\TieFighterExplode.h:
+
+..\SceenBase.h:
 
 ..\TieFighter.h:
 
@@ -44,9 +48,3 @@ C:\E\sloeber\arduinoPlugin\packages\arduino\hardware\avr\1.6.21\variants\standar
 C:\E\Libs\AdaFruitNeoPixels/Adafruit_NeoPixel.h:
 
 ..\NeoPixelColor.h:
-
-..\SceenBase.h:
-
-..\Sceens.h:
-
-..\TieFighterExplode.h:

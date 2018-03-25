@@ -1,4 +1,6 @@
+#include "Sceens.h"
 #include "TieFighter.h"
+
 
 // Constructors/Destructors
 //  
@@ -13,9 +15,13 @@ TieFighter::~TieFighter () { }
 
 void TieFighter::initAttributes ()
 {
+
+
 	// set up valid Sceens
-	tieFighterExplodes = new TieFighterExplode();
+	pTieFighterExplodes = new TieFighterExplode();
 	//offSceen = new OffSceen();
+
+	currentSceen = pTieFighterExplodes;
 }
 
 
@@ -74,7 +80,7 @@ void TieFighter::changeSceen (uint8_t newSceen)
 	case (int)Sceen::TieFighterExplodes:
 			sceen = newSceen;  // this is a sceen the actor can do
 			nextUpdate =0;     // make it happen right away
-			currentSceen = tieFighterExplode;
+			currentSceen = pTieFighterExplodes;
 			currentSceen->start();
 			break;
 	};

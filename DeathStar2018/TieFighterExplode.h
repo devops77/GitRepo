@@ -1,13 +1,12 @@
 
 
 #include <stdint.h>
+#include "SceenBase.h"
+
 
 
 #ifndef TIEFIGHTEREXPLODE_H
 #define TIEFIGHTEREXPLODE_H
-#include "SceenBase.h"
-#include "TieFighter.h"
-
 
 /**
   * class TieFighterExplode
@@ -32,29 +31,7 @@ public:
    */
   virtual ~TieFighterExplode ();
 
-  // Static Public attributes
-  //  
 
-  // Public attributes
-  //  
-
-
-  // Public attribute accessor methods
-  //  
-
-
-  // Public attribute accessor methods
-  //  
-
-
-
-  /**
-   * sets up linkage to the owner class
-   * @param  new_parameter
-   */
-  void setup_ (TieFighter * new_parameter)
-  {
-  }
 
 
   /**
@@ -110,7 +87,7 @@ private:
   // keeps track of what step we are on
   uint8_t step;
   // points to the owner, set in setyp
-  TieFighter * tieFighter;
+
 public:
 
 
@@ -144,23 +121,7 @@ public:
     return step;
   }
 
-  /**
-   * Set the value of tieFighter
-   * points to the owner, set in setyp
-   * @param new_var the new value of tieFighter
-   */
-  void setTieFighter (TieFighter * new_var)   {
-      tieFighter = new_var;
-  }
 
-  /**
-   * Get the value of tieFighter
-   * points to the owner, set in setyp
-   * @return the value of tieFighter
-   */
-  TieFighter * getTieFighter ()   {
-    return tieFighter;
-  }
 private:
 
 
