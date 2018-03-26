@@ -3,8 +3,10 @@
 // Constructors/Destructors
 //  
 
-SceenBase::SceenBase () {
-initAttributes();
+SceenBase::SceenBase ()
+{
+
+	initAttributes();
 }
 
 SceenBase::~SceenBase () { }

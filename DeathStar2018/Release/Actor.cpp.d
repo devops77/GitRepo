@@ -10,8 +10,7 @@ Actor.cpp.o: ..\Actor.cpp ..\Actor.h \
  C:\E\sloeber\arduinoPlugin\packages\arduino\hardware\avr\1.6.21\cores\arduino/USBAPI.h \
  C:\E\sloeber\arduinoPlugin\packages\arduino\hardware\avr\1.6.21\cores\arduino/Arduino.h \
  C:\E\sloeber\arduinoPlugin\packages\arduino\hardware\avr\1.6.21\variants\standard/pins_arduino.h \
- C:\E\Libs\AdaFruitNeoPixels/Adafruit_NeoPixel.h ..\NeoPixelColor.h \
- ..\SceenBase.h ..\Sceens.h
+ C:\E\Libs\AdaFruitNeoPixels/Adafruit_NeoPixel.h ..\NeoPixelColor.h
 
 ..\Actor.h:
 
@@ -40,7 +39,3 @@ C:\E\sloeber\arduinoPlugin\packages\arduino\hardware\avr\1.6.21\variants\standar
 C:\E\Libs\AdaFruitNeoPixels/Adafruit_NeoPixel.h:
 
 ..\NeoPixelColor.h:
-
-..\SceenBase.h:
-
-..\Sceens.h:

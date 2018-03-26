@@ -15,13 +15,33 @@ TieFighter::~TieFighter () { }
 
 void TieFighter::initAttributes ()
 {
+	// set up my lights
+	switch (targetNumber)
+	{
+		case 0:
+			this->setLigntIdsInner(0, 4);
+			this->setLigntIdsInner(0, 5);
+			this->setLigntIdsOuter(0,0);
+			this->setLigntIdsOuter(0,1);
+			this->setLigntIdsOuter(0,2);
+			this->setLigntIdsOuter(0,3);
+			this->setLigntIdsOuter(0,6);
+			this->setLigntIdsOuter(0,7);
+			this->setLigntIdsOuter(0,8);
+			break;
+		case 2:
+			break;
+		case 3:
+			break;
+		case 4:
+			break;
+		case 5:
+			break;
+
+		}
 
 
-	// set up valid Sceens
-	pTieFighterExplodes = new TieFighterExplode();
-	//offSceen = new OffSceen();
 
-	currentSceen = pTieFighterExplodes;
 }
 
 
@@ -51,43 +71,23 @@ void TieFighter::setLigntIdsInner (uint8_t index, uint8_t lightId)
 }
 
 
-/**
- * this is call as part of main loop
- * Switch on script then call script run
- */
-void TieFighter::run ()
-{
-}
+
+
 
 
 /**
  * use switch to on Screen Class to update CurrentSceen pointer
  * then call sceen start
  */
-void TieFighter::changeSceen (uint8_t newSceen)
+void TieFighter::changeSceen ()
 {
 
+// TODO  Turn off all lights??? maybe??
 
-	switch (newSceen)
-	{
-	case (int)Sceen::Off:
-		sceen = newSceen;  // this is a sceen the actor can do
-		nextUpdate =0;     // make it happen right away
-		//currentSceen = offSceen;
-		currentSceen->start();
-		break;
 
-	case (int)Sceen::TieFighterExplodes:
-			sceen = newSceen;  // this is a sceen the actor can do
-			nextUpdate =0;     // make it happen right away
-			currentSceen = pTieFighterExplodes;
-			currentSceen->start();
-			break;
-	};
 
 
 }
-
 
 
 

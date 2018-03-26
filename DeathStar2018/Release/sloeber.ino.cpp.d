@@ -10,7 +10,9 @@ sloeber.ino.cpp.o: ..\sloeber.ino.cpp \
  C:\E\sloeber\arduinoPlugin\packages\arduino\hardware\avr\1.6.21\cores\arduino/USBAPI.h \
  C:\E\sloeber\arduinoPlugin\packages\arduino\hardware\avr\1.6.21\cores\arduino/Arduino.h \
  C:\E\sloeber\arduinoPlugin\packages\arduino\hardware\avr\1.6.21\variants\standard/pins_arduino.h \
- ..\DeathStar2018.ino
+ ..\debugArduino.h ..\TieFighter.h ..\Actor.h \
+ C:\E\Libs\AdaFruitNeoPixels/Adafruit_NeoPixel.h ..\NeoPixelColor.h \
+ ..\TieFighterExplode.h ..\SceenBase.h ..\DeathStar2018.ino
 
 C:\E\sloeber\arduinoPlugin\packages\arduino\hardware\avr\1.6.21\cores\arduino/Arduino.h:
 
@@ -33,5 +35,19 @@ C:\E\sloeber\arduinoPlugin\packages\arduino\hardware\avr\1.6.21\cores\arduino/US
 C:\E\sloeber\arduinoPlugin\packages\arduino\hardware\avr\1.6.21\cores\arduino/Arduino.h:
 
 C:\E\sloeber\arduinoPlugin\packages\arduino\hardware\avr\1.6.21\variants\standard/pins_arduino.h:
+
+..\debugArduino.h:
+
+..\TieFighter.h:
+
+..\Actor.h:
+
+C:\E\Libs\AdaFruitNeoPixels/Adafruit_NeoPixel.h:
+
+..\NeoPixelColor.h:
+
+..\TieFighterExplode.h:
+
+..\SceenBase.h:
 
 ..\DeathStar2018.ino:

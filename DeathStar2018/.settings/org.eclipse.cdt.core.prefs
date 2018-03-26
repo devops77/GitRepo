@@ -535,7 +535,7 @@ environment/project/io.sloeber.core.toolChain.release.1331991702/JANTJE.WARNING_
 environment/project/io.sloeber.core.toolChain.release.1331991702/JANTJE.WARNING_LEVEL/value=true
 environment/project/io.sloeber.core.toolChain.release.1331991702/JANTJE.WORKSPACE_LOCATION/delimiter=;
 environment/project/io.sloeber.core.toolChain.release.1331991702/JANTJE.WORKSPACE_LOCATION/operation=replace
-environment/project/io.sloeber.core.toolChain.release.1331991702/JANTJE.WORKSPACE_LOCATION/value=C\:\\E\\sloeber-WS
+environment/project/io.sloeber.core.toolChain.release.1331991702/JANTJE.WORKSPACE_LOCATION/value=C\:\\E\\LocalGitRepo
 environment/project/io.sloeber.core.toolChain.release.1331991702/PATH/delimiter=;
 environment/project/io.sloeber.core.toolChain.release.1331991702/PATH/operation=replace
 environment/project/io.sloeber.core.toolChain.release.1331991702/PATH/value=${A.COMPILER.PATH}${PathDelimiter}${A.BUILD.GENERIC.PATH}${PathDelimiter}${SystemRoot}\\system32${PathDelimiter}${SystemRoot}${PathDelimiter}${SystemRoot}\\system32\\Wbem${PathDelimiter}${sloeber_path_extension}

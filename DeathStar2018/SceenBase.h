@@ -22,12 +22,10 @@ private:
 
 public:
 
+  SceenBase();
 
 
-  /**
-   * Empty Constructor
-   */
-  SceenBase ();
+
 
   /**
    * Empty Destructor

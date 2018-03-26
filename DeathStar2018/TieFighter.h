@@ -1,8 +1,6 @@
 
 #include <stdint.h>
 #include "Actor.h"
-#include "Sceens.h"
-
 
 #ifndef TIEFIGHTER_H
 #define TIEFIGHTER_H
@@ -23,16 +21,11 @@ private:
 	uint8_t  outerLightIds[TieFighterNumberOfLightsOuter];
 	uint8_t targetNumber;
 
-	//valid sceens
-	TieFighterExplode* pTieFighterExplodes;
+
 
 
 	void initAttributes () ;
 
-  /**
-   * Empty Constructor
-   */
-  TieFighter ();   // must give the target number
 
 
 public:
@@ -44,7 +37,14 @@ public:
   /**
    * Empty Constructor
    */
-  TieFighter (uint8_t newTargetNumber);
+
+	  /**
+	   * Empty Constructor
+	   */
+	  TieFighter ();   // must give the target number
+
+
+	TieFighter (uint8_t newTargetNumber);
 
   /**
    * Empty Destructor
@@ -77,7 +77,7 @@ public:
    * use switch to on Screen Class to update CurrentSceen pointer
    * then call sceen start
    */
-  void changeSceen (uint8_t newsceen);
+  void changeSceen ();
 
 
 
