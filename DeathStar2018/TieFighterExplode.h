@@ -9,6 +9,9 @@
 #ifndef TIEFIGHTEREXPLODE_H
 #define TIEFIGHTEREXPLODE_H
 
+// order of steps
+enum class TieFighterExplodeSteps {InitialFlash, FadeToRed, FadeToBlack};
+
 /**
   * class TieFighterExplode
   * 
@@ -18,8 +21,8 @@ class TieFighterExplode : public SceenBase
 {
 private:
 	// keeps track of what step we are on
-	uint8_t step;
 	TieFighter* pFighter;
+	TieFighterExplodeSteps nextStep;
 
 
 	  void initAttributes () ;
@@ -51,7 +54,7 @@ public:
    * set step = 0
    * updat = now
    */
-  virtual void start ();
+  virtual void startSceen ();
   /**
    * think this will be a big switch based on step value
    */
@@ -74,11 +77,11 @@ public:
 
 
 
+// steps to get this done
+  void doInitialFlash();
+  void doFadeToRed();
+  void doFadeToBlack();
 
-  void setp1();
-  void setp2();
-  void setp3();
-  void setp4();
 
 };
 

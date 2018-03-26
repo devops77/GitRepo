@@ -13,6 +13,9 @@
 #define TieFighterNumberOfLightsInner 2
 #define TieFighterNumberOfLightsOuter 6
 
+
+
+
 class TieFighter:  public Actor
 {
 private:
@@ -20,6 +23,7 @@ private:
 	uint8_t  innerLightsIds  [TieFighterNumberOfLightsInner];
 	uint8_t  outerLightIds[TieFighterNumberOfLightsOuter];
 	uint8_t targetNumber;
+	Adafruit_NeoPixel* pLightStrip;
 
 
 
@@ -30,21 +34,13 @@ private:
 
 public:
 
-  // Constructors/Destructors
-  //  
+	/**
+	* Empty Constructor
+	*/
+	TieFighter ();   // must give the target number
 
 
-  /**
-   * Empty Constructor
-   */
-
-	  /**
-	   * Empty Constructor
-	   */
-	  TieFighter ();   // must give the target number
-
-
-	TieFighter (uint8_t newTargetNumber);
+	TieFighter (uint8_t newTargetNumber, Adafruit_NeoPixel* newStrip);
 
   /**
    * Empty Destructor
@@ -66,6 +62,15 @@ public:
    */
   void setLigntIdsInner (uint8_t index, uint8_t lightId);
 
+  /**
+   * update the Neopixels to show new settings
+   */
+  void updateLights();
+
+  /**
+   * pla a sound
+   */
+  void playSound(int pinNumber);
 
   /**
    * this is call as part of main loop
@@ -74,10 +79,24 @@ public:
   void run ();
 
   /**
-   * use switch to on Screen Class to update CurrentSceen pointer
-   * then call sceen start
+   * set inner lights to newvalue will not show at this time
    */
-  void changeSceen ();
+  void setLigntInnerNoShow(uint32_t newColor);
+
+  /**
+   * set outer lights to newvalue will not show at this time
+   */
+  void setLigntOuterNoShow(uint32_t newColor);
+
+  /**
+   * fade inner lights to newvalue will not show at this time
+   */
+  void fadeLightInnerNoShow(uint32_t delta, uint32_t min, uint32_t max);
+
+  /**
+   * fade outer lights to newvalue will not show at this time
+   */
+  void fadeLightOuterNoShow(uint32_t delta, uint32_t min, uint32_t max);
 
 
 

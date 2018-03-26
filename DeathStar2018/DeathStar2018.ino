@@ -4,6 +4,16 @@
 #include "TieFighterExplode.h"
 
 
+//global defines
+#define TieFighterExplodesPin 3
+#define END_OF_TIME 86400000    // 86400000 is one day 
+
+
+// global classes
+Adafruit_NeoPixel strip = Adafruit_NeoPixel(50, PIN, NEO_GRB + NEO_KHZ800);
+
+
+
 
 //The setup function is called once at startup of the sketch
 void setup()
@@ -12,9 +22,13 @@ void setup()
 	Serial.begin(9600);
 	pinMode(LED_BUILTIN, OUTPUT);
 
-	TieFighter*  pTiefighter1 = new TieFighter(1);
+ 	strip.begin();
+  	strip.show(); // Initialize all pixels to 'off'
+
+	TieFighter*  pTiefighter1 = new TieFighter(1, &strip);
 	TieFighterExplode*  pTieFighterExplodesSceen = new TieFighterExplode();  //link seen to actor
 	pTieFighterExplodesSceen->linkFighter(pTiefighter1);
+	pTieFighterExplodesSceen->startSceen()
 
 
 
@@ -33,6 +47,16 @@ void loop()
 
 
 // TODO only 1 sceen
+		pTieFighterExplodesSceen->run();
+		
+		if(pTieFighterExplodesSceen->getNextUpdate() > 60000)
+		{
+			// done with sceen
+			delay(6000)
+			pTieFighterExplodesSceen->startSceen()
+		}
+		
+
 
 	  // put your main code here, to run repeatedly:
 	  digitalWrite(LED_BUILTIN, HIGH);   // turn the LED on (HIGH is the voltage level)

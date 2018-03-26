@@ -13,8 +13,9 @@
 
 class SceenBase
 {
-private:
-  uint8_t step;
+protected:
+  time nextUpdate = 0; // force to happen right away
+  int stepIterationCount;
 
 
   void initAttributes () ;
@@ -25,7 +26,10 @@ public:
   SceenBase();
 
 
-
+  time getNextUpdate()
+  {
+	  return nextUpdate;
+  }
 
   /**
    * Empty Destructor
@@ -44,23 +48,7 @@ public:
    */
   virtual void run () =0;
 
-  /**
-   * Set the value of step
-   * current and next step
-   * @param new_var the new value of step
-   */
-  void setStep (uint8_t new_var)   {
-      step = new_var;
-  }
 
-  /**
-   * Get the value of step
-   * current and next step
-   * @return the value of step
-   */
-  uint8_t getStep ()   {
-    return step;
-  }
 
 
 

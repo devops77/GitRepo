@@ -50,11 +50,11 @@ public:
    * 
    * 
    * @return NeoPixelColor
-   * @param  Delta
+   * @param  Delta r g b
    * @param  min
    * @param  max
    */
-  uint32_t shiftColor(int32_t start, uint32_t Delta, uint32_t min, uint32_t max);
+  uint32_t shiftColor(int redDelta, int greenDelta, int blueDelta, uint32_t start, uint32_t min, uint32_t max);
 
 
 
