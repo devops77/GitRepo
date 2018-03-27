@@ -52,7 +52,7 @@ public:
    * @param  index zerobased index into arry of lights
    * @param  lightId zero based possition in NeoPixel  strip or circle
    */
-  void setLigntIdsOuter (uint8_t index, uint8_t lightId);
+  void setLightIdsOuter (uint8_t index, uint8_t lightId);
 
 
   /**
@@ -60,7 +60,7 @@ public:
    * @param  index zerobased index into arry of lights
    * @param  lightId zero based possition in NeoPixel  strip or circle
    */
-  void setLigntIdsInner (uint8_t index, uint8_t lightId);
+  void setLightIdsInner (uint8_t index, uint8_t lightId);
 
   /**
    * update the Neopixels to show new settings
@@ -91,12 +91,12 @@ public:
   /**
    * fade inner lights to newvalue will not show at this time
    */
-  void fadeLightInnerNoShow(uint32_t delta, uint32_t min, uint32_t max);
+  void fadeLightInnerNoShow(int deltaRed, int deltaGreen, int deltaBlue, uint32_t min, uint32_t max);
 
   /**
    * fade outer lights to newvalue will not show at this time
    */
-  void fadeLightOuterNoShow(uint32_t delta, uint32_t min, uint32_t max);
+  void fadeLightOuterNoShow(int deltaRed, int deltaGreen, int deltaBlue, uint32_t min, uint32_t max);
 
 
 

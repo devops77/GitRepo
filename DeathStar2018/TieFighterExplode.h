@@ -10,7 +10,7 @@
 #define TIEFIGHTEREXPLODE_H
 
 // order of steps
-enum class TieFighterExplodeSteps {InitialFlash, FadeToRed, FadeToBlack};
+enum class TieFighterExplodeSteps { InitialFlash, FadeToRed, FadeToBlack, FinalState };
 
 /**
   * class TieFighterExplode
@@ -60,20 +60,6 @@ public:
    */
   virtual void run ();
 
-
-  /**
-   * Set the value of step
-   * keeps track of what step we are on
-   * @param new_var the new value of step
-   */
-  virtual void setStep (uint8_t new_var);
-
-  /**
-   * Get the value of step
-   * keeps track of what step we are on
-   * @return the value of step
-   */
-  virtual uint8_t getStep ()  ;
 
 
 

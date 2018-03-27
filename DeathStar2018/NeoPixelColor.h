@@ -30,9 +30,9 @@ public:
   virtual ~NeoPixelColor ();
 
 
-  void splitColor(uint32_t input, int & red, int & green, int & blue );
+  static void splitColor(uint32_t input, int & red, int & green, int & blue );
 
-  uint8_t shiftOneColor(int start, int delta, int min, int max);
+  static uint8_t shiftOneColor(int start, int delta, int min, int max);
 
 
   /**
@@ -54,7 +54,7 @@ public:
    * @param  min
    * @param  max
    */
-  uint32_t shiftColor(int redDelta, int greenDelta, int blueDelta, uint32_t start, uint32_t min, uint32_t max);
+  static uint32_t shiftColor(int redDelta, int greenDelta, int blueDelta, uint32_t start, uint32_t min, uint32_t max);
 
 
 

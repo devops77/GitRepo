@@ -3,6 +3,11 @@
 #define GLOBAL_H
 
 
+#define TieFighterExplodesPin 3
+#define END_OF_TIME 86400000    // 86400000 is one day
+
+
+
 
 /**
   * class global

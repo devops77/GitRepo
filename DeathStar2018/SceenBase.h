@@ -1,5 +1,6 @@
 
 #include <stdint.h>
+#include "Arduino.h"
 
 #ifndef SCEENBASE_H
 #define SCEENBASE_H
@@ -14,8 +15,8 @@
 class SceenBase
 {
 protected:
-  time nextUpdate = 0; // force to happen right away
-  int stepIterationCount;
+	unsigned long nextUpdate = 0; // force to happen right away
+	int stepIterationCount;
 
 
   void initAttributes () ;
@@ -26,7 +27,7 @@ public:
   SceenBase();
 
 
-  time getNextUpdate()
+  unsigned long getNextUpdate()
   {
 	  return nextUpdate;
   }
@@ -40,7 +41,7 @@ public:
   /**
    * called to start a screen as part of sceen change
    */
-  virtual void start () = 0;
+  virtual void startSceen () = 0;
 
 
   /**

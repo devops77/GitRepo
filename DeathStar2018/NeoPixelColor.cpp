@@ -30,7 +30,6 @@ uint8_t NeoPixelColor::shiftOneColor(int start, int delta, int min, int max)
 
 
 
-
 uint32_t NeoPixelColor::shiftColor(int redDelta, int greenDelta, int blueDelta, uint32_t start, uint32_t min, uint32_t max)
 {
 
@@ -50,5 +49,7 @@ uint32_t NeoPixelColor::shiftColor(int redDelta, int greenDelta, int blueDelta, 
 
 
 	return Adafruit_NeoPixel::Color(redFinal, greenFinal, blueFinal);
+
+}
 
 

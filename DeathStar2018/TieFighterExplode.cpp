@@ -1,9 +1,10 @@
 #include "debugArduino.h"
+#include "global.h"  //global defines
 #include "TieFighterExplode.h"
 
 void TieFighterExplode::initAttributes ()
 {
-	nextStep = 0;
+	nextStep = TieFighterExplodeSteps::InitialFlash;
 	nextUpdate = 0;
 }
 
@@ -32,7 +33,7 @@ void TieFighterExplode::linkFighter(TieFighter* newFighter)
    */
    void TieFighterExplode::startSceen ()
   {
-	   nextStep =0;
+	   nextStep =TieFighterExplodeSteps::InitialFlash;
 	   DEBUG_PRINT("TieFighterExplode::startSceen()");
 
   }
@@ -50,6 +51,7 @@ void TieFighterExplode::linkFighter(TieFighter* newFighter)
 		   return;  // nothing to do at this time
 	   }
 
+	   DEBUG_PRINT("TieFighterExplode::run()");
 	   // if we get here there is work to do
 	   switch(nextStep)
 	   {
@@ -69,23 +71,7 @@ void TieFighterExplode::linkFighter(TieFighter* newFighter)
 
 
 
-  /**
-   * Set the value of step
-   * keeps track of what step we are on
-   * @param new_var the new value of step
-   */
-   void TieFighterExplode::setStep (uint8_t new_var)   {
-      step = new_var;
-  }
 
-  /**
-   * Get the value of step
-   * keeps track of what step we are on
-   * @return the value of step
-   */
-  uint8_t TieFighterExplode::getStep ()   {
-    return step;
-  }
 
   /**
    * gen bright white in center with slight red on outer
@@ -101,7 +87,7 @@ void TieFighterExplode::linkFighter(TieFighter* newFighter)
 	  pFighter->updateLights();
 
 	  // TODO : play sound
-	  pFighter->playSound(TieFighterExplodesPin);
+	  //pFighter->playSound(TieFighterExplodesPin);
 
 	  // set up next step
 	  nextStep = TieFighterExplodeSteps::FadeToRed;
@@ -132,6 +118,7 @@ void TieFighterExplode::linkFighter(TieFighter* newFighter)
 	  //if we got here there is work to do
 	  pFighter->fadeLightInnerNoShow(-20,-20, -20,  0x00ff0000, 0x00ffffff);   /// delta min, max
 	  pFighter->fadeLightOuterNoShow(-60,-60, -60, 0x00800000, 0x00ffffff);   /// delta min, max
+	  pFighter->updateLights();
 	  nextUpdate = millis()+80;
   }
 
@@ -148,6 +135,7 @@ void TieFighterExplode::linkFighter(TieFighter* newFighter)
 	  //if we got here there is work to do
 	  pFighter->fadeLightInnerNoShow(-20,-20, -20, 0x00000000, 0x00ffffff);   /// delta min, max
 	  pFighter->fadeLightOuterNoShow(-30,-30, -30, 0x00000000, 0x00ffffff);   /// delta min, max
+	  pFighter->updateLights();
 	  nextUpdate = millis()+80;
   }
 
