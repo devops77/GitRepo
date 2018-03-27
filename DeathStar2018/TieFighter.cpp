@@ -22,15 +22,15 @@ void TieFighter::initAttributes ()
 	switch (targetNumber)
 	{
 		case 0:
-			this->setLightIdsInner(0, 4);
-			this->setLightIdsInner(0, 5);
+			this->setLightIdsInner(0,4);
+			this->setLightIdsInner(1,5);
 			this->setLightIdsOuter(0,0);
-			this->setLightIdsOuter(0,1);
-			this->setLightIdsOuter(0,2);
-			this->setLightIdsOuter(0,3);
-			this->setLightIdsOuter(0,6);
-			this->setLightIdsOuter(0,7);
-			this->setLightIdsOuter(0,8);
+			this->setLightIdsOuter(1,1);
+			this->setLightIdsOuter(2,2);
+			this->setLightIdsOuter(3,3);
+			this->setLightIdsOuter(4,6);
+			this->setLightIdsOuter(5,7);
+
 			break;
 		case 2:
 			break;
@@ -97,6 +97,8 @@ void TieFighter::setLigntInnerNoShow(uint32_t newColor)
 	{
 		pLightStrip->setPixelColor(innerLightsIds[i], newColor);
 		 DEBUG_PRINT("TieFighter::setLigntInnerNoShow()");
+		 DEBUG_PRINT(innerLightsIds[i]);
+		 DEBUG_PRINT(newColor);
 	}
 }
 
