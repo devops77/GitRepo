@@ -22,18 +22,31 @@ void TieFighter::initAttributes ()
 	switch (targetNumber)
 	{
 		case 0:
+			//set inner lights
 			this->setLightIdsInner(0,4);
 			this->setLightIdsInner(1,5);
+			// set outer lights
 			this->setLightIdsOuter(0,0);
 			this->setLightIdsOuter(1,1);
 			this->setLightIdsOuter(2,2);
 			this->setLightIdsOuter(3,3);
 			this->setLightIdsOuter(4,6);
 			this->setLightIdsOuter(5,7);
+			break;
 
-			break;
 		case 2:
+			//set inner lights
+			this->setLightIdsInner(0,24);
+			this->setLightIdsInner(1,25);
+			// set outer lights
+			this->setLightIdsOuter(0,20);
+			this->setLightIdsOuter(1,21);
+			this->setLightIdsOuter(2,22);
+			this->setLightIdsOuter(3,23);
+			this->setLightIdsOuter(4,26);
+			this->setLightIdsOuter(5,27);
 			break;
+
 		case 3:
 			break;
 		case 4:
@@ -43,6 +56,17 @@ void TieFighter::initAttributes ()
 
 		}
 
+	/* debug code
+	 *
+	 */
+	 DEBUG_PRINT(innerLightsIds[0]);
+	 DEBUG_PRINT(innerLightsIds[1]);
+
+	 DEBUG_PRINT(outerLightIds[0]);
+	 DEBUG_PRINT(outerLightIds[2]);
+	 DEBUG_PRINT(outerLightIds[3]);
+	 DEBUG_PRINT(outerLightIds[4]);
+	 DEBUG_PRINT(outerLightIds[5]);
 
 
 }
@@ -97,8 +121,7 @@ void TieFighter::setLigntInnerNoShow(uint32_t newColor)
 	{
 		pLightStrip->setPixelColor(innerLightsIds[i], newColor);
 		 DEBUG_PRINT("TieFighter::setLigntInnerNoShow()");
-		 DEBUG_PRINT(innerLightsIds[i]);
-		 DEBUG_PRINT(newColor);
+		 DEBUG_PRINT2(innerLightsIds[i],newColor);
 	}
 }
 
@@ -111,6 +134,8 @@ void TieFighter::setLigntOuterNoShow(uint32_t newColor)
 	for( int i=0; i<TieFighterNumberOfLightsOuter; i++ )
 	{
 		pLightStrip->setPixelColor(outerLightIds[i], newColor);
+		 DEBUG_PRINT("TieFighter::setLigntInnerNoShow()");
+		 DEBUG_PRINT2(outerLightIds[i],newColor);
 	}
 
 }

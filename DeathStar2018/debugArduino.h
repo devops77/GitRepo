@@ -11,15 +11,25 @@
 
 #define DEBUG_PRINT(str)        \
    Serial.print(millis());     \
-   Serial.print(": ");         \
+   Serial.print(":[ ");         \
    Serial.print(__PRETTY_FUNCTION__); \
    Serial.print(' ');          \
    Serial.print(__FILE__);     \
-   Serial.print(':');          \
+   Serial.print(":");          \
    Serial.print(__LINE__);     \
-   Serial.print(' ');          \
+   Serial.print("]  ");          \
    Serial.println(str);
 
+#define DEBUG_PRINT2(str1, str2)        \
+   Serial.print(millis());     \
+   Serial.print(":[ ");         \
+   Serial.print(__PRETTY_FUNCTION__); \
+   Serial.print(' ');          \
+   Serial.print(__FILE__);     \
+   Serial.print(":");          \
+   Serial.print(__LINE__);     \
+   Serial.print("]  ");          \
+   Serial.println(str1, str2);
 
 
 

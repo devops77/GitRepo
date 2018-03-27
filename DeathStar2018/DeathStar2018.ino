@@ -53,7 +53,7 @@ void loop()
 
 // do the seen updates
 
-delay(500);
+delay(2000);
 // TODO only 1 sceen
 
 		tieFighterExplodesSceen.run();
