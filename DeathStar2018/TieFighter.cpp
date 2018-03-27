@@ -1,3 +1,4 @@
+#include "debugArduino.h"
 #include "Sceens.h"
 #include "TieFighter.h"
 
@@ -95,6 +96,7 @@ void TieFighter::setLigntInnerNoShow(uint32_t newColor)
 	for( int i=0; i<TieFighterNumberOfLightsInner; i++ )
 	{
 		pLightStrip->setPixelColor(innerLightsIds[i], newColor);
+		 DEBUG_PRINT("TieFighter::setLigntInnerNoShow()");
 	}
 }
 

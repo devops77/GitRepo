@@ -1,5 +1,4 @@
 
-
 #include <stdint.h>
 #include "TieFighter.h"
 #include "SceenBase.h"

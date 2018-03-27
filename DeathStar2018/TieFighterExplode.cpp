@@ -34,6 +34,7 @@ void TieFighterExplode::linkFighter(TieFighter* newFighter)
    void TieFighterExplode::startSceen ()
   {
 	   nextStep =TieFighterExplodeSteps::InitialFlash;
+	   nextUpdate=0; //start right away
 	   DEBUG_PRINT("TieFighterExplode::startSceen()");
 
   }
