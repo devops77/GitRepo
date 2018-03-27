@@ -100,6 +100,7 @@ void TieFighter::setLigntInnerNoShow(uint32_t newColor)
 	}
 }
 
+
 /**
  * set outer lights to newvalue will not show at this time
  */

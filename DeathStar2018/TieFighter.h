@@ -5,7 +5,6 @@
 #ifndef TIEFIGHTER_H
 #define TIEFIGHTER_H
 
-
 /**
   * class TieFighter
   *
