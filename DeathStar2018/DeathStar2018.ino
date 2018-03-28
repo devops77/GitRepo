@@ -13,9 +13,9 @@
 	Adafruit_NeoPixel strip = Adafruit_NeoPixel(50, PIN, NEO_GRB + NEO_KHZ800);
 
 
-	TieFighter  tiefighter1 = TieFighter(1, &strip);
+	TieFighter  tiefighter1 = TieFighter();
 	TieFighterExplode tieFighterExplodesSceen = TieFighterExplode();
-
+	unsigned long timeKeeper;
 
 
 //The setup function is called once at startup of the sketch
@@ -25,6 +25,7 @@ void setup()
 	Serial.begin(9600);
 	pinMode(LED_BUILTIN, OUTPUT);
 
+	tiefighter1.setUp(1, &strip);
 	tieFighterExplodesSceen.linkFighter(&tiefighter1);
 	tieFighterExplodesSceen.startSceen();
 
@@ -38,7 +39,7 @@ void setup()
 	pTieFighterExplodesSceen->startSceen()
 */
 
-
+  	timeKeeper=millis()+6000;
 
 }
 
@@ -53,17 +54,18 @@ void loop()
 
 // do the seen updates
 
-delay(2000);
+
 // TODO only 1 sceen
 
 		tieFighterExplodesSceen.run();
-		if(tieFighterExplodesSceen.getNextUpdate() > 6000)
+		if(millis()>timeKeeper)
 		{
-			// done with sceen
-			delay(6000);
 			tieFighterExplodesSceen.startSceen();
+			timeKeeper=millis()+20000;
+
 		}
 		
+
 
 
 

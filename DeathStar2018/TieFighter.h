@@ -36,15 +36,19 @@ public:
 	/**
 	* Empty Constructor
 	*/
-	TieFighter ();   // must give the target number
+	TieFighter ();
 
-
-	TieFighter (uint8_t newTargetNumber, Adafruit_NeoPixel* newStrip);
 
   /**
    * Empty Destructor
    */
   virtual ~TieFighter ();
+
+
+  /**
+   * setup call from ino file
+   */
+  void setUp(int newTargetNumber, Adafruit_NeoPixel* strip);
 
   /**
    * to do: check for more than array size

@@ -1,3 +1,5 @@
+
+#include "debugArduino.h"
 #include "NeoPixelColor.h"
 
 // Constructors/Destructors
@@ -11,11 +13,14 @@ NeoPixelColor::~NeoPixelColor() {
 
 void NeoPixelColor::splitColor(uint32_t input, int & red, int & green, int & blue )
 {
+
 	blue = input & 0x000000ff;
-	input = input >> 4;
+	input = input >> 8;
 	green = input & input & 0x000000ff;
-	input = input >> 4;
+	input = input >> 8;
 	red = input & 0x000000ff;
+
+
 }
 
 uint8_t NeoPixelColor::shiftOneColor(int start, int delta, int min, int max)
@@ -38,17 +43,26 @@ uint32_t NeoPixelColor::shiftColor(int redDelta, int greenDelta, int blueDelta, 
 	int redMax, greenMax, blueMax;
 	int redFinal, greenFinal, blueFinal;
 
+/*
+	DEBUG_PRINT(" shiftColor ");
+	DEBUG_PRINT2(start,HEX);
+	DEBUG_PRINT2(min,HEX);
+	DEBUG_PRINT2(max,HEX);
+*/
 	splitColor(start, redStart, greenStart, blueStart);
 	splitColor(min, redMin, greenMin, blueMin);
 	splitColor(max, redMax, greenMax, blueMax);
 
+
 	redFinal = shiftOneColor(redStart, redDelta, redMin, redMax);
+
+
 	greenFinal = shiftOneColor(greenStart, greenDelta, greenMin, greenMax);
 	blueFinal = shiftOneColor(blueStart, blueDelta, blueMin, blueMax);
 
-
-
-	return Adafruit_NeoPixel::Color(redFinal, greenFinal, blueFinal);
+	uint32_t final = Adafruit_NeoPixel::Color(redFinal, greenFinal, blueFinal);
+//	DEBUG_PRINT2(final,HEX);
+	return  final;
 
 }
 
