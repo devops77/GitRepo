@@ -1,39 +1,35 @@
-#include "debugArduino.h"
+#define DEBUG
+
 #include "Sceens.h"
 #include "TieFighter.h"
-
+#include "global.h"
+#include "debugArduino.h"
 
 // Constructors/Destructors
 //  
 
-TieFighter::TieFighter ()
-{
+TieFighter::TieFighter(){};  // must give the target number
 
-}
 
 TieFighter::~TieFighter () { }
 
-/**
-  * setup call from ino file
-  */
- void TieFighter::setUp(int newTargetNumber, Adafruit_NeoPixel* newStrip)
- {
-	 targetNumber = newTargetNumber;
-	 pLightStrip = newStrip;
-	 initAttributes ();
+void TieFighter::setUp(uint8_t newTargetNumber, Adafruit_NeoPixel* newStrip)
+{
+	targetNumber = newTargetNumber;
+	pLightStrip = newStrip;
 
- }
+	initAttributes();
+
+}
 
 void TieFighter::initAttributes ()
 {
-
-
 	// set up my lights
 	switch (targetNumber)
 	{
-		case 1:
+		case 0:
 			//set inner lights
-			setLightIdsInner(0,4);
+			this->setLightIdsInner(0,4);
 			this->setLightIdsInner(1,5);
 			// set outer lights
 			this->setLightIdsOuter(0,0);
@@ -67,8 +63,22 @@ void TieFighter::initAttributes ()
 		}
 
 	/* debug code
-	 *
 	 */
+	DEBUG_PRINT("innerLights set");
+	DB_NAME_VALUE_HEX(0, innerLightsIds[0]);
+	DB_NAME_VALUE_HEX(1, innerLightsIds[1]);
+
+
+	 DEBUG_PRINT("outerLights set");
+		DB_NAME_VALUE_HEX(0, outerLightIds[0]);
+		DB_NAME_VALUE_HEX(1, outerLightIds[1]);
+		DB_NAME_VALUE_HEX(2, outerLightIds[2]);
+		DB_NAME_VALUE_HEX(3, outerLightIds[3]);
+		DB_NAME_VALUE_HEX(4, outerLightIds[4]);
+		DB_NAME_VALUE_HEX(5, outerLightIds[5]);
+
+	 /*
+*/
 
 }
 
@@ -92,7 +102,6 @@ void TieFighter::setLightIdsOuter (uint8_t index, uint8_t lightId)
  */
 void TieFighter::setLightIdsInner (uint8_t index, uint8_t lightId)
 {
-
 	innerLightsIds[index] = lightId;
 }
 
@@ -105,13 +114,41 @@ void TieFighter::updateLights()
 	pLightStrip->show();
 }
 
+
 /**
- * pla a sound
+ * start play  sound shoot sound
  */
-void TieFighter::playSound(int pinNumber)
+void TieFighter::startPlayShootSound()
 {
-	// TODO : play sound
+	digitalWrite(TIE_FIGHTER_SHOOT_SOUND,LOW);   // must be low for 150 ms
 }
+
+
+/*
+ * end trigger (not sound)
+ */
+void TieFighter::endPlayShootSound()
+{
+	digitalWrite(TIE_FIGHTER_SHOOT_SOUND,LOW);   // must be low for 150 ms
+}
+
+/**
+ * start play  sound shoot sound
+ */
+void TieFighter::startPlayExplodeSound()
+{
+	digitalWrite(TIE_FIGHTER_EXPLODE_PIN,HIGH);   // must be low for 150 ms
+}
+
+
+/*
+ * end trigger (not sound)
+ */
+void TieFighter::endPlayExplodeSound()
+{
+	digitalWrite(TIE_FIGHTER_EXPLODE_PIN,HIGH);   // must be low for 150 ms
+}
+
 
 /**
  * set inner lights to newvalue will not show at this time
@@ -122,6 +159,8 @@ void TieFighter::setLigntInnerNoShow(uint32_t newColor)
 	for( int i=0; i<TieFighterNumberOfLightsInner; i++ )
 	{
 		pLightStrip->setPixelColor(innerLightsIds[i], newColor);
+		DB_NAME_VALUE("TieFighter::setLigntInnerNoShow() light ID",innerLightsIds[i]);
+		DB_NAME_VALUE_HEX("setValue",newColor);
 
 	}
 }
@@ -135,6 +174,9 @@ void TieFighter::setLigntOuterNoShow(uint32_t newColor)
 	for( int i=0; i<TieFighterNumberOfLightsOuter; i++ )
 	{
 		pLightStrip->setPixelColor(outerLightIds[i], newColor);
+		DEBUG_PRINT("TieFighter::setLigntOuterNoShow()");
+		DB_NAME_VALUE("TieFighter::setLigntOuterNoShow() light ID", outerLightIds[i]);
+		DB_NAME_VALUE_HEX("setValue",newColor);
 
 	}
 
@@ -145,30 +187,13 @@ void TieFighter::setLigntOuterNoShow(uint32_t newColor)
  */
 void TieFighter::fadeLightInnerNoShow(int deltaRed, int deltaGreen, int deltaBlue, uint32_t min, uint32_t max)
 {
-	/*
-	DEBUG_PRINT("Red Delta");
-	DEBUG_PRINT2(deltaRed, HEX);
-	DEBUG_PRINT("Green Delta");
-	DEBUG_PRINT2(deltaGreen,HEX);
-	DEBUG_PRINT("Blue Delta");
-	DEBUG_PRINT2(deltaBlue,HEX);
-	*/
-	/*
-	DEBUG_PRINT("min");
-		DEBUG_PRINT2(min, HEX);
-		DEBUG_PRINT("max");
-		DEBUG_PRINT2(max,HEX);
-    */
-
 	for( int i=0; i<TieFighterNumberOfLightsInner; i++ )
 	{
 		// get
 		uint32_t start = pLightStrip->getPixelColor(innerLightsIds[i]);
-		DEBUG_PRINT2(start, HEX);
 		// adjust
-		DEBUG_PRINT(" adjust color call shift");
 		uint32_t newColor = NeoPixelColor::shiftColor(deltaRed, deltaGreen, deltaBlue, start, min, max);
-		DEBUG_PRINT2(newColor, HEX);
+
 		//save
 		pLightStrip->setPixelColor(innerLightsIds[i], newColor);
 	}

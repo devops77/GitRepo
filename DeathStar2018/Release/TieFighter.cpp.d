@@ -1,5 +1,5 @@
-TieFighter.cpp.o: ..\TieFighter.cpp ..\debugArduino.h ..\Sceens.h \
- ..\TieFighterExplode.h ..\TieFighter.h ..\Actor.h \
+TieFighter.cpp.o: ..\TieFighter.cpp ..\Sceens.h ..\TieFighterExplode.h \
+ ..\TieFighter.h ..\Actor.h \
  C:\E\sloeber\arduinoPlugin\packages\arduino\hardware\avr\1.6.21\cores\arduino/Arduino.h \
  C:\E\sloeber\arduinoPlugin\packages\arduino\hardware\avr\1.6.21\cores\arduino/binary.h \
  C:\E\sloeber\arduinoPlugin\packages\arduino\hardware\avr\1.6.21\cores\arduino/WCharacter.h \
@@ -12,9 +12,7 @@ TieFighter.cpp.o: ..\TieFighter.cpp ..\debugArduino.h ..\Sceens.h \
  C:\E\sloeber\arduinoPlugin\packages\arduino\hardware\avr\1.6.21\cores\arduino/Arduino.h \
  C:\E\sloeber\arduinoPlugin\packages\arduino\hardware\avr\1.6.21\variants\standard/pins_arduino.h \
  C:\E\Libs\AdaFruitNeoPixels/Adafruit_NeoPixel.h ..\NeoPixelColor.h \
- ..\SceenBase.h
-
-..\debugArduino.h:
+ ..\SceenBase.h ..\global.h ..\debugArduino.h
 
 ..\Sceens.h:
 
@@ -51,3 +49,7 @@ C:\E\Libs\AdaFruitNeoPixels/Adafruit_NeoPixel.h:
 ..\NeoPixelColor.h:
 
 ..\SceenBase.h:
+
+..\global.h:
+
+..\debugArduino.h:

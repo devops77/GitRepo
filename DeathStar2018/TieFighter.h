@@ -36,7 +36,8 @@ public:
 	/**
 	* Empty Constructor
 	*/
-	TieFighter ();
+	TieFighter();   // must give the target number
+
 
 
   /**
@@ -45,10 +46,8 @@ public:
   virtual ~TieFighter ();
 
 
-  /**
-   * setup call from ino file
-   */
-  void setUp(int newTargetNumber, Adafruit_NeoPixel* strip);
+	void setUp(uint8_t newTargetNumber, Adafruit_NeoPixel* newStrip);
+
 
   /**
    * to do: check for more than array size
@@ -71,9 +70,29 @@ public:
   void updateLights();
 
   /**
-   * pla a sound
+   * start play  sound shoot sound
    */
-  void playSound(int pinNumber);
+  void startPlayShootSound();
+
+
+  /*
+   * end trigger (not sound)
+   */
+  void endPlayShootSound();
+
+  /**
+   * start play  sound shoot sound
+   */
+  void startPlayExplodeSound();
+
+
+
+  /*
+   * end trigger (not sound)
+   */
+  void endPlayExplodeSound();
+
+
 
   /**
    * this is call as part of main loop

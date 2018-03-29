@@ -1,6 +1,8 @@
+#define DEBUG
 #include "debugArduino.h"
 #include "global.h"  //global defines
 #include "TieFighterExplode.h"
+
 
 void TieFighterExplode::initAttributes ()
 {
@@ -36,6 +38,8 @@ void TieFighterExplode::linkFighter(TieFighter* newFighter)
 	   nextStep =TieFighterExplodeSteps::InitialFlash;
 	   nextUpdate=0; //start right away
 	   DEBUG_PRINT("TieFighterExplode::startSceen()");
+	   pFighter->startPlayExplodeSound();   // start the trigger  needs to be down for 150ms so start as soon as possiable
+
   }
 
 
@@ -45,11 +49,10 @@ void TieFighterExplode::linkFighter(TieFighter* newFighter)
    */
    void TieFighterExplode::run ()
   {
+	   //DB_NAME_VALUE("Run with nextupdate=",nextUpdate);
 	   // this is the hart of making this sceen happen
 	   if(nextUpdate>millis())
 	   {
-//		   DEBUG_PRINT("TieFighterExplode::run()");
-//		   DEBUG_PRINT(nextUpdate);
 		   return;  // nothing to do at this time
 	   }
 
@@ -85,16 +88,13 @@ void TieFighterExplode::linkFighter(TieFighter* newFighter)
 
 	  // turn lights on
 	  pFighter->setLigntInnerNoShow(0x00FFFFFF);
-	  pFighter->setLigntOuterNoShow(0x00F0F0FF);
+	  pFighter->setLigntOuterNoShow(0x00FFF0F0);
 	  pFighter->updateLights();
-
-	  // TODO : play sound
-	  //pFighter->playSound(TieFighterExplodesPin);
 
 	  // set up next step
 	  nextStep = TieFighterExplodeSteps::FadeToRed;
-	  stepIterationCount = 50000;
-	  nextUpdate = millis()+100;
+	  stepIterationCount = 100;
+	  nextUpdate = millis()+300;
 
 
 
@@ -108,44 +108,43 @@ void TieFighterExplode::linkFighter(TieFighter* newFighter)
   void TieFighterExplode::doFadeToRed()
   {
 	  DEBUG_PRINT("TieFighterExplode::doFadeToRed()");
+	  DB_NAME_VALUE("stepIterationCount", stepIterationCount);
 	  if(stepIterationCount <= 0)
 	  {
 		  // move on to next step
 		  // set up next step
 		  nextStep = TieFighterExplodeSteps::FadeToBlack;
-		  stepIterationCount = 1000;
-		  nextUpdate = millis()+50;
+		  stepIterationCount = 100;
+		  nextUpdate = millis()+20;
 		  return;
   	  }
-	  DEBUG_PRINT("TieFighterExplode::doFadeToRed   Update ---()");
+	  DEBUG_PRINT("TieFighterExplode::doFadeToRed()  do work");
 	  //if we got here there is work to do
-	  pFighter->fadeLightInnerNoShow(-10,-10, -10, 0x00ff0000, 0x00ffffff);   /// delta min, max
-	  pFighter->fadeLightOuterNoShow(-5,-30, -30, 0x00ff0000, 0x00ffffff);   /// delta min, max
+	  pFighter->fadeLightInnerNoShow(-20,-20, -20,  0x00ff0000, 0x00ffffff);   /// delta min, max
+	  pFighter->fadeLightOuterNoShow(-60,-60, -60, 0x00800000, 0x00ffffff);   /// delta min, max
 	  pFighter->updateLights();
-	  nextUpdate = millis()+50;
+	  pFighter->endPlayExplodeSound();   // end the trigger of sound
+	  nextUpdate = millis()+80;
 	  stepIterationCount--;
   }
 
 
   void TieFighterExplode::doFadeToBlack()
   {
-	  //debug
-	  return;
-
-
+	  DEBUG_PRINT("TieFighterExplode::doFadeToBlack()");
+	  DB_NAME_VALUE("stepIterationCount", stepIterationCount);
 	  if(stepIterationCount <= 0)
 	  {
 		  DEBUG_PRINT("TieFighterExplode:: sceen is done");
 		  nextUpdate = millis()+END_OF_TIME;  // loop for ever, no more updates
 		  return;
   	  }
-	  DEBUG_PRINT("TieFighterExplode::doFadeToBlack()");
+	  DEBUG_PRINT("TieFighterExplode::doFadeToBlack()  do work");
 	  //if we got here there is work to do
-	  pFighter->fadeLightInnerNoShow(-30,-30, -30, 0x00000000, 0x00ffffff);   /// delta min, max
+	  pFighter->fadeLightInnerNoShow(-20,-20, -20, 0x00000000, 0x00ffffff);   /// delta min, max
 	  pFighter->fadeLightOuterNoShow(-30,-30, -30, 0x00000000, 0x00ffffff);   /// delta min, max
 	  pFighter->updateLights();
-	  nextUpdate = millis()+50000;
-	  stepIterationCount--;
+	  nextUpdate = millis()+80;
   }
 
 

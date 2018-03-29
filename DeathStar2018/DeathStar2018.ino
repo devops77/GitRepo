@@ -1,3 +1,4 @@
+#define DEBUG
 #include "Arduino.h"
 #include "debugArduino.h"
 #include "global.h"  //global defines
@@ -9,13 +10,13 @@
 #include "global.h"  //global defines
 
 // global classes
-	#define PIN 8
-	Adafruit_NeoPixel strip = Adafruit_NeoPixel(50, PIN, NEO_GRB + NEO_KHZ800);
+	Adafruit_NeoPixel strip = Adafruit_NeoPixel(50, NEOPIXEL_STRIP_PIN, NEO_GRB + NEO_KHZ800);
 
 
 	TieFighter  tiefighter1 = TieFighter();
-	TieFighterExplode tieFighterExplodesSceen = TieFighterExplode();
-	unsigned long timeKeeper;
+	TieFighterExplode tieFighter1ExplodesSceen = TieFighterExplode();
+	uint8_t onBoardLed;
+	unsigned long keepAlive;
 
 
 //The setup function is called once at startup of the sketch
@@ -26,8 +27,9 @@ void setup()
 	pinMode(LED_BUILTIN, OUTPUT);
 
 	tiefighter1.setUp(1, &strip);
-	tieFighterExplodesSceen.linkFighter(&tiefighter1);
-	tieFighterExplodesSceen.startSceen();
+
+	tieFighter1ExplodesSceen.linkFighter(&tiefighter1);
+	tieFighter1ExplodesSceen.startSceen();
 
 
  	strip.begin();
@@ -39,7 +41,7 @@ void setup()
 	pTieFighterExplodesSceen->startSceen()
 */
 
-  	timeKeeper=millis()+6000;
+  	keepAlive=millis();
 
 }
 
@@ -56,16 +58,33 @@ void loop()
 
 
 // TODO only 1 sceen
+	tieFighter1ExplodesSceen.run();
 
-		tieFighterExplodesSceen.run();
-		if(millis()>timeKeeper)
+
+	//	tieFighterExplodesSceen.run();
+	delay(50);
+		if(millis()-keepAlive > 6000)
 		{
-			tieFighterExplodesSceen.startSceen();
-			timeKeeper=millis()+20000;
+			// if we are here it has been a while since we got a hart beet
+			 DEBUG_PRINT("KeepAlive fired");
+			 DB_NAME_VALUE("keepAlive value",keepAlive);
 
+			keepAlive=millis(); // set new hart beat
+			// done with sceen
+			if(onBoardLed == 0)
+			{
+				digitalWrite(LED_BUILTIN,HIGH);
+				onBoardLed = 1;
+
+			}
+			else
+			{
+				digitalWrite(LED_BUILTIN,LOW);
+				onBoardLed = 0;
+			}
+			tieFighter1ExplodesSceen.startSceen();
 		}
 		
-
 
 
 
