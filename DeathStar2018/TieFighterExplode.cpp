@@ -107,8 +107,8 @@ void TieFighterExplode::linkFighter(TieFighter* newFighter)
    */
   void TieFighterExplode::doFadeToRed()
   {
-	  DEBUG_PRINT("TieFighterExplode::doFadeToRed()");
-	  DB_NAME_VALUE("stepIterationCount", stepIterationCount);
+	//  DEBUG_PRINT("TieFighterExplode::doFadeToRed()");
+	//  DB_NAME_VALUE("stepIterationCount", stepIterationCount);
 	  if(stepIterationCount <= 0)
 	  {
 		  // move on to next step

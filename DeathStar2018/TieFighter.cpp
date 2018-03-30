@@ -20,6 +20,20 @@ void TieFighter::setUp(uint8_t newTargetNumber, Adafruit_NeoPixel* newStrip)
 
 	initAttributes();
 
+	DEBUG_PRINT("Post init inner light ids");
+	DB_NAME_VALUE_HEX(0, innerLightsIds[0]);
+	DB_NAME_VALUE_HEX(1, innerLightsIds[1]);
+
+
+	 DEBUG_PRINT("post init outerLight"
+			 "ids");
+		DB_NAME_VALUE_HEX(0, outerLightIds[0]);
+		DB_NAME_VALUE_HEX(1, outerLightIds[1]);
+		DB_NAME_VALUE_HEX(2, outerLightIds[2]);
+		DB_NAME_VALUE_HEX(3, outerLightIds[3]);
+		DB_NAME_VALUE_HEX(4, outerLightIds[4]);
+		DB_NAME_VALUE_HEX(5, outerLightIds[5]);
+
 }
 
 void TieFighter::initAttributes ()
@@ -27,7 +41,7 @@ void TieFighter::initAttributes ()
 	// set up my lights
 	switch (targetNumber)
 	{
-		case 0:
+		case 1:
 			//set inner lights
 			this->setLightIdsInner(0,4);
 			this->setLightIdsInner(1,5);
@@ -92,6 +106,16 @@ void TieFighter::initAttributes ()
 void TieFighter::setLightIdsOuter (uint8_t index, uint8_t lightId)
 {
 	outerLightIds[index] = lightId;
+
+
+	DB_NAME_VALUE("setLightIdsOuter index", index);
+		DB_NAME_VALUE_HEX(0, outerLightIds[0]);
+		DB_NAME_VALUE_HEX(1, outerLightIds[1]);
+		DB_NAME_VALUE_HEX(2, outerLightIds[2]);
+		DB_NAME_VALUE_HEX(3, outerLightIds[3]);
+		DB_NAME_VALUE_HEX(4, outerLightIds[4]);
+		DB_NAME_VALUE_HEX(5, outerLightIds[5]);
+
 }
 
 
@@ -175,6 +199,7 @@ void TieFighter::setLigntOuterNoShow(uint32_t newColor)
 	{
 		pLightStrip->setPixelColor(outerLightIds[i], newColor);
 		DEBUG_PRINT("TieFighter::setLigntOuterNoShow()");
+		DB_NAME_VALUE("TieFighter::setLigntOuterNoShow() i", i);
 		DB_NAME_VALUE("TieFighter::setLigntOuterNoShow() light ID", outerLightIds[i]);
 		DB_NAME_VALUE_HEX("setValue",newColor);
 
