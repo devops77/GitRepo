@@ -135,6 +135,7 @@ void TieFighter::setLightIdsInner (uint8_t index, uint8_t lightId)
  */
 void TieFighter::updateLights()
 {
+
 	pLightStrip->show();
 }
 

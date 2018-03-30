@@ -12,7 +12,7 @@
 #define ON_BOARD_LED_PIN 13     // will use in loop to notify we are alive
 
 // lights output
-#define NEOPIXEL_STRIP_PIN 8
+#define NEOPIXEL_STRIP_PIN 30
 #define NEOPIXEL_Ring_PIN  9
 #define TIE_FIGHTER1_SHOOT_PIN  1    // Green LED on Target that lights up when it fires at player
 #define TIE_FIGHTER2_SHOOT_PIN  2
@@ -29,8 +29,8 @@
 #define VENT_TARGET_HIT
 
 // audio
-#define TIE_FIGHTER_SHOOT_SOUND  20
-#define TIE_FIGHTER_EXPLODE_PIN  21
+#define TIE_FIGHTER_SHOOT_SOUND  10
+#define TIE_FIGHTER_EXPLODE_PIN  11
 #define DEATH_STAR_EXPLODE_PIN   12
 // pin is used for interanl LED
 

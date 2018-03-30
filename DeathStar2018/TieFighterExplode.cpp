@@ -92,7 +92,7 @@ void TieFighterExplode::linkFighter(TieFighter* newFighter)
 	  pFighter->updateLights();
 
 	  // set up next step
-	  nextStep = TieFighterExplodeSteps::FadeToRed;
+	  nextStep = TieFighterExplodeSteps::FadeToBlack;
 	  nextUpdate = millis()+300;
 
 
@@ -103,6 +103,8 @@ void TieFighterExplode::linkFighter(TieFighter* newFighter)
   /**
    * fade to red
    * outer fades to lower red and faster
+   *
+   * 	Not used
    */
   void TieFighterExplode::doFadeToRed()
   {
@@ -136,13 +138,13 @@ void TieFighterExplode::linkFighter(TieFighter* newFighter)
 
   void TieFighterExplode::doFadeToBlack()
   {
-	  DEBUG_PRINT("TieFighterExplode::doFadeToBlack()  do work");
+	 // DEBUG_PRINT("TieFighterExplode::doFadeToBlack()  do work");
 
 	  uint8_t change = 0;
 
 	  //if we got here there is work to do
-	  change += pFighter->fadeLightInnerNoShow(-25,-35, -35, 0x00000000, 0x00ffffff);   /// delta min, max
-	  change += pFighter->fadeLightOuterNoShow(-30,-50, -50, 0x00000000, 0x00ffffff);   /// delta min, max
+	  change += pFighter->fadeLightInnerNoShow(-20,-26, -26,  0x00000000, 0x00ffffff);   /// delta min, max
+	  change += pFighter->fadeLightOuterNoShow(-30,-30, -30, 0x00000000, 0x00ffffff);   /// delta min, max
 	  pFighter->updateLights();
 	  nextUpdate = millis()+5;
 
