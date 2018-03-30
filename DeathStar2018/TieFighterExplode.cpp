@@ -56,7 +56,7 @@ void TieFighterExplode::linkFighter(TieFighter* newFighter)
 		   return;  // nothing to do at this time
 	   }
 
-	   DEBUG_PRINT("TieFighterExplode::run()");
+	 //  DEBUG_PRINT("TieFighterExplode::run()");
 	   // if we get here there is work to do
 	   switch(nextStep)
 	   {
@@ -93,7 +93,6 @@ void TieFighterExplode::linkFighter(TieFighter* newFighter)
 
 	  // set up next step
 	  nextStep = TieFighterExplodeSteps::FadeToRed;
-	  stepIterationCount = 100;
 	  nextUpdate = millis()+300;
 
 
@@ -107,44 +106,56 @@ void TieFighterExplode::linkFighter(TieFighter* newFighter)
    */
   void TieFighterExplode::doFadeToRed()
   {
+
 	//  DEBUG_PRINT("TieFighterExplode::doFadeToRed()");
 	//  DB_NAME_VALUE("stepIterationCount", stepIterationCount);
-	  if(stepIterationCount <= 0)
-	  {
+	  uint8_t change = 0;
+
+
+	 // DEBUG_PRINT("TieFighterExplode::doFadeToRed()  do work");
+	  //if we got here there is work to do
+	  change += pFighter->fadeLightInnerNoShow(-20,-26, -26,  0x00000000, 0x00ffffff);   /// delta min, max
+	  change += pFighter->fadeLightOuterNoShow(-30,-30, -30, 0x00000000, 0x00ffffff);   /// delta min, max
+	  pFighter->updateLights();
+	  pFighter->endPlayExplodeSound();   // end the trigger of sound
+	  nextUpdate = millis()+5;
+	  stepIterationCount--;
+
+	  if(change ==0)
+	  {   // no lights changed so we are done with this step
 		  // move on to next step
 		  // set up next step
 		  nextStep = TieFighterExplodeSteps::FadeToBlack;
-		  stepIterationCount = 100;
-		  nextUpdate = millis()+20;
+		  nextUpdate = millis()+5;
 		  return;
-  	  }
-	  DEBUG_PRINT("TieFighterExplode::doFadeToRed()  do work");
-	  //if we got here there is work to do
-	  pFighter->fadeLightInnerNoShow(-20,-20, -20,  0x00ff0000, 0x00ffffff);   /// delta min, max
-	  pFighter->fadeLightOuterNoShow(-60,-60, -60, 0x00800000, 0x00ffffff);   /// delta min, max
-	  pFighter->updateLights();
-	  pFighter->endPlayExplodeSound();   // end the trigger of sound
-	  nextUpdate = millis()+80;
-	  stepIterationCount--;
+	  }
+
+
   }
 
 
   void TieFighterExplode::doFadeToBlack()
   {
-	  DEBUG_PRINT("TieFighterExplode::doFadeToBlack()");
-	  DB_NAME_VALUE("stepIterationCount", stepIterationCount);
-	  if(stepIterationCount <= 0)
-	  {
+	  DEBUG_PRINT("TieFighterExplode::doFadeToBlack()  do work");
+
+	  uint8_t change = 0;
+
+	  //if we got here there is work to do
+	  change += pFighter->fadeLightInnerNoShow(-25,-35, -35, 0x00000000, 0x00ffffff);   /// delta min, max
+	  change += pFighter->fadeLightOuterNoShow(-30,-50, -50, 0x00000000, 0x00ffffff);   /// delta min, max
+	  pFighter->updateLights();
+	  nextUpdate = millis()+5;
+
+	  if(change ==0)
+	  {   // no lights changed so we are done with this step
+		  // move on to next step
+		  // set up next step
 		  DEBUG_PRINT("TieFighterExplode:: sceen is done");
 		  nextUpdate = millis()+END_OF_TIME;  // loop for ever, no more updates
 		  return;
-  	  }
-	  DEBUG_PRINT("TieFighterExplode::doFadeToBlack()  do work");
-	  //if we got here there is work to do
-	  pFighter->fadeLightInnerNoShow(-20,-20, -20, 0x00000000, 0x00ffffff);   /// delta min, max
-	  pFighter->fadeLightOuterNoShow(-30,-30, -30, 0x00000000, 0x00ffffff);   /// delta min, max
-	  pFighter->updateLights();
-	  nextUpdate = millis()+80;
+	  }
+
+
   }
 
 

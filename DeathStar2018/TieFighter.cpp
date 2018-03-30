@@ -43,13 +43,13 @@ void TieFighter::initAttributes ()
 	{
 		case 1:
 			//set inner lights
-			this->setLightIdsInner(0,4);
-			this->setLightIdsInner(1,5);
+			this->setLightIdsInner(0,3);
+			this->setLightIdsInner(1,4);
 			// set outer lights
 			this->setLightIdsOuter(0,0);
 			this->setLightIdsOuter(1,1);
 			this->setLightIdsOuter(2,2);
-			this->setLightIdsOuter(3,3);
+			this->setLightIdsOuter(3,5);
 			this->setLightIdsOuter(4,6);
 			this->setLightIdsOuter(5,7);
 			break;
@@ -77,7 +77,7 @@ void TieFighter::initAttributes ()
 		}
 
 	/* debug code
-	 */
+
 	DEBUG_PRINT("innerLights set");
 	DB_NAME_VALUE_HEX(0, innerLightsIds[0]);
 	DB_NAME_VALUE_HEX(1, innerLightsIds[1]);
@@ -91,7 +91,7 @@ void TieFighter::initAttributes ()
 		DB_NAME_VALUE_HEX(4, outerLightIds[4]);
 		DB_NAME_VALUE_HEX(5, outerLightIds[5]);
 
-	 /*
+
 */
 
 }
@@ -107,7 +107,7 @@ void TieFighter::setLightIdsOuter (uint8_t index, uint8_t lightId)
 {
 	outerLightIds[index] = lightId;
 
-
+/*
 	DB_NAME_VALUE("setLightIdsOuter index", index);
 		DB_NAME_VALUE_HEX(0, outerLightIds[0]);
 		DB_NAME_VALUE_HEX(1, outerLightIds[1]);
@@ -115,7 +115,7 @@ void TieFighter::setLightIdsOuter (uint8_t index, uint8_t lightId)
 		DB_NAME_VALUE_HEX(3, outerLightIds[3]);
 		DB_NAME_VALUE_HEX(4, outerLightIds[4]);
 		DB_NAME_VALUE_HEX(5, outerLightIds[5]);
-
+*/
 }
 
 
@@ -183,9 +183,10 @@ void TieFighter::setLigntInnerNoShow(uint32_t newColor)
 	for( int i=0; i<TieFighterNumberOfLightsInner; i++ )
 	{
 		pLightStrip->setPixelColor(innerLightsIds[i], newColor);
+		/*
 		DB_NAME_VALUE("TieFighter::setLigntInnerNoShow() light ID",innerLightsIds[i]);
 		DB_NAME_VALUE_HEX("setValue",newColor);
-
+		*/
 	}
 }
 
@@ -198,10 +199,12 @@ void TieFighter::setLigntOuterNoShow(uint32_t newColor)
 	for( int i=0; i<TieFighterNumberOfLightsOuter; i++ )
 	{
 		pLightStrip->setPixelColor(outerLightIds[i], newColor);
+		/*
 		DEBUG_PRINT("TieFighter::setLigntOuterNoShow()");
 		DB_NAME_VALUE("TieFighter::setLigntOuterNoShow() i", i);
 		DB_NAME_VALUE("TieFighter::setLigntOuterNoShow() light ID", outerLightIds[i]);
 		DB_NAME_VALUE_HEX("setValue",newColor);
+		*/
 
 	}
 
@@ -210,8 +213,11 @@ void TieFighter::setLigntOuterNoShow(uint32_t newColor)
 /**
  * fade inner lights to newvalue will not show at this time
  */
-void TieFighter::fadeLightInnerNoShow(int deltaRed, int deltaGreen, int deltaBlue, uint32_t min, uint32_t max)
+uint8_t TieFighter::fadeLightInnerNoShow(int deltaRed, int deltaGreen, int deltaBlue, uint32_t min, uint32_t max)
 {
+
+	uint8_t changed = 0; // assume nothing changed
+
 	for( int i=0; i<TieFighterNumberOfLightsInner; i++ )
 	{
 		// get
@@ -219,19 +225,25 @@ void TieFighter::fadeLightInnerNoShow(int deltaRed, int deltaGreen, int deltaBlu
 		// adjust
 		uint32_t newColor = NeoPixelColor::shiftColor(deltaRed, deltaGreen, deltaBlue, start, min, max);
 
+		if(start != newColor)
+		{
+			// we changed at least 1 light
+			changed = 1;
+		}
 		//save
 		pLightStrip->setPixelColor(innerLightsIds[i], newColor);
 	}
 
-
-
+	return changed;
 }
 
 /**
  * fade outer lights to newvalue will not show at this time
  */
-void TieFighter::fadeLightOuterNoShow(int deltaRed, int deltaGreen, int deltaBlue, uint32_t min, uint32_t max)
+uint8_t TieFighter::fadeLightOuterNoShow(int deltaRed, int deltaGreen, int deltaBlue, uint32_t min, uint32_t max)
 {
+	uint8_t changed = 0; // assume nothing changed
+
 	for( int i=0; i<TieFighterNumberOfLightsOuter; i++ )
 	{
 		// get
@@ -239,11 +251,17 @@ void TieFighter::fadeLightOuterNoShow(int deltaRed, int deltaGreen, int deltaBlu
 		// adjust
 
 		uint32_t newColor = NeoPixelColor::shiftColor(deltaRed, deltaGreen, deltaBlue,start, min, max);
+		if(start != newColor)
+		{
+			// we changed at least 1 light
+			changed = 1;
+		}
 
 		//save
 		pLightStrip->setPixelColor(outerLightIds[i], newColor);
 	}
 
+	return changed;
 }
 
 

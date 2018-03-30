@@ -10,7 +10,7 @@
 #include "global.h"  //global defines
 
 // global classes
-	Adafruit_NeoPixel strip = Adafruit_NeoPixel(50, NEOPIXEL_STRIP_PIN, NEO_GRB + NEO_KHZ800);
+	Adafruit_NeoPixel strip = Adafruit_NeoPixel(50, NEOPIXEL_STRIP_PIN, NEO_RGB + NEO_KHZ800);
 
 
 	TieFighter  tiefighter1 = TieFighter();

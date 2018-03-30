@@ -113,12 +113,12 @@ public:
   /**
    * fade inner lights to newvalue will not show at this time
    */
-  void fadeLightInnerNoShow(int deltaRed, int deltaGreen, int deltaBlue, uint32_t min, uint32_t max);
+  uint8_t fadeLightInnerNoShow(int deltaRed, int deltaGreen, int deltaBlue, uint32_t min, uint32_t max);
 
   /**
    * fade outer lights to newvalue will not show at this time
    */
-  void fadeLightOuterNoShow(int deltaRed, int deltaGreen, int deltaBlue, uint32_t min, uint32_t max);
+  uint8_t fadeLightOuterNoShow(int deltaRed, int deltaGreen, int deltaBlue, uint32_t min, uint32_t max);
 
 
 
