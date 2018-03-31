@@ -56,7 +56,7 @@ public:
   virtual void run ();
 
 
-
+  void doChase();
 
 // steps to get this done
   void doRingThrob();

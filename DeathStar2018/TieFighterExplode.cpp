@@ -37,7 +37,7 @@ void TieFighterExplode::linkFighter(TieFighter* newFighter)
   {
 	   nextStep =TieFighterExplodeSteps::InitialFlash;
 	   nextUpdate=0; //start right away
-	   DEBUG_PRINT("TieFighterExplode::startSceen()");
+	  // DEBUG_PRINT("TieFighterExplode::startSceen()");
 	   pFighter->startPlayExplodeSound();   // start the trigger  needs to be down for 150ms so start as soon as possiable
 
   }
@@ -84,7 +84,7 @@ void TieFighterExplode::linkFighter(TieFighter* newFighter)
   void TieFighterExplode::doInitialFlash()
   {
 
-	  DEBUG_PRINT("TieFighterExplode::doInitialFlash()");
+	  //DEBUG_PRINT("TieFighterExplode::doInitialFlash()");
 
 	  // turn lights on
 	  pFighter->setLigntInnerNoShow(0x00FFFFFF);
@@ -152,7 +152,7 @@ void TieFighterExplode::linkFighter(TieFighter* newFighter)
 	  {   // no lights changed so we are done with this step
 		  // move on to next step
 		  // set up next step
-		  DEBUG_PRINT("TieFighterExplode:: sceen is done");
+		  //DEBUG_PRINT("TieFighterExplode:: sceen is done");
 		  nextUpdate = millis()+END_OF_TIME;  // loop for ever, no more updates
 		  return;
 	  }

@@ -10,6 +10,13 @@
 	 /**
 	   * Empty Constructor
 	   */
+DeathStarExplode::DeathStarExplode ()
+{
+}
+
+DeathStarExplode::~DeathStarExplode()
+{
+}
 
 
 
@@ -26,6 +33,10 @@
    */
   void DeathStarExplode::startSceen ()
   {
+	  nextUpdate =0;
+	  nextStep =DeathStarExplodeSteps::PlayGame;
+	  nextUpdate=0; //start right away
+	  DEBUG_PRINT("DeathStarExplode::startSceen()");
 
   }
   /**
@@ -33,11 +44,38 @@
    */
   void DeathStarExplode::run ()
   {
+	   //DB_NAME_VALUE("Run with nextupdate=",nextUpdate);
+	   // this is the hart of making this sceen happen
+	   if(nextUpdate>millis())
+	   {
+		   return;  // nothing to do at this time
+	   }
 
+	   //  DEBUG_PRINT("TieFighterExplode::run()");
+	   // if we get here there is work to do
+	   switch(nextStep)
+	   {
+		   case DeathStarExplodeSteps::PlayGame: // get things started
+			   doChase();
+			   break;
+		   case DeathStarExplodeSteps::Explode : // get things started
+			   doFlash();
+			   break;
+
+	   }
   }
 
 
+void DeathStarExplode::doChase()
+{
+	//DB_NAME_VALUE("doChase", nextUpdate);
+	pVentPort->fadeLights(-25,-20,-25, 0x000007000,0x00ffffff);
+	pVentPort->shiftLights(0x00d0d0d0);
+	pVentPort->updateLights();
 
+	nextUpdate = millis()+3;
+
+}
 
 // steps to get this done
   void DeathStarExplode::doRingThrob()
@@ -46,12 +84,12 @@
   }
 
 
-  void doDeathStarSpread()
+  void DeathStarExplode::doDeathStarSpread()
   {
 
   }
 
-  void doFlash()
+  void DeathStarExplode::doFlash()
   {
 
   }

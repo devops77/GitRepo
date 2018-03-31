@@ -4,6 +4,8 @@
 #include "global.h"  //global defines
 #include "TieFighter.h"
 #include "TieFighterExplode.h"
+#include "VentPort.h"
+#include "DeathStarExplode.h"
 
 
 
@@ -11,10 +13,15 @@
 
 // global classes
 	Adafruit_NeoPixel strip = Adafruit_NeoPixel(50, NEOPIXEL_STRIP_PIN, NEO_RGB + NEO_KHZ800);
+	Adafruit_NeoPixel ring = Adafruit_NeoPixel(VentRingNumberOfLights, NEOPIXEL_RING_PIN, NEO_GRB + NEO_KHZ800);
 
 
 	TieFighter  tiefighter1 = TieFighter();
 	TieFighterExplode tieFighter1ExplodesSceen = TieFighterExplode();
+
+	VentPort ventPort = VentPort();
+	DeathStarExplode deathStarExplode = DeathStarExplode();
+
 	uint8_t onBoardLed;
 	unsigned long keepAlive;
 
@@ -26,20 +33,22 @@ void setup()
 	Serial.begin(9600);
 	pinMode(LED_BUILTIN, OUTPUT);
 
-	tiefighter1.setUp(1, &strip);
+	strip.begin();
+	strip.show(); // Initialize all pixels to 'off'
+	ring.begin();
+	ring.show();
 
+	tiefighter1.setUp(1, &strip);
 	tieFighter1ExplodesSceen.linkFighter(&tiefighter1);
 	tieFighter1ExplodesSceen.startSceen();
 
+	ventPort.setUp(&ring);
+	deathStarExplode.linkVentPort(&ventPort);
+	deathStarExplode.startSceen();
 
- 	strip.begin();
-  	strip.show(); // Initialize all pixels to 'off'
-/*
-	TieFighter*  pTiefighter1 = new TieFighter(1, &strip);
-	TieFighterExplode*  pTieFighterExplodesSceen = new TieFighterExplode();  //link seen to actor
-	pTieFighterExplodesSceen->linkFighter(pTiefighter1);
-	pTieFighterExplodesSceen->startSceen()
-*/
+
+
+
 
   	keepAlive=millis();
 
@@ -59,7 +68,7 @@ void loop()
 
 // TODO only 1 sceen
 	tieFighter1ExplodesSceen.run();
-
+	deathStarExplode.run();
 
 	//	tieFighterExplodesSceen.run();
 	delay(50);
@@ -67,7 +76,7 @@ void loop()
 		{
 			// if we are here it has been a while since we got a hart beet
 			 DEBUG_PRINT("KeepAlive fired");
-			 DB_NAME_VALUE("keepAlive value",keepAlive);
+			 //DB_NAME_VALUE("keepAlive value",keepAlive);
 
 			keepAlive=millis(); // set new hart beat
 			// done with sceen
@@ -83,6 +92,7 @@ void loop()
 				onBoardLed = 0;
 			}
 			tieFighter1ExplodesSceen.startSceen();
+			//deathStarExplode.startSceen();
 		}
 		
 

@@ -4,7 +4,7 @@
 #ifndef VENTPORT_H
 #define VENTPORT_H
 
-#define VentRingNumberOfLights 30
+#define VentRingNumberOfLights 24
 
 /**
   * class VentPort

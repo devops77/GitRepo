@@ -20,7 +20,7 @@ VentPort::~VentPort () {
 
 void VentPort::setUp(Adafruit_NeoPixel* newRing)
 {
-	DEBUG_PRINT("VentPort::setUp");
+	//DEBUG_PRINT("VentPort::setUp");
 	pLightRing = newRing;
 	ringHead=0;
 
@@ -31,7 +31,9 @@ void VentPort::setUp(Adafruit_NeoPixel* newRing)
    */
   void VentPort::updateLights()
   {
+	  //DB_NAME_VALUE("VentPort::updateLights", "about to call update");
 	  pLightRing->show();
+
   }
   /**
    * start play  sound explode sound
@@ -52,7 +54,7 @@ void VentPort::setUp(Adafruit_NeoPixel* newRing)
 
 
   /**
-  ** will cause nex light in ring to go bright
+  ** will cause next light in ring to go bright
   **/
   void VentPort::shiftLights(uint32_t setColor)
   {
@@ -65,7 +67,10 @@ void VentPort::setUp(Adafruit_NeoPixel* newRing)
 		  ringHead = 0;
 	  }
 	  //set
+	//  DB_NAME_VALUE("set one light head", ringHead);
+	//  DB_NAME_VALUE_HEX("set one light heacolord", setColor);
 	  pLightRing->setPixelColor(ringHead, setColor);
+
 
   }
 
