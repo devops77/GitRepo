@@ -15,10 +15,25 @@
 	Adafruit_NeoPixel strip = Adafruit_NeoPixel(50, NEOPIXEL_STRIP_PIN, NEO_RGB + NEO_KHZ800);
 	Adafruit_NeoPixel ring = Adafruit_NeoPixel(VentRingNumberOfLights, NEOPIXEL_RING_PIN, NEO_GRB + NEO_KHZ800);
 
-
+	// Tie Fighters
 	TieFighter  tiefighter1 = TieFighter();
 	TieFighterExplode tieFighter1ExplodesSceen = TieFighterExplode();
 
+	TieFighter  tiefighter2 = TieFighter();
+	TieFighterExplode tieFighter2ExplodesSceen = TieFighterExplode();
+
+	TieFighter  tiefighter3 = TieFighter();
+	TieFighterExplode tieFighter3ExplodesSceen = TieFighterExplode();
+
+	TieFighter  tiefighter4 = TieFighter();
+	TieFighterExplode tieFighter4ExplodesSceen = TieFighterExplode();
+
+	TieFighter  tiefighter5 = TieFighter();
+	TieFighterExplode tieFighter5ExplodesSceen = TieFighterExplode();
+
+
+
+	// vent port
 	VentPort ventPort = VentPort();
 	DeathStarExplode deathStarExplode = DeathStarExplode();
 
@@ -41,6 +56,28 @@ void setup()
 	tiefighter1.setUp(1, &strip);
 	tieFighter1ExplodesSceen.linkFighter(&tiefighter1);
 	tieFighter1ExplodesSceen.startSceen();
+
+	tiefighter2.setUp(2, &strip);
+	tieFighter2ExplodesSceen.linkFighter(&tiefighter2);
+	tieFighter2ExplodesSceen.startSceen();
+/*
+	tiefighter3.setUp(3, &strip);
+	tieFighter3ExplodesSceen.linkFighter(&tiefighter3);
+	tieFighter3ExplodesSceen.startSceen();
+
+	tiefighter4.setUp(4, &strip);
+	tieFighter4ExplodesSceen.linkFighter(&tiefighter4);
+	tieFighter4ExplodesSceen.startSceen();
+
+	tiefighter5.setUp(5, &strip);
+	tieFighter5ExplodesSceen.linkFighter(&tiefighter5);
+	tieFighter5ExplodesSceen.startSceen();
+*/
+
+
+
+
+
 
 	ventPort.setUp(&ring);
 	deathStarExplode.linkVentPort(&ventPort);
@@ -68,6 +105,7 @@ void loop()
 
 // TODO only 1 sceen
 	tieFighter1ExplodesSceen.run();
+	tieFighter2ExplodesSceen.run();
 	deathStarExplode.run();
 
 	//	tieFighterExplodesSceen.run();
@@ -84,15 +122,15 @@ void loop()
 			{
 				digitalWrite(LED_BUILTIN,HIGH);
 				onBoardLed = 1;
+				tieFighter2ExplodesSceen.startSceen();
 
 			}
 			else
 			{
 				digitalWrite(LED_BUILTIN,LOW);
 				onBoardLed = 0;
+				tieFighter1ExplodesSceen.startSceen();
 			}
-			tieFighter1ExplodesSceen.startSceen();
-			//deathStarExplode.startSceen();
 		}
 		
 

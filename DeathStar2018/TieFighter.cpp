@@ -21,18 +21,17 @@ void TieFighter::setUp(uint8_t newTargetNumber, Adafruit_NeoPixel* newStrip)
 	initAttributes();
 
 	DEBUG_PRINT("Post init inner light ids");
-	DB_NAME_VALUE_HEX(0, innerLightsIds[0]);
-	DB_NAME_VALUE_HEX(1, innerLightsIds[1]);
+	DB_NAME_VALUE(0, innerLightsIds[0]);
+	DB_NAME_VALUE(1, innerLightsIds[1]);
 
 
-	 DEBUG_PRINT("post init outerLight"
-			 "ids");
-		DB_NAME_VALUE_HEX(0, outerLightIds[0]);
-		DB_NAME_VALUE_HEX(1, outerLightIds[1]);
-		DB_NAME_VALUE_HEX(2, outerLightIds[2]);
-		DB_NAME_VALUE_HEX(3, outerLightIds[3]);
-		DB_NAME_VALUE_HEX(4, outerLightIds[4]);
-		DB_NAME_VALUE_HEX(5, outerLightIds[5]);
+	 DEBUG_PRINT("post init outerLightids");
+		DB_NAME_VALUE(0, outerLightIds[0]);
+		DB_NAME_VALUE(1, outerLightIds[1]);
+		DB_NAME_VALUE(2, outerLightIds[2]);
+		DB_NAME_VALUE(3, outerLightIds[3]);
+		DB_NAME_VALUE(4, outerLightIds[4]);
+		DB_NAME_VALUE(5, outerLightIds[5]);
 
 }
 
@@ -56,22 +55,53 @@ void TieFighter::initAttributes ()
 
 		case 2:
 			//set inner lights
-			this->setLightIdsInner(0,24);
-			this->setLightIdsInner(1,25);
+			this->setLightIdsInner(0,13);
+			this->setLightIdsInner(1,14);
+			// set outer lights
+			this->setLightIdsOuter(0,10);
+			this->setLightIdsOuter(1,11);
+			this->setLightIdsOuter(2,12);
+			this->setLightIdsOuter(3,15);
+			this->setLightIdsOuter(4,16);
+			this->setLightIdsOuter(5,17);
+			break;
+
+		case 3:
+			//set inner lights
+			this->setLightIdsInner(0,23);
+			this->setLightIdsInner(1,24);
 			// set outer lights
 			this->setLightIdsOuter(0,20);
 			this->setLightIdsOuter(1,21);
 			this->setLightIdsOuter(2,22);
-			this->setLightIdsOuter(3,23);
+			this->setLightIdsOuter(3,25);
 			this->setLightIdsOuter(4,26);
 			this->setLightIdsOuter(5,27);
 			break;
-
-		case 3:
 			break;
 		case 4:
+			//set inner lights
+			this->setLightIdsInner(0,33);
+			this->setLightIdsInner(1,34);
+			// set outer lights
+			this->setLightIdsOuter(0,30);
+			this->setLightIdsOuter(1,31);
+			this->setLightIdsOuter(2,32);
+			this->setLightIdsOuter(3,35);
+			this->setLightIdsOuter(4,36);
+			this->setLightIdsOuter(5,37);
 			break;
 		case 5:
+			//set inner lights
+			this->setLightIdsInner(0,43);
+			this->setLightIdsInner(1,44);
+			// set outer lights
+			this->setLightIdsOuter(0,40);
+			this->setLightIdsOuter(1,41);
+			this->setLightIdsOuter(2,42);
+			this->setLightIdsOuter(3,45);
+			this->setLightIdsOuter(4,46);
+			this->setLightIdsOuter(5,47);
 			break;
 
 		}
@@ -109,6 +139,8 @@ void TieFighter::setLightIdsOuter (uint8_t index, uint8_t lightId)
 
 /*
 	DB_NAME_VALUE("setLightIdsOuter index", index);
+		DB_NAME_VALUE("For Target Number", targetNumber);
+
 		DB_NAME_VALUE_HEX(0, outerLightIds[0]);
 		DB_NAME_VALUE_HEX(1, outerLightIds[1]);
 		DB_NAME_VALUE_HEX(2, outerLightIds[2]);
