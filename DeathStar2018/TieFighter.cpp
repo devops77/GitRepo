@@ -41,6 +41,8 @@ void TieFighter::initAttributes ()
 	switch (targetNumber)
 	{
 		case 1:
+			// set Laser outp pin
+			myLaserPin = TIE_FIGHTER1_SHOOT_PIN;
 			//set inner lights
 			this->setLightIdsInner(0,3);
 			this->setLightIdsInner(1,4);
@@ -54,6 +56,8 @@ void TieFighter::initAttributes ()
 			break;
 
 		case 2:
+			// set Laser outp pin
+			myLaserPin = TIE_FIGHTER2_SHOOT_PIN;
 			//set inner lights
 			this->setLightIdsInner(0,13);
 			this->setLightIdsInner(1,14);
@@ -67,6 +71,8 @@ void TieFighter::initAttributes ()
 			break;
 
 		case 3:
+			// set Laser outp pin
+			myLaserPin = TIE_FIGHTER3_SHOOT_PIN;
 			//set inner lights
 			this->setLightIdsInner(0,23);
 			this->setLightIdsInner(1,24);
@@ -78,8 +84,9 @@ void TieFighter::initAttributes ()
 			this->setLightIdsOuter(4,26);
 			this->setLightIdsOuter(5,27);
 			break;
-			break;
 		case 4:
+			// set Laser outp pin
+			myLaserPin = TIE_FIGHTER4_SHOOT_PIN;
 			//set inner lights
 			this->setLightIdsInner(0,33);
 			this->setLightIdsInner(1,34);
@@ -92,6 +99,8 @@ void TieFighter::initAttributes ()
 			this->setLightIdsOuter(5,37);
 			break;
 		case 5:
+			// set Laser outp pin
+			myLaserPin = TIE_FIGHTER5_SHOOT_PIN;
 			//set inner lights
 			this->setLightIdsInner(0,43);
 			this->setLightIdsInner(1,44);
@@ -175,7 +184,7 @@ void TieFighter::updateLights()
 /**
  * start play  sound shoot sound
  */
-void TieFighter::startPlayShootSound()
+void TieFighter::startPlayLaserSound()
 {
 	digitalWrite(TIE_FIGHTER_SHOOT_SOUND,LOW);   // must be low for 150 ms
 }
@@ -184,7 +193,7 @@ void TieFighter::startPlayShootSound()
 /*
  * end trigger (not sound)
  */
-void TieFighter::endPlayShootSound()
+void TieFighter::endPlayLaserSound()
 {
 	digitalWrite(TIE_FIGHTER_SHOOT_SOUND,LOW);   // must be low for 150 ms
 }
@@ -297,6 +306,11 @@ uint8_t TieFighter::fadeLightOuterNoShow(int deltaRed, int deltaGreen, int delta
 	return changed;
 }
 
+
+void TieFighter::setLaserBrightness(uint8_t brightness)
+{
+	analogWrite(myLaserPin,brightness);
+}
 
 
 

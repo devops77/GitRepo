@@ -161,5 +161,3 @@ void TieFighterExplode::linkFighter(TieFighter* newFighter)
   }
 
 
-
-

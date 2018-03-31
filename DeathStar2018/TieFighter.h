@@ -23,6 +23,7 @@ private:
 	uint8_t  outerLightIds[TieFighterNumberOfLightsOuter];
 	uint8_t targetNumber;
 	Adafruit_NeoPixel* pLightStrip;
+	uint8_t myLaserPin;
 
 
 
@@ -72,13 +73,13 @@ public:
   /**
    * start play  sound shoot sound
    */
-  void startPlayShootSound();
+  void startPlayLaserSound();
 
 
   /*
    * end trigger (not sound)
    */
-  void endPlayShootSound();
+  void endPlayLaserSound();
 
   /**
    * start play  sound shoot sound
@@ -120,7 +121,10 @@ public:
    */
   uint8_t fadeLightOuterNoShow(int deltaRed, int deltaGreen, int deltaBlue, uint32_t min, uint32_t max);
 
-
+  /**
+   * will set the PWM output pin duty cycle 255 full brightness, 0 -is off
+   */
+  void setLaserBrightness(uint8_t brightness);
 
 
 };
