@@ -12,7 +12,11 @@
 VentPort::VentPort () {
 }
 
+<<<<<<< HEAD
 VentPort::~VentPort () {
+=======
+VentPort::~VentPort () { 
+>>>>>>> refs/remotes/origin/master
 }
 //  
 // Methods
@@ -20,7 +24,11 @@ VentPort::~VentPort () {
 
 void VentPort::setUp(Adafruit_NeoPixel* newRing)
 {
+<<<<<<< HEAD
 	//DEBUG_PRINT("VentPort::setUp");
+=======
+	DEBUG_PRINT("VentPort::setUp");
+>>>>>>> refs/remotes/origin/master
 	pLightRing = newRing;
 	ringHead=0;
 
@@ -31,6 +39,7 @@ void VentPort::setUp(Adafruit_NeoPixel* newRing)
    */
   void VentPort::updateLights()
   {
+<<<<<<< HEAD
 	  //DB_NAME_VALUE("VentPort::updateLights", "about to call update");
 	  pLightRing->show();
 
@@ -94,6 +103,67 @@ void VentPort::setUp(Adafruit_NeoPixel* newRing)
   }
 
 
+=======
+	  pLightRing->show();
+  }
+  /**
+   * start play  sound explode sound
+   */
+  void VentPort::startPlayExplodeSound()
+  {
+	  digitalWrite(DEATH_STAR_EXPLODE_PIN,LOW);   // must be low for 150 ms
+  }
+
+/*
+   * end trigger (not sound)
+   */
+  void VentPort::endPlayExplodeSound()
+  {
+	  digitalWrite(DEATH_STAR_EXPLODE_PIN,HIGH);   // must be low for 150 ms
+  }
+
+  
+  
+  /**
+  ** will cause nex light in ring to go bright
+  **/
+  void VentPort::shiftLights(uint32_t setColor)
+  {
+	  // just turn set the light for the next light
+	  // range check 
+	  ringHead++;   // move head by one
+	  if( ringHead >= VentRingNumberOfLights) 
+	  {
+		  // wrap around
+		  ringHead = 0;
+	  }
+	  //set
+	  pLightStrip->setPixelColor(ringHead, setColor);
+	  
+  }
+  
+  /**
+  ** will cause all lights to fade
+  **/
+  void VentPort::fadeLights(int deltaRed, int deltaGreen, int deltaBlue, uint32_t min, uint32_t max)
+  {
+
+	for( int i=0; i<VentRingNumberOfLights; i++ )
+	{
+		// get
+		uint32_t start = pLightRing->getPixelColor(i);
+		// adjust
+		uint32_t newColor = NeoPixelColor::shiftColor(deltaRed, deltaGreen, deltaBlue, start, min, max);
+
+		//save
+		pLightRing->setPixelColor(i, newColor);
+	}
+
+  }
+  
+  
+  
+>>>>>>> refs/remotes/origin/master
 
 
 
