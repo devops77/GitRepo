@@ -13,7 +13,7 @@
 DeathStarExplode::DeathStarExplode ()
 {
 	  nextUpdate =0;
-	  nextStep =DeathStarExplodeSteps::PlayGame;
+	  nextStep =DeathStarExplodeSteps::StartExplode;
 }
 
 DeathStarExplode::~DeathStarExplode()
@@ -36,7 +36,7 @@ DeathStarExplode::~DeathStarExplode()
   void DeathStarExplode::startSceen ()
   {
 	  nextUpdate =0;
-	  nextStep =DeathStarExplodeSteps::PlayGame;
+	  nextStep =DeathStarExplodeSteps::StartExplode;
 	  nextUpdate=0; //start right away
 	  DEBUG_PRINT("DeathStarExplode::startSceen()");
 
@@ -57,29 +57,25 @@ DeathStarExplode::~DeathStarExplode()
 	   // if we get here there is work to do
 	   switch(nextStep)
 	   {
-		   case DeathStarExplodeSteps::PlayGame: // get things started
-			   doChase();
+		   case DeathStarExplodeSteps::StartExplode: // get things started
+			   doStartExplode();
 			   break;
-		   case DeathStarExplodeSteps::Explode : // get things started
-			   doFlash();
+		   case DeathStarExplodeSteps::FinalState : // get things started
+			   //doFlash();
 			   break;
 
 	   }
   }
 
 
-void DeathStarExplode::doChase()
-{
-	//DB_NAME_VALUE("doChase", nextUpdate);
-	pVentPort->fadeLights(-25,-20,-25, 0x000007000,0x00ffffff);
-	pVentPort->shiftLights(0x00d0d0d0);
-	pVentPort->updateLights();
 
-	nextUpdate = millis()+3;
-
-}
 
 // steps to get this done
+  void DeathStarExplode::doStartExplode()
+  {
+
+  }
+
   void DeathStarExplode::doRingThrob()
   {
 

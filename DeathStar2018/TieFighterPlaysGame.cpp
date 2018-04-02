@@ -7,6 +7,8 @@
 
 #include "global.h"
 #include "TieFighterPlaysGame.h"
+#include "debugArduino.h"
+
 
 TieFighterPlaysGame::TieFighterPlaysGame() {
 	// TODO Auto-generated constructor stub
@@ -20,6 +22,8 @@ TieFighterPlaysGame::~TieFighterPlaysGame() {
 void TieFighterPlaysGame::linkFighter(TieFighter* newFighter)
 {
 	pFighter = newFighter;
+	DEBUG_PRINT("TieFighterPlaysGame::Linked ");
+
 }
 
 
@@ -27,13 +31,13 @@ void TieFighterPlaysGame::linkFighter(TieFighter* newFighter)
 /**
    * init the vars when this script starts
    * set step = 0
-   * updat = now
+   * updatE = now
    */
    void TieFighterPlaysGame::startSceen ()
   {
+	   DEBUG_PRINT("TieFighterPlaysGame::startSceen()");
 	   nextStep =TieFighterPlayGameSteps::WaitToShoot;
 	   nextUpdate=0; //start right away
-	  // DEBUG_PRINT("TieFighterPlaysGame::startSceen()");
 
 
   }
@@ -45,6 +49,7 @@ void TieFighterPlaysGame::linkFighter(TieFighter* newFighter)
    */
    void TieFighterPlaysGame::run ()
   {
+		DEBUG_PRINT("TieFighterPlaysGame::RUN()");
 	   //DB_NAME_VALUE("Run with nextupdate=",nextUpdate);
 	   // this is the hart of making this sceen happen
 	   if(nextUpdate>millis())
@@ -52,7 +57,7 @@ void TieFighterPlaysGame::linkFighter(TieFighter* newFighter)
 		   return;  // nothing to do at this time
 	   }
 
-	 //  DEBUG_PRINT("TieFighterExplode::run()");
+
 	   // if we get here there is work to do
 	   switch(nextStep)
 	   {
@@ -76,13 +81,15 @@ void TieFighterPlaysGame::linkFighter(TieFighter* newFighter)
    void TieFighterPlaysGame::doWaitToShootStep()
    {
 	   // set up for next fire with 2 random range think that 5 guys are fireing at the start and only 1 at end
-	   nextUpdate = millis()+random(3000,9000);
+	   nextUpdate = millis()+random(500,2000);
 	   nextStep =TieFighterPlayGameSteps::StartLazer;
    }
    void TieFighterPlaysGame::doStartLazerStep()
    {
+		DEBUG_PRINT("TieFighterPlaysGame::doStartLazerStep()");
+
 	   pFighter->startPlayLaserSound();   // start the trigger  needs to be down for 150ms so start as soon as possiable
-	   nextUpdate = millis()+800; //duration of brigth blast
+	   nextUpdate = millis()+1000; //duration of brigth blast
 	   // turn laser on
 	   laserBrightness = 0xff;
 	   pFighter->setLaserBrightness(laserBrightness); // full brightness

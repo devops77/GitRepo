@@ -19,7 +19,7 @@ void TieFighter::setUp(uint8_t newTargetNumber, Adafruit_NeoPixel* newStrip)
 	pLightStrip = newStrip;
 
 	initAttributes();
-
+/*
 	DEBUG_PRINT("Post init inner light ids");
 	DB_NAME_VALUE(0, innerLightsIds[0]);
 	DB_NAME_VALUE(1, innerLightsIds[1]);
@@ -32,7 +32,7 @@ void TieFighter::setUp(uint8_t newTargetNumber, Adafruit_NeoPixel* newStrip)
 		DB_NAME_VALUE(3, outerLightIds[3]);
 		DB_NAME_VALUE(4, outerLightIds[4]);
 		DB_NAME_VALUE(5, outerLightIds[5]);
-
+*/
 }
 
 void TieFighter::initAttributes ()
@@ -114,6 +114,7 @@ void TieFighter::initAttributes ()
 			break;
 
 		}
+	pinMode(myLaserPin, OUTPUT);
 
 	/* debug code
 

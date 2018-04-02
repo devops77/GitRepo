@@ -8,7 +8,7 @@
 #define DEATHSTAREXPLODE_H
 
 // order of steps
-enum class DeathStarExplodeSteps { PlayGame, Explode, FinalState };
+enum class DeathStarExplodeSteps { StartExplode, FinalState };
 
 /**
   * class DeathStarExplode
@@ -56,7 +56,7 @@ public:
   virtual void run ();
 
 
-  void doChase();
+  void doStartExplode();
 
 // steps to get this done
   void doRingThrob();
