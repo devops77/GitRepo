@@ -114,7 +114,8 @@ void TieFighter::initAttributes ()
 			break;
 
 		}
-	pinMode(myLaserPin, OUTPUT);
+	//pinMode(myLaserPin, OUTPUT);
+	  // DB_NAME_VALUE("Write pin: ",myLaserPin );
 
 	/* debug code
 
@@ -311,9 +312,20 @@ uint8_t TieFighter::fadeLightOuterNoShow(int deltaRed, int deltaGreen, int delta
 void TieFighter::setLaserBrightness(uint8_t brightness)
 {
 	analogWrite(myLaserPin,brightness);
+/*	if(myLaserPin ==7)
+	{
+   DB_NAME_VALUE("Write pin: ",myLaserPin );
+   DB_NAME_VALUE("Brightness: ", brightness);
+	}
+	*/
 }
 
 
+
+uint8_t TieFighter::getTargetNumber()
+{
+	return targetNumber;
+}
 
 
 

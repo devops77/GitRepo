@@ -19,23 +19,21 @@
 
 	// Tie Fighters
 	TieFighter  tiefighter1 = TieFighter();
-	TieFighterPlaysGame tieFighter1PlaysGame = TieFighterPlaysGame();
-	TieFighterExplode tieFighter1ExplodesSceen = TieFighterExplode();
-
 	TieFighter  tiefighter2 = TieFighter();
-	TieFighterPlaysGame tieFighter2PlaysGame = TieFighterPlaysGame();
-	TieFighterExplode tieFighter2ExplodesSceen = TieFighterExplode();
-
 	TieFighter  tiefighter3 = TieFighter();
-	TieFighterPlaysGame tieFighter3PlaysGame = TieFighterPlaysGame();
-	TieFighterExplode tieFighter3ExplodesSceen = TieFighterExplode();
-
 	TieFighter  tiefighter4 = TieFighter();
-	TieFighterPlaysGame tieFighter4PlaysGame = TieFighterPlaysGame();
-	TieFighterExplode tieFighter4ExplodesSceen = TieFighterExplode();
-
 	TieFighter  tiefighter5 = TieFighter();
+
+	TieFighterPlaysGame tieFighter1PlaysGame = TieFighterPlaysGame();
+	TieFighterPlaysGame tieFighter2PlaysGame = TieFighterPlaysGame();
+	TieFighterPlaysGame tieFighter3PlaysGame = TieFighterPlaysGame();
+	TieFighterPlaysGame tieFighter4PlaysGame = TieFighterPlaysGame();
 	TieFighterPlaysGame tieFighter5PlaysGame = TieFighterPlaysGame();
+
+	TieFighterExplode tieFighter1ExplodesSceen = TieFighterExplode();
+	TieFighterExplode tieFighter2ExplodesSceen = TieFighterExplode();
+	TieFighterExplode tieFighter3ExplodesSceen = TieFighterExplode();
+	TieFighterExplode tieFighter4ExplodesSceen = TieFighterExplode();
 	TieFighterExplode tieFighter5ExplodesSceen = TieFighterExplode();
 
 	SceenBase* pTieFighter1Sceen;
@@ -69,23 +67,21 @@ void setup()
 	ring.show();
 
 	tiefighter1.setUp(1, &strip);
-	tieFighter1ExplodesSceen.linkFighter(&tiefighter1);
-	tieFighter1PlaysGame.linkFighter(&tiefighter1);
-
 	tiefighter2.setUp(2, &strip);
-	tieFighter2ExplodesSceen.linkFighter(&tiefighter2);
-	tieFighter2PlaysGame.linkFighter(&tiefighter2);
-
 	tiefighter3.setUp(3, &strip);
-	tieFighter3ExplodesSceen.linkFighter(&tiefighter3);
-	tieFighter3PlaysGame.linkFighter(&tiefighter3);
-
 	tiefighter4.setUp(4, &strip);
-	tieFighter4ExplodesSceen.linkFighter(&tiefighter4);
-	tieFighter4PlaysGame.linkFighter(&tiefighter4);
-
 	tiefighter5.setUp(5, &strip);
+
+	tieFighter1ExplodesSceen.linkFighter(&tiefighter1);
+	tieFighter2ExplodesSceen.linkFighter(&tiefighter2);
+	tieFighter3ExplodesSceen.linkFighter(&tiefighter3);
+	tieFighter4ExplodesSceen.linkFighter(&tiefighter4);
 	tieFighter5ExplodesSceen.linkFighter(&tiefighter5);
+
+	tieFighter1PlaysGame.linkFighter(&tiefighter1);
+	tieFighter2PlaysGame.linkFighter(&tiefighter2);
+	tieFighter3PlaysGame.linkFighter(&tiefighter3);
+	tieFighter4PlaysGame.linkFighter(&tiefighter4);
 	tieFighter5PlaysGame.linkFighter(&tiefighter5);
 
 
@@ -102,6 +98,14 @@ void setup()
 	pTieFighter5Sceen = &tieFighter5PlaysGame;
 	pDeathStarSceen = &deathStarPlayGame;
 
+	pinMode(TIE_FIGHTER1_SHOOT_PIN, OUTPUT);
+	pinMode(TIE_FIGHTER2_SHOOT_PIN, OUTPUT);
+	pinMode(TIE_FIGHTER3_SHOOT_PIN, OUTPUT);
+	pinMode(TIE_FIGHTER4_SHOOT_PIN, OUTPUT);
+	pinMode(TIE_FIGHTER5_SHOOT_PIN, OUTPUT);
+
+
+
 	pTieFighter1Sceen->startSceen();
 	pTieFighter2Sceen->startSceen();
 	pTieFighter3Sceen->startSceen();
@@ -111,8 +115,6 @@ void setup()
 
   	keepAlive=millis();
 
-  	tieFighter1PlaysGame.startSceen();
-  	tieFighter1PlaysGame.startSceen();
 
 }
 
@@ -130,17 +132,17 @@ void loop()
 
 // TODO only 1 sceen
 	pTieFighter1Sceen->run();
-	pTieFighter2Sceen->run();
-	pTieFighter3Sceen->run();
-	pTieFighter4Sceen->run();
-	pTieFighter5Sceen->run();
+//	pTieFighter2Sceen->run();
+//	pTieFighter3Sceen->run();
+//	pTieFighter4Sceen->run();
+//	pTieFighter5Sceen->run();
 	pDeathStarSceen->run();
 
-	tiefighter1.setLaserBrightness(0xFF);
 
 
 
-	delay(50);
+
+	delay(100);
 		if(millis()-keepAlive > 60000000)
 		{
 			// if we are here it has been a while since we got a hart beet

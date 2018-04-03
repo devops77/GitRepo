@@ -126,6 +126,8 @@ public:
    */
   void setLaserBrightness(uint8_t brightness);
 
+  uint8_t getTargetNumber();
+
 
 };
 

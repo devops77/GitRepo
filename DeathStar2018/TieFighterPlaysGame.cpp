@@ -1,3 +1,4 @@
+#define DEBUG
 /*
  * TieFighterPlaysGame.cpp
  *
@@ -8,7 +9,7 @@
 #include "global.h"
 #include "TieFighterPlaysGame.h"
 #include "debugArduino.h"
-
+#include "TieFighter.h"
 
 TieFighterPlaysGame::TieFighterPlaysGame() {
 	// TODO Auto-generated constructor stub
@@ -49,7 +50,7 @@ void TieFighterPlaysGame::linkFighter(TieFighter* newFighter)
    */
    void TieFighterPlaysGame::run ()
   {
-		DEBUG_PRINT("TieFighterPlaysGame::RUN()");
+		//DEBUG_PRINT("TieFighterPlaysGame::RUN()");
 	   //DB_NAME_VALUE("Run with nextupdate=",nextUpdate);
 	   // this is the hart of making this sceen happen
 	   if(nextUpdate>millis())
@@ -81,12 +82,12 @@ void TieFighterPlaysGame::linkFighter(TieFighter* newFighter)
    void TieFighterPlaysGame::doWaitToShootStep()
    {
 	   // set up for next fire with 2 random range think that 5 guys are fireing at the start and only 1 at end
-	   nextUpdate = millis()+random(500,2000);
+	   nextUpdate = millis()+random(2000,9000);
 	   nextStep =TieFighterPlayGameSteps::StartLazer;
    }
    void TieFighterPlaysGame::doStartLazerStep()
    {
-		DEBUG_PRINT("TieFighterPlaysGame::doStartLazerStep()");
+	  // DB_NAME_VALUE("laser fire for taget:", pFighter->getTargetNumber());
 
 	   pFighter->startPlayLaserSound();   // start the trigger  needs to be down for 150ms so start as soon as possiable
 	   nextUpdate = millis()+1000; //duration of brigth blast
@@ -101,11 +102,16 @@ void TieFighterPlaysGame::linkFighter(TieFighter* newFighter)
    void TieFighterPlaysGame::doFadeLaserStep()
    {
 	   pFighter->endPlayLaserSound();   // start the trigger  needs to be down for 150ms so start as soon as possiable
-	   nextUpdate = millis()+20; //some time to do other things
-	   laserBrightness >>= 2; // divie by 2
+	   nextUpdate = millis()+5; //some time to do other things
+	   laserBrightness >>= 2 ; // devide
+
+	   //DB_NAME_VALUE("Do fade brightness: ", laserBrightness );
+
 	   pFighter->setLaserBrightness(laserBrightness); // full brightness
-	   if(laserBrightness==0)
+	   if(laserBrightness <= 33)
 	   {
+		   laserBrightness = 0;
+		   pFighter->setLaserBrightness(laserBrightness); // full brightness
 		   nextStep =TieFighterPlayGameSteps::WaitToShoot;
 	   }
    }
