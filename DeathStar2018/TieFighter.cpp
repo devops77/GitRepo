@@ -35,6 +35,31 @@ void TieFighter::setUp(uint8_t newTargetNumber, Adafruit_NeoPixel* newStrip)
 */
 }
 
+
+bool TieFighter::getTargetUp()
+{
+
+	if(digitalRead(myHitSwitchPin))
+	{
+		return false;
+	}
+	else
+	{
+		return true;
+	}
+
+}
+bool TieFighter::getIsAlive()
+{
+	return myIsAlive;
+}
+void TieFighter::setIsAlive(bool newValue)
+{
+	myIsAlive = newValue;
+}
+
+
+
 void TieFighter::initAttributes ()
 {
 	// set up my lights
@@ -43,6 +68,7 @@ void TieFighter::initAttributes ()
 		case 1:
 			// set Laser outp pin
 			myLaserPin = TIE_FIGHTER1_SHOOT_PIN;
+			myHitSwitchPin = TIE_FIGHTER1_HIT_PIN;
 			//set inner lights
 			this->setLightIdsInner(0,3);
 			this->setLightIdsInner(1,4);
@@ -58,6 +84,7 @@ void TieFighter::initAttributes ()
 		case 2:
 			// set Laser outp pin
 			myLaserPin = TIE_FIGHTER2_SHOOT_PIN;
+			myHitSwitchPin = TIE_FIGHTER2_HIT_PIN;
 			//set inner lights
 			this->setLightIdsInner(0,13);
 			this->setLightIdsInner(1,14);
@@ -73,6 +100,7 @@ void TieFighter::initAttributes ()
 		case 3:
 			// set Laser outp pin
 			myLaserPin = TIE_FIGHTER3_SHOOT_PIN;
+			myHitSwitchPin = TIE_FIGHTER3_HIT_PIN;
 			//set inner lights
 			this->setLightIdsInner(0,23);
 			this->setLightIdsInner(1,24);
@@ -87,6 +115,7 @@ void TieFighter::initAttributes ()
 		case 4:
 			// set Laser outp pin
 			myLaserPin = TIE_FIGHTER4_SHOOT_PIN;
+			myHitSwitchPin = TIE_FIGHTER4_HIT_PIN;
 			//set inner lights
 			this->setLightIdsInner(0,33);
 			this->setLightIdsInner(1,34);
@@ -101,7 +130,8 @@ void TieFighter::initAttributes ()
 		case 5:
 			// set Laser outp pin
 			myLaserPin = TIE_FIGHTER5_SHOOT_PIN;
-			//set inner lights
+			myHitSwitchPin = TIE_FIGHTER5_HIT_PIN;
+		//set inner lights
 			this->setLightIdsInner(0,43);
 			this->setLightIdsInner(1,44);
 			// set outer lights
@@ -115,6 +145,9 @@ void TieFighter::initAttributes ()
 
 		}
 	pinMode(myLaserPin, OUTPUT);
+	pinMode(myHitSwitchPin,INPUT_PULLUP);
+
+
 	  // DB_NAME_VALUE("Write pin: ",myLaserPin );
 
 	/* debug code

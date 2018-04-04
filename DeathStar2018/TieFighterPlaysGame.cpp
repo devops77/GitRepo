@@ -39,7 +39,7 @@ void TieFighterPlaysGame::linkFighter(TieFighter* newFighter)
 	   DEBUG_PRINT("TieFighterPlaysGame::startSceen()");
 	   nextStep =TieFighterPlayGameSteps::WaitToShoot;
 	   nextUpdate=0; //start right away
-
+	   pFighter->setIsAlive(true);
 
   }
 

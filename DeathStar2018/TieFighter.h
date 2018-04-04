@@ -24,8 +24,8 @@ private:
 	uint8_t targetNumber;
 	Adafruit_NeoPixel* pLightStrip;
 	uint8_t myLaserPin;
-
-
+	uint8_t myHitSwitchPin;
+	bool myIsAlive;
 
 
 	void initAttributes () ;
@@ -47,8 +47,11 @@ public:
   virtual ~TieFighter ();
 
 
-	void setUp(uint8_t newTargetNumber, Adafruit_NeoPixel* newStrip);
+  void setUp(uint8_t newTargetNumber, Adafruit_NeoPixel* newStrip);
 
+  bool getTargetUp();
+  bool getIsAlive();
+  void setIsAlive(bool);
 
   /**
    * to do: check for more than array size
