@@ -114,7 +114,7 @@ void TieFighter::initAttributes ()
 			break;
 
 		}
-	//pinMode(myLaserPin, OUTPUT);
+	pinMode(myLaserPin, OUTPUT);
 	  // DB_NAME_VALUE("Write pin: ",myLaserPin );
 
 	/* debug code

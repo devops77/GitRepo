@@ -72,7 +72,7 @@ void DeathStarPlayGame::doChase()
 	pVentPort->shiftLights(0x00d0d0d0);
 	pVentPort->updateLights();
 
-	nextUpdate = millis()+3;
+	nextUpdate = millis()+50;
 
 }
 

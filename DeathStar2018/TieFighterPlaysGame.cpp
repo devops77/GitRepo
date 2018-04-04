@@ -82,7 +82,7 @@ void TieFighterPlaysGame::linkFighter(TieFighter* newFighter)
    void TieFighterPlaysGame::doWaitToShootStep()
    {
 	   // set up for next fire with 2 random range think that 5 guys are fireing at the start and only 1 at end
-	   nextUpdate = millis()+random(2000,9000);
+	   nextUpdate = millis()+ ((random(1,10)*10)+pFighter->getTargetNumber())*100;
 	   nextStep =TieFighterPlayGameSteps::StartLazer;
    }
    void TieFighterPlaysGame::doStartLazerStep()
@@ -101,14 +101,16 @@ void TieFighterPlaysGame::linkFighter(TieFighter* newFighter)
 
    void TieFighterPlaysGame::doFadeLaserStep()
    {
+#define LASER_FADE_RATE 30
 	   pFighter->endPlayLaserSound();   // start the trigger  needs to be down for 150ms so start as soon as possiable
-	   nextUpdate = millis()+5; //some time to do other things
-	   laserBrightness >>= 2 ; // devide
+	   nextUpdate = millis()+40; //some time to do other things
+	   //laserBrightness >>= 1 ; // devide
+	   laserBrightness -= LASER_FADE_RATE;
 
 	   //DB_NAME_VALUE("Do fade brightness: ", laserBrightness );
 
 	   pFighter->setLaserBrightness(laserBrightness); // full brightness
-	   if(laserBrightness <= 33)
+	   if(laserBrightness <= (LASER_FADE_RATE+10))
 	   {
 		   laserBrightness = 0;
 		   pFighter->setLaserBrightness(laserBrightness); // full brightness

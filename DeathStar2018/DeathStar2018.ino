@@ -98,12 +98,6 @@ void setup()
 	pTieFighter5Sceen = &tieFighter5PlaysGame;
 	pDeathStarSceen = &deathStarPlayGame;
 
-	pinMode(TIE_FIGHTER1_SHOOT_PIN, OUTPUT);
-	pinMode(TIE_FIGHTER2_SHOOT_PIN, OUTPUT);
-	pinMode(TIE_FIGHTER3_SHOOT_PIN, OUTPUT);
-	pinMode(TIE_FIGHTER4_SHOOT_PIN, OUTPUT);
-	pinMode(TIE_FIGHTER5_SHOOT_PIN, OUTPUT);
-
 
 
 	pTieFighter1Sceen->startSceen();
@@ -132,17 +126,16 @@ void loop()
 
 // TODO only 1 sceen
 	pTieFighter1Sceen->run();
-//	pTieFighter2Sceen->run();
-//	pTieFighter3Sceen->run();
-//	pTieFighter4Sceen->run();
-//	pTieFighter5Sceen->run();
+	pTieFighter2Sceen->run();
+	pTieFighter3Sceen->run();
+	pTieFighter4Sceen->run();
+	pTieFighter5Sceen->run();
 	pDeathStarSceen->run();
 
 
 
 
 
-	delay(100);
 		if(millis()-keepAlive > 60000000)
 		{
 			// if we are here it has been a while since we got a hart beet
