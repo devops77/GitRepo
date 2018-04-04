@@ -82,7 +82,10 @@ void TieFighterPlaysGame::linkFighter(TieFighter* newFighter)
    void TieFighterPlaysGame::doWaitToShootStep()
    {
 	   // set up for next fire with 2 random range think that 5 guys are fireing at the start and only 1 at end
-	   nextUpdate = millis()+ ((random(1,10)*10)+pFighter->getTargetNumber())*100;
+	   unsigned long delta =  random(1,10)*1; // get the big random part  20 to 200
+	   delta += (pFighter->getTargetNumber()-1)*4; //scale adujust so fight do not fire at same time nnow 0-16 + 20- to 200
+	   delta *= 50; // get that to be in mSec
+	   nextUpdate = millis()+ delta;
 	   nextStep =TieFighterPlayGameSteps::StartLazer;
    }
    void TieFighterPlaysGame::doStartLazerStep()
