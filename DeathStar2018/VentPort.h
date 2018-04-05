@@ -64,6 +64,8 @@ public:
   void fadeLights(int deltaRed, int deltaGreen, int deltaBlue, uint32_t min, uint32_t max);
 
   void setAllLights(uint32_t color);
+  
+  bool isAlive();
 
 };   // end of class struct
 

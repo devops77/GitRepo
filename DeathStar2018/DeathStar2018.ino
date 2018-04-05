@@ -105,8 +105,8 @@ void setup()
 	pTieFighter3Sceen = &tieFighter3PlaysGame;
 	pTieFighter4Sceen = &tieFighter4PlaysGame;
 	pTieFighter5Sceen = &tieFighter5PlaysGame;
-//	pDeathStarSceen = &deathStarPlayGame;
-	pDeathStarSceen = &deathStarExplode;
+	pDeathStarSceen = &deathStarPlayGame;
+//	pDeathStarSceen = &deathStarExplode;
 
 
 
@@ -187,11 +187,17 @@ void loop()
 		pTieFighter5Sceen->startSceen();
 	}
 
+	
+	if(ventPort->isAlive)
+	{
+		DB_NAME_VALUE("Vent Port Hit ", "True");
+		pDeathStarSceen->&deathStarExplode;
+		pDeathStarSceen->startSceen();
+	}
 
 // do the seen updates
 
 
-// TODO only 1 sceen
 	pTieFighter1Sceen->run();
 	pTieFighter2Sceen->run();
 	pTieFighter3Sceen->run();
@@ -202,29 +208,20 @@ void loop()
 
 
 
-
-		if(millis()-keepAlive > 60000000)
+// this code is to blink on board LED every second
+		if(millis()-keepAlive > 1000)
 		{
-			// if we are here it has been a while since we got a hart beet
-			 DEBUG_PRINT("KeepAlive fired");
-			 //DB_NAME_VALUE("keepAlive value",keepAlive);
-
+			// 1 second tick
 			keepAlive=millis(); // set new hart beat
-			// done with sceen
 			if(onBoardLed == 0)
 			{
 				digitalWrite(LED_BUILTIN,HIGH);
 				onBoardLed = 1;
-				pTieFighter2Sceen = &tieFighter2ExplodesSceen;
-				pTieFighter2Sceen->startSceen();
-
 			}
 			else
 			{
 				digitalWrite(LED_BUILTIN,LOW);
 				onBoardLed = 0;
-				pTieFighter1Sceen = &tieFighter1ExplodesSceen;
-				pTieFighter1Sceen->startSceen();
 			}
 		}
 		
