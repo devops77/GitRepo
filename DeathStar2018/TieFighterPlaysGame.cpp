@@ -81,10 +81,16 @@ void TieFighterPlaysGame::linkFighter(TieFighter* newFighter)
 
    void TieFighterPlaysGame::doWaitToShootStep()
    {
-	   // set up for next fire with 2 random range think that 5 guys are fireing at the start and only 1 at end
-	   unsigned long delta =  random(1,10)*1; // get the big random part  20 to 200
-	   delta += (pFighter->getTargetNumber()-1)*4; //scale adujust so fight do not fire at same time nnow 0-16 + 20- to 200
-	   delta *= 50; // get that to be in mSec
+
+	   //Improved 2 var method  tried 200  and 1 to 10
+	   unsigned long gap = 400; // this is the gap you want to have between fire events
+	   unsigned long spread = gap*5; // spread is the duration of time to spread ot fire events
+	   unsigned long delta =  random(1,6); // get the rand part of spread
+	   delta *= spread;
+	   delta += gap*(pFighter->getTargetNumber()-1);
+
+
+
 	   nextUpdate = millis()+ delta;
 	   nextStep =TieFighterPlayGameSteps::StartLazer;
    }

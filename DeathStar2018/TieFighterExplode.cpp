@@ -37,9 +37,10 @@ void TieFighterExplode::linkFighter(TieFighter* newFighter)
   {
 	   nextStep =TieFighterExplodeSteps::InitialFlash;
 	   nextUpdate=0; //start right away
-	  // DEBUG_PRINT("TieFighterExplode::startSceen()");
+	  DEBUG_PRINT("TieFighterExplode::startSceen()");
 	   pFighter->startPlayExplodeSound();   // start the trigger  needs to be down for 150ms so start as soon as possiable
-
+	   pFighter->setIsAlive(false);
+	   pFighter->setLaserBrightness(0);
   }
 
 

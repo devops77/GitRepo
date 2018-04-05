@@ -117,9 +117,66 @@ void loop()
 {
 //Add your repeated code here
 
+// check if revied first so as not to bounce
+	if( !tiefighter1.getIsAlive() && tiefighter1.getTargetUp() )
+	{
+		DB_NAME_VALUE("Target up  ", 1);
+		pTieFighter1Sceen = &tieFighter1PlaysGame;
+		pTieFighter1Sceen->startSceen();
+	}
+	if( !tiefighter2.getIsAlive() && tiefighter2.getTargetUp() )
+	{
+		pTieFighter2Sceen = &tieFighter2PlaysGame;
+		pTieFighter2Sceen->startSceen();
+	}
+	if( !tiefighter3.getIsAlive() && tiefighter3.getTargetUp() )
+	{
+		pTieFighter3Sceen = &tieFighter3PlaysGame;
+		pTieFighter3Sceen->startSceen();
+	}
+	if( !tiefighter4.getIsAlive() && tiefighter4.getTargetUp() )
+	{
+		pTieFighter4Sceen = &tieFighter4PlaysGame;
+		pTieFighter4Sceen->startSceen();
+	}
+	if( !tiefighter5.getIsAlive() && tiefighter5.getTargetUp() )
+	{
+		pTieFighter5Sceen = &tieFighter5PlaysGame;
+		pTieFighter5Sceen->startSceen();
+	}
 
+// check if target down
+	if( tiefighter1.getIsAlive() && !tiefighter1.getTargetUp() )
+	{
+		DB_NAME_VALUE("Target Down  ", 1);
+		pTieFighter1Sceen = &tieFighter1ExplodesSceen;
+		pTieFighter1Sceen->startSceen();
+	}
+	if( tiefighter2.getIsAlive() && !tiefighter2.getTargetUp() )
+	{
+		DB_NAME_VALUE("Target Down  ", 2);
+		pTieFighter2Sceen = &tieFighter2ExplodesSceen;
+		pTieFighter2Sceen->startSceen();
+	}
+	if( tiefighter3.getIsAlive() && !tiefighter3.getTargetUp() )
+	{
+		DB_NAME_VALUE("Target Down  ", 3);
+		pTieFighter3Sceen = &tieFighter3ExplodesSceen;
+		pTieFighter3Sceen->startSceen();
+	}
+	if( tiefighter4.getIsAlive() && !tiefighter4.getTargetUp() )
+	{
+		DB_NAME_VALUE("Target Down  ", 4);
+		pTieFighter4Sceen = &tieFighter4ExplodesSceen;
+		pTieFighter4Sceen->startSceen();
+	}
+	if( tiefighter5.getIsAlive() && !tiefighter5.getTargetUp() )
+	{
+		DB_NAME_VALUE("Target Down  ", 5);
+		pTieFighter5Sceen = &tieFighter5ExplodesSceen;
+		pTieFighter5Sceen->startSceen();
+	}
 
-// TODO look for events
 
 // do the seen updates
 
