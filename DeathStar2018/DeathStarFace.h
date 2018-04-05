@@ -46,8 +46,9 @@ public:
   /**
   ** will cause all lights to fade
   **/
-  void fadeLights(int deltaRed, int deltaGreen, int deltaBlue, uint32_t min, uint32_t max);
+  uint8_t TieFighter::fadeLightInnerNoShow(int deltaRed, int deltaGreen, int deltaBlue, uint32_t min, uint32_t max);
 
+  
   void setAllLights(uint32_t color);
 
   void setLight(uint32_t i, uint32_t color);

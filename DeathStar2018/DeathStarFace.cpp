@@ -95,3 +95,29 @@ void DeathStarFace::setUp(Adafruit_NeoPixel* newStrip)
 	  pLightStrip->setPixelColor(i, color);
   }
 
+/**
+ * fade inner lights to newvalue will not show at this time
+ */
+	uint8_t TieFighter::fadeLightInnerNoShow(int deltaRed, int deltaGreen, int deltaBlue, uint32_t min, uint32_t max)
+	{
+
+		uint8_t changed = 0; // assume nothing changed
+
+		for( int i=0; i<TieFighterNumberOfLightsInner; i++ )
+		{
+			// get
+			uint32_t start = pLightStrip->getPixelColor(innerLightsIds[i]);
+			// adjust
+			uint32_t newColor = NeoPixelColor::shiftColor(deltaRed, deltaGreen, deltaBlue, start, min, max);
+
+			if(start != newColor)
+			{
+				// we changed at least 1 light
+				changed = 1;
+			}
+			//save
+			pLightStrip->setPixelColor(innerLightsIds[i], newColor);
+		}
+
+		return changed;
+	}

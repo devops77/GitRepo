@@ -68,6 +68,9 @@ DeathStarExplode::~DeathStarExplode()
 	   	   case DeathStarExplodeSteps::Flash1: // get things started
 			   doFlash1();
 			   break;
+	   	   case DeathStarExplodeSteps::FastBlack: // get things started
+			   doFastBlack();
+			   break;
 		   case DeathStarExplodeSteps::Flash2: // get things started
 			   doFlash2();
 			   break;
@@ -138,7 +141,12 @@ DeathStarExplode::~DeathStarExplode()
 		  lightOnCount = 49;
 
 
-	  nextUpdate = millis()+50;
+	  if(stepStartTime + 5000 < millis())
+	  {  // move on
+		  nextUpdate = millis()+50;
+		  nextStep = DeathStarExplodeSteps::Flash1;
+
+	  }
 
 
 
@@ -148,18 +156,53 @@ DeathStarExplode::~DeathStarExplode()
   void DeathStarExplode::doFlash1()
   {
 	  DEBUG_PRINT("Flash1");
+	  pVentPort->setAllLights(0x00FFFFFF);  // update the vent port
+	  pDeathStarFace->setAllLights(0x00FFFFFF);
+	  nextUpdate = millis()+150;
+	  nextStep = DeathStarExplodeSteps::FastBlack;
   }
 
+  void doFastBlack()
+  {
+	  DEBUG_PRINT("Fast Black");
+	  DEBUG_PRINT("Flash1");
+	  pVentPort->setAllLights(0x00000000);  // update the vent port
+	  pDeathStarFace->setAllLights(0x00000000);
+	  nextUpdate = millis()+150;
+	  nextStep = DeathStarExplodeSteps::Flash2;
+  }
+  
 
   void DeathStarExplode::doFlash2()
   {
 	  DEBUG_PRINT("Flash2");
+	  pVentPort->setAllLights(0x00FFFFFF);  // update the vent port
+	  pDeathStarFace->setAllLights(0x00FFFFFF);
+	  nextUpdate = millis()+700;
+	  nextStep = DeathStarExplodeSteps::FadeToBlackBlack;
 
   }
 
   void DeathStarExplode::doFadeToBlack()
   {
 	  DEBUG_PRINT("Fade To Black");
+	  uint8_t change;
 
+	  change = pVentPort->fadeLightInnerNoShow(-10,-20,-20,0x00000000, 0x00FFFFFF);  // fade to red
+	  pVentPort->update();
+	  change += pDeathStarFace->fadeLightInnerNoShow(-10,-20,-20,0x00000000, 0x00FFFFFF);
+	  pDeathStarFace->update();
+	  if(change > 0)
+	  {
+		  // more to change
+		  nextUpdate = millis()+700;
+		  nextStep = DeathStarExplodeSteps::FadeToBlackBlack;
+	  }
+	  else
+	  {
+		// done  
+		nextUpdate = END_OF_TIME;
+	  }
+	  
   }
 

@@ -9,7 +9,7 @@
 #define DEATHSTAREXPLODE_H
 
 // order of steps
-enum class DeathStarExplodeSteps { RingThrob, Throb, Flash1, Flash2, FadeToBlack, FinalState };
+enum class DeathStarExplodeSteps { RingThrob, Throb, Flash1, FastBlack, Flash2, FadeToBlack, FinalState };
 
 /**
   * class DeathStarExplode
@@ -67,6 +67,7 @@ public:
   void doRingThrob();
   void doThrob();
   void doFlash1();
+  void doFastBlack();
   void doFlash2();
   void doFadeToBlack();
 
