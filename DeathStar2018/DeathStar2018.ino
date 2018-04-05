@@ -15,7 +15,10 @@
 
 // global classes
 	Adafruit_NeoPixel strip = Adafruit_NeoPixel(50, NEOPIXEL_STRIP_PIN, NEO_RGB + NEO_KHZ800);
+	Adafruit_NeoPixel deathStarFaceStrip = Adafruit_NeoPixel(50, NEOPIXEL_DS_FACE_PIN, NEO_RGB + NEO_KHZ800);
 	Adafruit_NeoPixel ring = Adafruit_NeoPixel(VentRingNumberOfLights, NEOPIXEL_RING_PIN, NEO_GRB + NEO_KHZ800);
+
+
 
 	// Tie Fighters
 	TieFighter  tiefighter1 = TieFighter();
@@ -46,6 +49,7 @@
 
 	// vent port
 	VentPort ventPort = VentPort();
+	DeathStarFace deathStarFace = DeathStarFace();
 	DeathStarPlayGame deathStarPlayGame = DeathStarPlayGame();
 	DeathStarExplode deathStarExplode = DeathStarExplode();
 
@@ -63,8 +67,11 @@ void setup()
 
 	strip.begin();
 	strip.show(); // Initialize all pixels to 'off'
+	deathStarFaceStrip.begin();
+	deathStarFaceStrip.show(); // Initialize all pixels to 'off'
 	ring.begin();
 	ring.show();
+
 
 	tiefighter1.setUp(1, &strip);
 	tiefighter2.setUp(2, &strip);
@@ -87,7 +94,9 @@ void setup()
 
 
 	ventPort.setUp(&ring);
-	deathStarExplode.linkVentPort(&ventPort);
+	deathStarFace.setUp(&deathStarFaceStrip);
+
+	deathStarExplode.linkVentPort(&ventPort, &deathStarFace);
 	deathStarPlayGame.linkVentPort(&ventPort);
 
 
@@ -96,7 +105,8 @@ void setup()
 	pTieFighter3Sceen = &tieFighter3PlaysGame;
 	pTieFighter4Sceen = &tieFighter4PlaysGame;
 	pTieFighter5Sceen = &tieFighter5PlaysGame;
-	pDeathStarSceen = &deathStarPlayGame;
+//	pDeathStarSceen = &deathStarPlayGame;
+	pDeathStarSceen = &deathStarExplode;
 
 
 

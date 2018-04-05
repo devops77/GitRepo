@@ -93,6 +93,20 @@ void VentPort::setUp(Adafruit_NeoPixel* newRing)
 
   }
 
+  /**
+   * set all the lights in the vent port to a color
+   * used to clear and throb
+   */
+  void VentPort::setAllLights(uint32_t color)
+  {
+
+		for( int i=0; i<VentRingNumberOfLights; i++ )
+		{
+			pLightRing->setPixelColor(i, color);
+		}
+		pLightRing->show();
+  }
+
 
 
 

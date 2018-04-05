@@ -13,6 +13,7 @@
 
 // lights output
 #define NEOPIXEL_STRIP_PIN 22
+#define NEOPIXEL_DS_FACE_PIN 23
 #define NEOPIXEL_RING_PIN  24
   // save 24 25 incase we split or add lights
 #define TIE_FIGHTER1_SHOOT_PIN  7    // Green LED on Target that lights up when it fires at player

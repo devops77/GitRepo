@@ -1,5 +1,6 @@
 #include <stdint.h>
 #include "VentPort.h"
+#include "DeathStarFace.h"
 #include "SceenBase.h"
 
 
@@ -8,7 +9,7 @@
 #define DEATHSTAREXPLODE_H
 
 // order of steps
-enum class DeathStarExplodeSteps { StartExplode, FinalState };
+enum class DeathStarExplodeSteps { RingThrob, Throb, Flash1, Flash2, FadeToBlack, FinalState };
 
 /**
   * class DeathStarExplode
@@ -20,7 +21,11 @@ class DeathStarExplode : public SceenBase
 private:
 	// keeps track of what step we are on
 	VentPort* pVentPort;
+	DeathStarFace* pDeathStarFace;
 	DeathStarExplodeSteps nextStep;
+	uint8_t lightOnCount;
+	unsigned long stepStartTime;
+
 
 
 
@@ -41,7 +46,7 @@ public:
   virtual ~DeathStarExplode ();
 
 
-  void linkVentPort(VentPort* newPort);
+  void linkVentPort(VentPort* newPort, DeathStarFace* newFace);
 
 
   /**
@@ -60,9 +65,12 @@ public:
 
 // steps to get this done
   void doRingThrob();
-  void doDeathStarSpread();
-  void doFlash();
+  void doThrob();
+  void doFlash1();
+  void doFlash2();
   void doFadeToBlack();
+
+  uint32_t getThrobValue(unsigned long updateInterval, unsigned long grain);
 
 
 };

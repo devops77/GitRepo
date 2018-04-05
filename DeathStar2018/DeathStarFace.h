@@ -1,36 +1,25 @@
+/*
+ * DeathStarFace.h
+ *
+ *  Created on: Apr 4, 2018
+ *      Author: BigDaddy
+ */
+
+#ifndef DEATHSTARFACE_H_
+#define DEATHSTARFACE_H_
+
+#define FaceNumberOfLights 50
+
 #include "Actor.h"
 
-
-#ifndef VENTPORT_H
-#define VENTPORT_H
-
-#define VentRingNumberOfLights 24
-
-/**
-  * class VentPort
-  * 
-  */
-
-class VentPort :  public Actor
-{
-
+class DeathStarFace: public Actor {
 private:
-	Adafruit_NeoPixel* pLightRing;
-	uint8_t ringHead;
+	Adafruit_NeoPixel* pLightStrip;
 
 
 public:
-
-
-  /**
-   * Empty Constructor
-   */
-  VentPort ();
-
-  /**
-   * Empty Destructor
-   */
-  virtual ~VentPort ();
+	DeathStarFace();
+	virtual ~DeathStarFace();
 
 	/**
 	** set things up
@@ -53,10 +42,6 @@ public:
 
 
 
-  /**
-  ** will cause nex light in ring to go bright
-  **/
-  void shiftLights(uint32_t setColor);
 
   /**
   ** will cause all lights to fade
@@ -65,6 +50,9 @@ public:
 
   void setAllLights(uint32_t color);
 
-};   // end of class struct
+  void setLight(uint32_t i, uint32_t color);
 
-#endif // VENTPORT_H
+
+};
+
+#endif /* DEATHSTARFACE_H_ */
