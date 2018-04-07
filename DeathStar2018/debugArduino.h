@@ -7,6 +7,7 @@
 
 #ifndef DEBUG_ARDUINO_H
 #define DEBUG_ARDUINO_H
+#include "MemFree.h"
 
 #define DB_WHERE_AM_I         \
 	   Serial.print(millis());     \

@@ -9,7 +9,7 @@
 #define DEATHSTAREXPLODE_H
 
 // order of steps
-enum class DeathStarExplodeSteps { RingThrob, Throb, Flash1, FastBlack, Flash2, FadeToBlack, FinalState };
+enum class DeathStarExplodeSteps { RingThrob, Throb,TrobFade, Flash1, FastBlack, Flash2, FadeToBlack, FinalState };
 
 /**
   * class DeathStarExplode
@@ -46,7 +46,8 @@ public:
   virtual ~DeathStarExplode ();
 
 
-  void linkVentPort(VentPort* newPort, DeathStarFace* newFace);
+  void linkVentPort(VentPort* newPort);
+  void linkDeathStarFace(DeathStarFace* newFace);
 
 
   /**
@@ -66,6 +67,7 @@ public:
 // steps to get this done
   void doRingThrob();
   void doThrob();
+  void doTrobFade();
   void doFlash1();
   void doFastBlack();
   void doFlash2();

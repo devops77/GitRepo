@@ -95,8 +95,9 @@ void setup()
 
 	ventPort.setUp(&ring);
 	deathStarFace.setUp(&deathStarFaceStrip);
-
-	deathStarExplode.linkVentPort(&ventPort, &deathStarFace);
+	deathStarExplode.linkVentPort(&ventPort);
+	deathStarExplode.linkDeathStarFace(&deathStarFace);
+//	deathStarPlayGame.linkDeathStarFace(&deathStarFace);
 	deathStarPlayGame.linkVentPort(&ventPort);
 
 
@@ -105,8 +106,8 @@ void setup()
 	pTieFighter3Sceen = &tieFighter3PlaysGame;
 	pTieFighter4Sceen = &tieFighter4PlaysGame;
 	pTieFighter5Sceen = &tieFighter5PlaysGame;
-	pDeathStarSceen = &deathStarPlayGame;
-//	pDeathStarSceen = &deathStarExplode;
+	pDeathStarSceen = &deathStarExplode;
+//	pDeathStarSceen = &deathStarPlayGame;
 
 
 
@@ -126,7 +127,9 @@ void setup()
 void loop()
 {
 //Add your repeated code here
-
+//	DB_NAME_VALUE("before delay  ", 1);
+//	DB_NAME_VALUE("Free Mem", freeMemory());
+//	DB_NAME_VALUE("after delay  ", 2);
 // check if revied first so as not to bounce
 	if( !tiefighter1.getIsAlive() && tiefighter1.getTargetUp() )
 	{
@@ -155,13 +158,20 @@ void loop()
 		pTieFighter5Sceen->startSceen();
 	}
 
+//
 // check if target down
+	//DB_NAME_VALUE("about to check down  ", 4);
+	//DB_NAME_VALUE("Free Mem", freeMemory());
+
+
 	if( tiefighter1.getIsAlive() && !tiefighter1.getTargetUp() )
 	{
 		DB_NAME_VALUE("Target Down  ", 1);
+		DB_NAME_VALUE("Free Mem", freeMemory());
 		pTieFighter1Sceen = &tieFighter1ExplodesSceen;
 		pTieFighter1Sceen->startSceen();
 	}
+
 	if( tiefighter2.getIsAlive() && !tiefighter2.getTargetUp() )
 	{
 		DB_NAME_VALUE("Target Down  ", 2);
@@ -180,6 +190,7 @@ void loop()
 		pTieFighter4Sceen = &tieFighter4ExplodesSceen;
 		pTieFighter4Sceen->startSceen();
 	}
+
 	if( tiefighter5.getIsAlive() && !tiefighter5.getTargetUp() )
 	{
 		DB_NAME_VALUE("Target Down  ", 5);
@@ -187,11 +198,13 @@ void loop()
 		pTieFighter5Sceen->startSceen();
 	}
 
+//	DB_NAME_VALUE("about to check vent  ", 8);
+//	DB_NAME_VALUE("Free Mem", freeMemory());
 	
-	if(ventPort->isAlive)
+	if(ventPort.isAlive())
 	{
 		DB_NAME_VALUE("Vent Port Hit ", "True");
-		pDeathStarSceen->&deathStarExplode;
+		pDeathStarSceen = &deathStarExplode;
 		pDeathStarSceen->startSceen();
 	}
 

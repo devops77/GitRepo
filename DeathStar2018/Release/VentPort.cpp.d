@@ -1,5 +1,6 @@
-VentPort.cpp.o: ..\VentPort.cpp ..\global.h ..\debugArduino.h ..\Sceens.h \
- ..\TieFighterExplode.h ..\TieFighter.h ..\Actor.h \
+VentPort.cpp.o: ..\VentPort.cpp ..\global.h ..\debugArduino.h \
+ ..\MemFree.h ..\Sceens.h ..\TieFighterExplode.h ..\TieFighter.h \
+ ..\Actor.h \
  C:\E\sloeber\arduinoPlugin\packages\arduino\hardware\avr\1.6.21\cores\arduino/Arduino.h \
  C:\E\sloeber\arduinoPlugin\packages\arduino\hardware\avr\1.6.21\cores\arduino/binary.h \
  C:\E\sloeber\arduinoPlugin\packages\arduino\hardware\avr\1.6.21\cores\arduino/WCharacter.h \
@@ -17,6 +18,8 @@ VentPort.cpp.o: ..\VentPort.cpp ..\global.h ..\debugArduino.h ..\Sceens.h \
 ..\global.h:
 
 ..\debugArduino.h:
+
+..\MemFree.h:
 
 ..\Sceens.h:
 

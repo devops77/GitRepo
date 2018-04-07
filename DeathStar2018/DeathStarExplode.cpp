@@ -22,12 +22,17 @@ DeathStarExplode::~DeathStarExplode()
 
 
 
-  void DeathStarExplode::linkVentPort(VentPort* newPort, DeathStarFace* newFace)
+  void DeathStarExplode::linkVentPort(VentPort* newPort)
+
   {
 	  pVentPort = newPort;
-	  pDeathStarFace = newFace;
   }
 
+  void DeathStarExplode::linkDeathStarFace(DeathStarFace* newFace)
+  {
+	  pDeathStarFace = newFace;
+
+  }
 
   /**
    * init the vars when this script starts
@@ -36,7 +41,7 @@ DeathStarExplode::~DeathStarExplode()
    */
   void DeathStarExplode::startSceen ()
   {
-	  stepStartTime =0;
+	  stepStartTime = millis();
 	  lightOnCount =0;
 	  nextStep =DeathStarExplodeSteps::RingThrob;
 	  nextUpdate=0; //start right away
@@ -59,23 +64,26 @@ DeathStarExplode::~DeathStarExplode()
 	   // if we get here there is work to do
 	   switch(nextStep)
 	   {
-	   	   case DeathStarExplodeSteps::RingThrob: // get things started
+	   	   case DeathStarExplodeSteps::RingThrob:
 			   doRingThrob();
 			   break;
-	   	   case DeathStarExplodeSteps::Throb: // get things started
+	   	   case DeathStarExplodeSteps::Throb:
 	   		   doThrob();
 			   break;
-	   	   case DeathStarExplodeSteps::Flash1: // get things started
+	   	   case DeathStarExplodeSteps::TrobFade:
+	   			doTrobFade();
+	   			break;
+	   	   case DeathStarExplodeSteps::Flash1:
 			   doFlash1();
 			   break;
-	   	   case DeathStarExplodeSteps::FastBlack: // get things started
+	   	   case DeathStarExplodeSteps::FastBlack:
 			   doFastBlack();
 			   break;
-		   case DeathStarExplodeSteps::Flash2: // get things started
+		   case DeathStarExplodeSteps::Flash2:
 			   doFlash2();
 			   break;
 
-		   case DeathStarExplodeSteps::FadeToBlack : // get things started
+		   case DeathStarExplodeSteps::FadeToBlack :
 			   doFadeToBlack();
 			   break;
 
@@ -131,7 +139,9 @@ DeathStarExplode::~DeathStarExplode()
 	  pVentPort->setAllLights(color);  // update the vent port
 
 	  // for the death star face we do the string 1 light at a time
-	  lightOnCount++;
+	  lightOnCount = (millis()- stepStartTime)/150;
+
+	  //lightOnCount++;
 	  for(int i=0; i<lightOnCount; i++)
 	  {
 		  pDeathStarFace->setLight(i, color);
@@ -140,11 +150,10 @@ DeathStarExplode::~DeathStarExplode()
 	  if(lightOnCount >= 50)
 		  lightOnCount = 49;
 
-
-	  if(stepStartTime + 5000 < millis())
+	  nextUpdate = millis()+50;
+	  if(stepStartTime + 9000 < millis())
 	  {  // move on
-		  nextUpdate = millis()+50;
-		  nextStep = DeathStarExplodeSteps::Flash1;
+		  nextStep = DeathStarExplodeSteps::TrobFade;
 
 	  }
 
@@ -157,18 +166,18 @@ DeathStarExplode::~DeathStarExplode()
   {
 	  DEBUG_PRINT("Flash1");
 	  pVentPort->setAllLights(0x00FFFFFF);  // update the vent port
-	  pDeathStarFace->setAllLights(0x00FFFFFF);
-	  nextUpdate = millis()+150;
+	  pDeathStarFace->setAllLights(0x00FFFF80);
+	  nextUpdate = millis()+30;
 	  nextStep = DeathStarExplodeSteps::FastBlack;
   }
 
-  void doFastBlack()
+  void DeathStarExplode::doFastBlack()
   {
 	  DEBUG_PRINT("Fast Black");
 	  DEBUG_PRINT("Flash1");
 	  pVentPort->setAllLights(0x00000000);  // update the vent port
 	  pDeathStarFace->setAllLights(0x00000000);
-	  nextUpdate = millis()+150;
+	  nextUpdate = millis()+400;
 	  nextStep = DeathStarExplodeSteps::Flash2;
   }
   
@@ -177,32 +186,51 @@ DeathStarExplode::~DeathStarExplode()
   {
 	  DEBUG_PRINT("Flash2");
 	  pVentPort->setAllLights(0x00FFFFFF);  // update the vent port
-	  pDeathStarFace->setAllLights(0x00FFFFFF);
+	  pDeathStarFace->setAllLights(0x00FFFF80);
 	  nextUpdate = millis()+700;
-	  nextStep = DeathStarExplodeSteps::FadeToBlackBlack;
+	  nextStep = DeathStarExplodeSteps::FadeToBlack;
 
+  }
+
+  void DeathStarExplode::doTrobFade()
+  {
+	  DEBUG_PRINT("Trob Fade Fade ");
+	  uint8_t change;
+
+	  change = pVentPort->fadeLights(-0,-20,-20, 0x00400000, 0x00FFFFFF);  // fade to red
+	  pVentPort->updateLights();
+	  change += pDeathStarFace->fadeLights(-10,-20,-20,0x00400000, 0x00FFFFFF);
+	  pDeathStarFace->updateLights();
+	  nextUpdate = millis()+50;
+
+
+	  if(change ==0)
+	  {
+
+		  nextStep = DeathStarExplodeSteps::Flash1;
+	  }
   }
 
   void DeathStarExplode::doFadeToBlack()
-  {
-	  DEBUG_PRINT("Fade To Black");
-	  uint8_t change;
+   {
+ 	  DEBUG_PRINT("Fade To Black");
+ 	  uint8_t change;
 
-	  change = pVentPort->fadeLightInnerNoShow(-10,-20,-20,0x00000000, 0x00FFFFFF);  // fade to red
-	  pVentPort->update();
-	  change += pDeathStarFace->fadeLightInnerNoShow(-10,-20,-20,0x00000000, 0x00FFFFFF);
-	  pDeathStarFace->update();
-	  if(change > 0)
-	  {
-		  // more to change
-		  nextUpdate = millis()+700;
-		  nextStep = DeathStarExplodeSteps::FadeToBlackBlack;
-	  }
-	  else
-	  {
-		// done  
-		nextUpdate = END_OF_TIME;
-	  }
-	  
-  }
+ 	  change = pVentPort->fadeLights(-10,-20,-20, 0x00000000, 0x00FFFFFF);  // fade to red
+ 	  pVentPort->updateLights();
+ 	  change += pDeathStarFace->fadeLights(-12,-15,-20,0x00000000, 0x00FFFFFF);
+ 	  pDeathStarFace->updateLights();
+ 	  if(change > 0)
+ 	  {
+ 		  // more to change
+ 		  nextUpdate = millis()+20;
+ 		  nextStep = DeathStarExplodeSteps::FadeToBlack;
+ 	  }
+ 	  else
+ 	  {
+ 		// done
+ 		nextUpdate = END_OF_TIME;
+ 	  }
+
+   }
 

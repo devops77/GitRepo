@@ -1,4 +1,4 @@
-NeoPixelColor.cpp.o: ..\NeoPixelColor.cpp ..\debugArduino.h \
+NeoPixelColor.cpp.o: ..\NeoPixelColor.cpp ..\debugArduino.h ..\MemFree.h \
  ..\NeoPixelColor.h \
  C:\E\sloeber\arduinoPlugin\packages\arduino\hardware\avr\1.6.21\cores\arduino/Arduino.h \
  C:\E\sloeber\arduinoPlugin\packages\arduino\hardware\avr\1.6.21\cores\arduino/binary.h \
@@ -14,6 +14,8 @@ NeoPixelColor.cpp.o: ..\NeoPixelColor.cpp ..\debugArduino.h \
  C:\E\Libs\AdaFruitNeoPixels/Adafruit_NeoPixel.h
 
 ..\debugArduino.h:
+
+..\MemFree.h:
 
 ..\NeoPixelColor.h:
 

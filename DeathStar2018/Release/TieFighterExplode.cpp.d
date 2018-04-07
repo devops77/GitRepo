@@ -1,5 +1,6 @@
 TieFighterExplode.cpp.o: ..\TieFighterExplode.cpp ..\debugArduino.h \
- ..\global.h ..\TieFighterExplode.h ..\TieFighter.h ..\Actor.h \
+ ..\MemFree.h ..\global.h ..\TieFighterExplode.h ..\TieFighter.h \
+ ..\Actor.h \
  C:\E\sloeber\arduinoPlugin\packages\arduino\hardware\avr\1.6.21\cores\arduino/Arduino.h \
  C:\E\sloeber\arduinoPlugin\packages\arduino\hardware\avr\1.6.21\cores\arduino/binary.h \
  C:\E\sloeber\arduinoPlugin\packages\arduino\hardware\avr\1.6.21\cores\arduino/WCharacter.h \
@@ -15,6 +16,8 @@ TieFighterExplode.cpp.o: ..\TieFighterExplode.cpp ..\debugArduino.h \
  ..\SceenBase.h
 
 ..\debugArduino.h:
+
+..\MemFree.h:
 
 ..\global.h:
 

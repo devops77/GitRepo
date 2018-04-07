@@ -12,7 +12,7 @@ TieFighter.cpp.o: ..\TieFighter.cpp ..\Sceens.h ..\TieFighterExplode.h \
  C:\E\sloeber\arduinoPlugin\packages\arduino\hardware\avr\1.6.21\cores\arduino/Arduino.h \
  C:\E\sloeber\arduinoPlugin\packages\arduino\hardware\avr\1.6.21\variants\mega/pins_arduino.h \
  C:\E\Libs\AdaFruitNeoPixels/Adafruit_NeoPixel.h ..\NeoPixelColor.h \
- ..\SceenBase.h ..\global.h ..\debugArduino.h
+ ..\SceenBase.h ..\global.h ..\debugArduino.h ..\MemFree.h
 
 ..\Sceens.h:
 
@@ -53,3 +53,5 @@ C:\E\Libs\AdaFruitNeoPixels/Adafruit_NeoPixel.h:
 ..\global.h:
 
 ..\debugArduino.h:
+
+..\MemFree.h:

@@ -77,18 +77,29 @@ void VentPort::setUp(Adafruit_NeoPixel* newRing)
   /**
   ** will cause all lights to fade
   **/
-  void VentPort::fadeLights(int deltaRed, int deltaGreen, int deltaBlue, uint32_t min, uint32_t max)
+  int VentPort::fadeLights(int deltaRed, int deltaGreen, int deltaBlue, uint32_t min, uint32_t max)
   {
+
+	  uint32_t start =0;
+	  uint32_t newColor=0;
 
 	for( int i=0; i<VentRingNumberOfLights; i++ )
 	{
 		// get
-		uint32_t start = pLightRing->getPixelColor(i);
+		 start = pLightRing->getPixelColor(i);
 		// adjust
-		uint32_t newColor = NeoPixelColor::shiftColor(deltaRed, deltaGreen, deltaBlue, start, min, max);
+		 newColor = NeoPixelColor::shiftColor(deltaRed, deltaGreen, deltaBlue, start, min, max);
 
 		//save
 		pLightRing->setPixelColor(i, newColor);
+	}
+	if(start == newColor)
+	{
+		return 0;
+	}
+	else
+	{
+		return 1;
 	}
 
   }

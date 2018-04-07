@@ -38,7 +38,8 @@ void TieFighter::setUp(uint8_t newTargetNumber, Adafruit_NeoPixel* newStrip)
 
 bool TieFighter::getTargetUp()
 {
-
+//DB_NAME_VALUE("get traget ", myHitSwitchPin);
+//DB_NAME_VALUE("Free Mem", freeMemory());
 	if(digitalRead(myHitSwitchPin))
 	{
 		return true;
@@ -51,6 +52,8 @@ bool TieFighter::getTargetUp()
 }
 bool TieFighter::getIsAlive()
 {
+	//DB_NAME_VALUE("Check Alive :", myIsAlive)
+	//DB_NAME_VALUE("Free Mem", freeMemory());
 	return myIsAlive;
 }
 void TieFighter::setIsAlive(bool newValue)

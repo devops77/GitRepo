@@ -117,8 +117,8 @@ void TieFighterExplode::linkFighter(TieFighter* newFighter)
 
 	 // DEBUG_PRINT("TieFighterExplode::doFadeToRed()  do work");
 	  //if we got here there is work to do
-	  change += pFighter->fadeLightInnerNoShow(-20,-26, -26,  0x00000000, 0x00ffffff);   /// delta min, max
-	  change += pFighter->fadeLightOuterNoShow(-30,-30, -30, 0x00000000, 0x00ffffff);   /// delta min, max
+	  change += pFighter->fadeLightInnerNoShow(-2,-20, -20,  0x00000000, 0x00ffffff);   /// delta min, max
+	  change += pFighter->fadeLightOuterNoShow(-15,-25, -25, 0x00000000, 0x00ffffff);   /// delta min, max
 	  pFighter->updateLights();
 	  pFighter->endPlayExplodeSound();   // end the trigger of sound
 	  nextUpdate = millis()+5;
@@ -139,13 +139,13 @@ void TieFighterExplode::linkFighter(TieFighter* newFighter)
 
   void TieFighterExplode::doFadeToBlack()
   {
-	 // DEBUG_PRINT("TieFighterExplode::doFadeToBlack()  do work");
+	 //DEBUG_PRINT("TieFighterExplode::doFadeToBlack()  do work");
 
 	  uint8_t change = 0;
 
 	  //if we got here there is work to do
-	  change += pFighter->fadeLightInnerNoShow(-20,-26, -26,  0x00000000, 0x00ffffff);   /// delta min, max
-	  change += pFighter->fadeLightOuterNoShow(-30,-30, -30, 0x00000000, 0x00ffffff);   /// delta min, max
+	  change += pFighter->fadeLightInnerNoShow(-10,-20, -20,  0x00000000, 0x00ffffff);   /// delta min, max
+	  change += pFighter->fadeLightOuterNoShow(-15,-30, -30, 0x00000000, 0x00ffffff);   /// delta min, max
 	  pFighter->updateLights();
 	  nextUpdate = millis()+5;
 
