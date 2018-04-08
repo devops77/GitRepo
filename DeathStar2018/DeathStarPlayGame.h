@@ -10,7 +10,7 @@
 #include "DeathStarFace.h"
 
 #ifndef DEATHSTARPLAYGAME_H_
-#define DEATHSTARPLAYGAME_H_
+#define DEATHSTARPLAYGAME_H_\
 
 #include "SceenBase.h"
 
