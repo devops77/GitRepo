@@ -106,8 +106,8 @@ void setup()
 	pTieFighter3Sceen = &tieFighter3PlaysGame;
 	pTieFighter4Sceen = &tieFighter4PlaysGame;
 	pTieFighter5Sceen = &tieFighter5PlaysGame;
-	pDeathStarSceen = &deathStarExplode;
-//	pDeathStarSceen = &deathStarPlayGame;
+//	pDeathStarSceen = &deathStarExplode;
+	pDeathStarSceen = &deathStarPlayGame;
 
 
 
@@ -201,7 +201,7 @@ void loop()
 //	DB_NAME_VALUE("about to check vent  ", 8);
 //	DB_NAME_VALUE("Free Mem", freeMemory());
 	
-	if(ventPort.isAlive())
+	if(ventPort.getIsAlive() && ventPort.isHit())
 	{
 		DB_NAME_VALUE("Vent Port Hit ", "True");
 		pDeathStarSceen = &deathStarExplode;

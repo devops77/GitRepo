@@ -94,7 +94,7 @@ void TieFighterExplode::linkFighter(TieFighter* newFighter)
 
 	  // set up next step
 	  nextStep = TieFighterExplodeSteps::FadeToBlack;
-	  nextUpdate = millis()+300;
+	  nextUpdate = millis()+500;
 
 
 
@@ -117,11 +117,11 @@ void TieFighterExplode::linkFighter(TieFighter* newFighter)
 
 	 // DEBUG_PRINT("TieFighterExplode::doFadeToRed()  do work");
 	  //if we got here there is work to do
-	  change += pFighter->fadeLightInnerNoShow(-2,-20, -20,  0x00000000, 0x00ffffff);   /// delta min, max
+	  change += pFighter->fadeLightInnerNoShow(-1,-15, -15,  0x00000000, 0x00ffffff);   /// delta min, max
 	  change += pFighter->fadeLightOuterNoShow(-15,-25, -25, 0x00000000, 0x00ffffff);   /// delta min, max
 	  pFighter->updateLights();
 	  pFighter->endPlayExplodeSound();   // end the trigger of sound
-	  nextUpdate = millis()+5;
+	  nextUpdate = millis()+10;
 	  stepIterationCount--;
 
 	  if(change ==0)

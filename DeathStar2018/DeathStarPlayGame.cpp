@@ -23,6 +23,11 @@ void DeathStarPlayGame::linkVentPort(VentPort* newPort)
 {
 	  pVentPort = newPort;
 }
+void DeathStarPlayGame::linkDeathStarFace(DeathStarFace* newFace)
+ {
+	  pDeathStarFace = newFace;
+
+ }
 
 
 /**
@@ -35,6 +40,8 @@ void DeathStarPlayGame::startSceen ()
 	  nextUpdate =0;
 	  nextStep =DeathStarPlayGameSteps::PlayGame;
 	  nextUpdate=0; //start right away
+	  pVentPort->setAllLights(0x00FFFFFF);  // update the vent port
+	  pDeathStarFace->setAllLights(0x00FFFF80);
 	  DEBUG_PRINT("DeathStarPlayGame::startSceen()");
 
 }

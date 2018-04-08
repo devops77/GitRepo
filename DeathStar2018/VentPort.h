@@ -17,6 +17,7 @@ class VentPort :  public Actor
 private:
 	Adafruit_NeoPixel* pLightRing;
 	uint8_t ringHead;
+	bool isAlive;
 
 
 public:
@@ -65,7 +66,9 @@ public:
 
   void setAllLights(uint32_t color);
   
-  bool isAlive();
+  bool getIsAlive();
+  void setIsAlive(bool newValue);
+  bool isHit();
 
 };   // end of class struct
 

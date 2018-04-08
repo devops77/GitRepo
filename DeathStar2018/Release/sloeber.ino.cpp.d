@@ -13,8 +13,8 @@ sloeber.ino.cpp.o: ..\sloeber.ino.cpp \
  ..\debugArduino.h ..\MemFree.h ..\global.h ..\TieFighter.h ..\Actor.h \
  C:\E\Libs\AdaFruitNeoPixels/Adafruit_NeoPixel.h ..\NeoPixelColor.h \
  ..\TieFighterPlaysGame.h ..\SceenBase.h ..\TieFighterExplode.h \
- ..\VentPort.h ..\DeathStarPlayGame.h ..\DeathStarExplode.h \
- ..\DeathStarFace.h ..\DeathStar2018.ino
+ ..\VentPort.h ..\DeathStarPlayGame.h ..\DeathStarFace.h \
+ ..\DeathStarExplode.h ..\DeathStar2018.ino
 
 C:\E\sloeber\arduinoPlugin\packages\arduino\hardware\avr\1.6.21\cores\arduino/Arduino.h:
 
@@ -62,8 +62,8 @@ C:\E\Libs\AdaFruitNeoPixels/Adafruit_NeoPixel.h:
 
 ..\DeathStarPlayGame.h:
 
-..\DeathStarExplode.h:
-
 ..\DeathStarFace.h:
+
+..\DeathStarExplode.h:
 
 ..\DeathStar2018.ino:

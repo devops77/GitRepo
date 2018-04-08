@@ -23,6 +23,8 @@ void VentPort::setUp(Adafruit_NeoPixel* newRing)
 	//DEBUG_PRINT("VentPort::setUp");
 	pLightRing = newRing;
 	ringHead=0;
+	isAlive=true;
+	pinMode( VENT_TARGET_HIT, INPUT_PULLUP);
 
 
 }
@@ -123,17 +125,24 @@ void VentPort::setUp(Adafruit_NeoPixel* newRing)
 ** will check if the target is hit
 ** as of this writing I thing we will use a 74LS74 to latch the event
 **/
-bool VentPort::isAlive()
+bool VentPort::isHit()
 {
 	
 		if(digitalRead(VENT_TARGET_HIT))
 	{
-		return true;
+		return false;
 	}
 	else
 	{
-		return false;
+		return true;
 	}
-
 }
 
+bool VentPort::getIsAlive()
+{
+		return isAlive;
+}
+void VentPort::setIsAlive(bool newValue)
+{
+	isAlive = newValue;
+}

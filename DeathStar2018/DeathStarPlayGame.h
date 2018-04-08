@@ -7,6 +7,7 @@
 
 #include <stdint.h>
 #include "VentPort.h"
+#include "DeathStarFace.h"
 
 #ifndef DEATHSTARPLAYGAME_H_
 #define DEATHSTARPLAYGAME_H_
@@ -20,6 +21,7 @@ class DeathStarPlayGame: public SceenBase {
 private:
 	// keeps track of what step we are on
 	VentPort* pVentPort;
+	DeathStarFace* pDeathStarFace;
 	DeathStarPlayGameSteps nextStep;
 
 public:
@@ -27,6 +29,7 @@ public:
 	virtual ~DeathStarPlayGame();
 
 	void linkVentPort(VentPort* newPort);
+  void linkDeathStarFace(DeathStarFace* newFace);
 
 	/**
 	 * init the vars when this script starts

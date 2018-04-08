@@ -37,6 +37,10 @@ void TieFighterPlaysGame::linkFighter(TieFighter* newFighter)
    void TieFighterPlaysGame::startSceen ()
   {
 	   DEBUG_PRINT("TieFighterPlaysGame::startSceen()");
+		  pFighter->setLigntInnerNoShow(0x000000);  // all lights off
+		  pFighter->setLigntOuterNoShow(0x000000);
+		  pFighter->updateLights();
+
 	   nextStep =TieFighterPlayGameSteps::WaitToShoot;
 	   nextUpdate=0; //start right away
 	   pFighter->setIsAlive(true);

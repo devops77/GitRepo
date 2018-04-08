@@ -42,6 +42,7 @@ DeathStarExplode::~DeathStarExplode()
   void DeathStarExplode::startSceen ()
   {
 	  stepStartTime = millis();
+	  pVentPort->setIsAlive(false);
 	  lightOnCount =0;
 	  nextStep =DeathStarExplodeSteps::RingThrob;
 	  nextUpdate=0; //start right away
@@ -102,7 +103,7 @@ DeathStarExplode::~DeathStarExplode()
 	  float xf = x; // convert to float
 	  float grainf= grain;
 	  xf = sin(xf*PI/(grainf));
-	  xf*=255.0;
+	  xf*=128.0;
 	  int z= xf;
 	  return z;
 
@@ -194,26 +195,26 @@ DeathStarExplode::~DeathStarExplode()
 
   void DeathStarExplode::doTrobFade()
   {
-	  DEBUG_PRINT("Trob Fade Fade ");
+	  //DEBUG_PRINT("Trob Fade Fade ");
 	  uint8_t change;
 
-	  change = pVentPort->fadeLights(-0,-20,-20, 0x00400000, 0x00FFFFFF);  // fade to red
+	  change = pVentPort->fadeLights(-8,-20,-20, 0x00200000, 0x00FFFFFF);  // fade to red
 	  pVentPort->updateLights();
-	  change += pDeathStarFace->fadeLights(-10,-20,-20,0x00400000, 0x00FFFFFF);
+	  change += pDeathStarFace->fadeLights(-8,-20,-20,0x00200000, 0x00FFFFFF);
 	  pDeathStarFace->updateLights();
 	  nextUpdate = millis()+50;
 
 
 	  if(change ==0)
 	  {
-
+		  nextUpdate = millis()+200;
 		  nextStep = DeathStarExplodeSteps::Flash1;
 	  }
   }
 
   void DeathStarExplode::doFadeToBlack()
    {
- 	  DEBUG_PRINT("Fade To Black");
+ 	 // DEBUG_PRINT("Fade To Black");
  	  uint8_t change;
 
  	  change = pVentPort->fadeLights(-10,-20,-20, 0x00000000, 0x00FFFFFF);  // fade to red
@@ -223,7 +224,7 @@ DeathStarExplode::~DeathStarExplode()
  	  if(change > 0)
  	  {
  		  // more to change
- 		  nextUpdate = millis()+20;
+ 		  nextUpdate = millis()+40;
  		  nextStep = DeathStarExplodeSteps::FadeToBlack;
  	  }
  	  else
