@@ -29,7 +29,6 @@ void DeathStarPlayGame::linkDeathStarFace(DeathStarFace* newFace)
 
  }
 
-
 /**
  * init the vars when this script starts
  * set step = 0
