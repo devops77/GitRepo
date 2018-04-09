@@ -23,6 +23,10 @@ private:
 	VentPort* pVentPort;
 	DeathStarFace* pDeathStarFace;
 	DeathStarPlayGameSteps nextStep;
+	unsigned long stepStartTime;
+	unsigned long nextTwinkleTime;
+	unsigned long nextFaceFadeTime;
+	
 
 public:
 	DeathStarPlayGame();
@@ -43,6 +47,7 @@ public:
 	virtual void run();
 
 	void doChase();
+	void doTwinkle();
 
 };
 

@@ -39,9 +39,12 @@ void DeathStarPlayGame::startSceen ()
 	  nextUpdate =0;
 	  nextStep =DeathStarPlayGameSteps::PlayGame;
 	  nextUpdate=0; //start right away
-	  pVentPort->setAllLights(0x00FFFFFF);  // update the vent port
-	  pDeathStarFace->setAllLights(0x00FFFF80);
+	  pVentPort->setAllLights(0x00);  // turn all lights off
+	  pDeathStarFace->setAllLights(0x00); // turn all lights off
 	  DEBUG_PRINT("DeathStarPlayGame::startSceen()");
+	  stepStartTime = millis();
+	  nextFaceFadeTime = stepStartTime;
+	  nextTwinkleTime =  stepStartTime;
 
 }
 /**
@@ -62,6 +65,7 @@ void DeathStarPlayGame::run ()
 	   {
 		   case DeathStarPlayGameSteps::PlayGame: // get things started
 			   doChase();
+			   doTwinkle();
 			   break;
 		   case DeathStarPlayGameSteps::FinalState : // get things started
 
@@ -70,15 +74,46 @@ void DeathStarPlayGame::run ()
 	   }
 }
 
+#define TwinkleTime 1000 // mil secs between starts of twinlkel
+#define FadeTime     80
 
 void DeathStarPlayGame::doChase()
 {
+	
 	//DB_NAME_VALUE("doChase", nextUpdate);
+	
+	// THE VENT HAS THE CHASES EFFECT
 	pVentPort->fadeLights(-25,-20,-25, 0x000007000,0x00ffffff);
 	pVentPort->shiftLights(0x00d0d0d0);
 	pVentPort->updateLights();
-
 	nextUpdate = millis()+50;
+
+}
+
+void DeathStarPlayGame::doTwinkle()
+{
+	//DB_NAME_VALUE("doChase", nextUpdate);
+	bool faceNeedsUdate=false;
+	// the face has a sparkel effect
+	if(mills()> nextFaceFadeTime)
+	{
+		pDeathStarFace->fadeLights(-25,-25,-25, 0x0000000,0x00ffffff);    //fade all
+		nextFaceFadeTime = mills()+FadeTime;
+		faceNeedsUdate|=true;
+	}
+	if(mills()>nextTwinkleTime)
+	{
+		pDeathStarFace->setRandomLight(0,200,0x007f00);
+		nextTwinkleTime = mills + TwinkleTime;
+		faceNeedsUdate|=true;
+	}
+		
+	if(faceNeedsUdate)
+	{
+		pDeathStarFace->updateLights();
+	}
+	
+	
 
 }
 

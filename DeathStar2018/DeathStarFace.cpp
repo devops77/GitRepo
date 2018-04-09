@@ -107,4 +107,16 @@ void DeathStarFace::setUp(Adafruit_NeoPixel* newStrip)
 //	  DB_NAME_VALUE("set C ", color);
 	  pLightStrip->setPixelColor(i, color);
   }
+  
+    void DeathStarFace::setRandomLight(uint8_t minId, uint8_t maxId uint32_t color)
+  {
+//	  DB_NAME_VALUE("set i ", i);
+//	  DB_NAME_VALUE("set C ", color);
+	if(maxID>=FaceNumberOfLights)
+	{
+		maxId = FaceNumberOfLights-1;
+	}
+	  pLightStrip->setPixelColor(random(minID,MaxId), color);
+  }
+
 
