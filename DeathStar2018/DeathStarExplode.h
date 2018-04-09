@@ -74,6 +74,8 @@ public:
   void doFadeToBlack();
 
   uint32_t getThrobValue(unsigned long updateInterval, unsigned long grain);
+  uint32_t getThrobValue2(float maxLevel, float waveLength, float offset, float scale);
+
 
 
 };

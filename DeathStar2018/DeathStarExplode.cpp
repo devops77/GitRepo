@@ -5,6 +5,7 @@
 
 
 
+
 	 /**
 	   * Empty Constructor
 	   */
@@ -106,11 +107,32 @@ DeathStarExplode::~DeathStarExplode()
 	  return z;
 
   }
-
+  
+  
+	uint32_t DeathStarExplode::getThrobValue2(float maxLevel, float waveLength, float offset, float scale)
+	{
+		unsigned long time = millis() - stepStartTime; // get a time based number starting with near zero
+		float radTime = time; // convert to float
+		float brightness = sin(PI*radTime/waveLength*2);
+		brightness +=1; // nedd all positive 
+		brightness *=maxLevel;
+		brightness = brightness * scale + offset;
+		int y; // convert to integer to drop decimals
+		return y;
+		
+		
+		
+	}
+  
+#define MaxThrob 128.0
+#define WaveLength 1000.0   // throb2 pulse duration
+#define ThrobOffset 40.0
+#define ThrobScale 0.8
 
   void DeathStarExplode::doRingThrob()
   {
-	  uint32_t color = getThrobValue(50,50);
+//	  uint32_t color = getThrobValue(50,50);
+	uint32_t color = getThrobValue(MaxThrob, WaveLength, ThrobOffset, ThrobScale);
 	  color <<=16; // move to red
 	  pVentPort->setAllLights(color);
 	  nextUpdate = millis()+50;
@@ -124,6 +146,7 @@ DeathStarExplode::~DeathStarExplode()
 		  DEBUG_PRINT("ring Throb change state");
 	  }
   }
+  
 
  /**
   * throb both ring and all other lights
@@ -131,7 +154,9 @@ DeathStarExplode::~DeathStarExplode()
   void DeathStarExplode::doThrob()
   {
 	  //DEBUG_PRINT("All Throb");
-	  uint32_t color = getThrobValue(50,50);
+//	  uint32_t color = getThrobValue(50,50);
+	uint32_t color = getThrobValue(MaxThrob, WaveLength, ThrobOffset, ThrobScale);
+
 	  color <<=16; // move to red
 
 
