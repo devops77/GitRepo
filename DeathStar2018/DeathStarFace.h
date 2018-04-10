@@ -53,7 +53,7 @@ public:
 
   void setLight(uint32_t i, uint32_t color);
 
-  void setRandomLight(uint8_t minId, uint8_t maxId uint32_t color);
+  void setRandomLight(uint8_t minId, uint8_t maxId, uint32_t color);
 
 };
 

@@ -40,11 +40,14 @@ DeathStarExplode::~DeathStarExplode()
    */
   void DeathStarExplode::startSceen ()
   {
+	  DEBUG_PRINT("DeathStarExplode::startSceen()");
+
 	  stepStartTime = millis();
 	  pVentPort->setIsAlive(false);
 	  lightOnCount =0;
 	  nextStep =DeathStarExplodeSteps::RingThrob;
 	  nextUpdate=0; //start right away
+
 	  DEBUG_PRINT("DeathStarExplode::startSceen()");
 
   }
@@ -117,22 +120,24 @@ DeathStarExplode::~DeathStarExplode()
 		brightness +=1; // nedd all positive 
 		brightness *=maxLevel;
 		brightness = brightness * scale + offset;
-		int y; // convert to integer to drop decimals
+		int y =brightness; // convert to integer to drop decimals
 		return y;
 		
 		
 		
 	}
   
-#define MaxThrob 128.0
+#define MaxThrob 80.0
 #define WaveLength 1000.0   // throb2 pulse duration
 #define ThrobOffset 40.0
 #define ThrobScale 0.8
 
   void DeathStarExplode::doRingThrob()
   {
+	 // DB_NAME_VALUE("DoRingThrob", 1);
 //	  uint32_t color = getThrobValue(50,50);
-	uint32_t color = getThrobValue(MaxThrob, WaveLength, ThrobOffset, ThrobScale);
+	  uint32_t color = getThrobValue2(MaxThrob, WaveLength, ThrobOffset, ThrobScale);
+	  //DB_NAME_VALUE("Throb value",color);
 	  color <<=16; // move to red
 	  pVentPort->setAllLights(color);
 	  nextUpdate = millis()+50;
@@ -155,7 +160,7 @@ DeathStarExplode::~DeathStarExplode()
   {
 	  //DEBUG_PRINT("All Throb");
 //	  uint32_t color = getThrobValue(50,50);
-	uint32_t color = getThrobValue(MaxThrob, WaveLength, ThrobOffset, ThrobScale);
+	uint32_t color = getThrobValue2(MaxThrob, WaveLength, ThrobOffset, ThrobScale);
 
 	  color <<=16; // move to red
 
@@ -221,9 +226,9 @@ DeathStarExplode::~DeathStarExplode()
 	  //DEBUG_PRINT("Trob Fade Fade ");
 	  uint8_t change;
 
-	  change = pVentPort->fadeLights(-8,-20,-20, 0x00200000, 0x00FFFFFF);  // fade to red
+	  change = pVentPort->fadeLights(-5,-20,-20, 0x00200000, 0x00FFFFFF);  // fade to red
 	  pVentPort->updateLights();
-	  change += pDeathStarFace->fadeLights(-8,-20,-20,0x00200000, 0x00FFFFFF);
+	  change += pDeathStarFace->fadeLights(-5,-20,-20,0x00080000, 0x00FFFFFF);
 	  pDeathStarFace->updateLights();
 	  nextUpdate = millis()+50;
 

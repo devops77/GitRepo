@@ -97,7 +97,7 @@ void setup()
 	deathStarFace.setUp(&deathStarFaceStrip);
 	deathStarExplode.linkVentPort(&ventPort);
 	deathStarExplode.linkDeathStarFace(&deathStarFace);
-//	deathStarPlayGame.linkDeathStarFace(&deathStarFace);
+	deathStarPlayGame.linkDeathStarFace(&deathStarFace);
 	deathStarPlayGame.linkVentPort(&ventPort);
 
 
@@ -106,7 +106,7 @@ void setup()
 	pTieFighter3Sceen = &tieFighter3PlaysGame;
 	pTieFighter4Sceen = &tieFighter4PlaysGame;
 	pTieFighter5Sceen = &tieFighter5PlaysGame;
-//	pDeathStarSceen = &deathStarExplode;
+	pDeathStarSceen = &deathStarExplode;
 	pDeathStarSceen = &deathStarPlayGame;
 
 
@@ -126,6 +126,12 @@ void setup()
 // The loop function is called in an endless loop
 void loop()
 {
+
+
+	//delay(100);
+
+
+
 //Add your repeated code here
 //	DB_NAME_VALUE("before delay  ", 1);
 //	DB_NAME_VALUE("Free Mem", freeMemory());
@@ -160,14 +166,14 @@ void loop()
 
 //
 // check if target down
-	//DB_NAME_VALUE("about to check down  ", 4);
+//	DB_NAME_VALUE("about to check down  ", 4);
 	//DB_NAME_VALUE("Free Mem", freeMemory());
 
 
 	if( tiefighter1.getIsAlive() && !tiefighter1.getTargetUp() )
 	{
 		DB_NAME_VALUE("Target Down  ", 1);
-		DB_NAME_VALUE("Free Mem", freeMemory());
+//		DB_NAME_VALUE("Free Mem", freeMemory());
 		pTieFighter1Sceen = &tieFighter1ExplodesSceen;
 		pTieFighter1Sceen->startSceen();
 	}
@@ -199,14 +205,15 @@ void loop()
 	}
 
 //	DB_NAME_VALUE("about to check vent  ", 8);
-//	DB_NAME_VALUE("Free Mem", freeMemory());
-	
+
+
 	if(ventPort.getIsAlive() && ventPort.isHit())
 	{
 		DB_NAME_VALUE("Vent Port Hit ", "True");
 		pDeathStarSceen = &deathStarExplode;
 		pDeathStarSceen->startSceen();
 	}
+
 
 // do the seen updates
 
@@ -217,7 +224,6 @@ void loop()
 	pTieFighter4Sceen->run();
 	pTieFighter5Sceen->run();
 	pDeathStarSceen->run();
-
 
 
 
