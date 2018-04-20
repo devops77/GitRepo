@@ -17,6 +17,7 @@ class SceenBase
 protected:
 	unsigned long nextUpdate = 0; // force to happen right away
 	int stepIterationCount;
+	bool mySeenIsDone;
 
 
   void initAttributes () ;
@@ -49,6 +50,7 @@ public:
    */
   virtual void run () =0;
 
+  bool sceenDone();
 
 
 
