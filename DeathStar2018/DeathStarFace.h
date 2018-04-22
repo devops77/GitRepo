@@ -8,7 +8,7 @@
 #ifndef DEATHSTARFACE_H_
 #define DEATHSTARFACE_H_
 
-#define FaceNumberOfLights 50
+
 
 #include "Actor.h"
 

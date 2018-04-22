@@ -7,6 +7,7 @@
 
 #define END_OF_TIME 86400000    // 86400000 is one day
 
+#define FaceNumberOfLights 94
 
 // Pins
 #define ON_BOARD_LED_PIN 13     // will use in loop to notify we are alive

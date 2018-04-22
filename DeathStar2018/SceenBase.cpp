@@ -5,8 +5,9 @@
 
 SceenBase::SceenBase ()
 {
-
+	mySeenIsDone=false;  // assume not true
 	initAttributes();
+
 }
 
 SceenBase::~SceenBase () { }
@@ -25,4 +26,10 @@ SceenBase::~SceenBase () { }
 
 void SceenBase::initAttributes () {
 }
+
+bool SceenBase::sceenDone()
+{
+	return mySeenIsDone;
+}
+
 

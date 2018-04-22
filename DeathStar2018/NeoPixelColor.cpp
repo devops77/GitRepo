@@ -11,6 +11,17 @@ NeoPixelColor::NeoPixelColor () {
 NeoPixelColor::~NeoPixelColor() {
 }
 
+uint32_t NeoPixelColor::joinColor( int  red, int  green, int  blue )
+{
+	uint32_t out = red;
+	out <<= 8;
+	out |=green;
+	out <<= 8;
+	out |= blue;
+	return out;
+}
+
+
 void NeoPixelColor::splitColor(uint32_t input, int & red, int & green, int & blue )
 {
 

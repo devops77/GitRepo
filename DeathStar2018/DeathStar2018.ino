@@ -8,6 +8,7 @@
 #include "VentPort.h"
 #include "DeathStarPlayGame.h"
 #include "DeathStarExplode.h"
+#include "MorseCode.h"
 
 
 
@@ -15,7 +16,7 @@
 
 // global classes
 	Adafruit_NeoPixel strip = Adafruit_NeoPixel(50, NEOPIXEL_STRIP_PIN, NEO_RGB + NEO_KHZ800);
-	Adafruit_NeoPixel deathStarFaceStrip = Adafruit_NeoPixel(50, NEOPIXEL_DS_FACE_PIN, NEO_RGB + NEO_KHZ800);
+	Adafruit_NeoPixel deathStarFaceStrip = Adafruit_NeoPixel(FaceNumberOfLights, NEOPIXEL_DS_FACE_PIN, NEO_RGB + NEO_KHZ800);
 	Adafruit_NeoPixel ring = Adafruit_NeoPixel(VentRingNumberOfLights, NEOPIXEL_RING_PIN, NEO_GRB + NEO_KHZ800);
 
 
@@ -39,12 +40,16 @@
 	TieFighterExplode tieFighter4ExplodesSceen = TieFighterExplode();
 	TieFighterExplode tieFighter5ExplodesSceen = TieFighterExplode();
 
+
 	SceenBase* pTieFighter1Sceen;
 	SceenBase* pTieFighter2Sceen;
 	SceenBase* pTieFighter3Sceen;
 	SceenBase* pTieFighter4Sceen;
 	SceenBase* pTieFighter5Sceen;
 	SceenBase* pDeathStarSceen;
+
+	MorseCode morseCode = MorseCode();
+	SceenBase* pMorseCode;
 
 
 	// vent port
@@ -56,6 +61,7 @@
 
 	uint8_t onBoardLed;
 	unsigned long keepAlive;
+
 
 
 //The setup function is called once at startup of the sketch
@@ -95,10 +101,16 @@ void setup()
 
 	ventPort.setUp(&ring);
 	deathStarFace.setUp(&deathStarFaceStrip);
+
 	deathStarExplode.linkVentPort(&ventPort);
 	deathStarExplode.linkDeathStarFace(&deathStarFace);
+
 	deathStarPlayGame.linkDeathStarFace(&deathStarFace);
 	deathStarPlayGame.linkVentPort(&ventPort);
+
+	morseCode.linkDeathStarFace(&deathStarFace);
+	morseCode.linkVentPort(&ventPort);
+
 
 
 	pTieFighter1Sceen = &tieFighter1PlaysGame;
@@ -108,6 +120,7 @@ void setup()
 	pTieFighter5Sceen = &tieFighter5PlaysGame;
 	pDeathStarSceen = &deathStarExplode;
 	pDeathStarSceen = &deathStarPlayGame;
+	pDeathStarSceen = &morseCode;
 
 
 
@@ -116,7 +129,7 @@ void setup()
 	pTieFighter3Sceen->startSceen();
 	pTieFighter4Sceen->startSceen();
 	pTieFighter5Sceen->startSceen();
-	pDeathStarSceen->startSceen();
+	pDeathStarSceen->startSceen();     //remove if we do not do morsecode
 
   	keepAlive=millis();
 
@@ -225,7 +238,10 @@ void loop()
 	pTieFighter5Sceen->run();
 	pDeathStarSceen->run();
 
-
+	if(pDeathStarSceen->sceenDone())
+	{
+		pDeathStarSceen = &deathStarPlayGame;
+	}
 
 // this code is to blink on board LED every second
 		if(millis()-keepAlive > 1000)

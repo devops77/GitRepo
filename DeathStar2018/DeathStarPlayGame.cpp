@@ -37,9 +37,8 @@ void DeathStarPlayGame::linkDeathStarFace(DeathStarFace* newFace)
 void DeathStarPlayGame::startSceen ()
 {
 	  DEBUG_PRINT("DeathStarPlayGame::startSceen()");
-	  nextUpdate =0;
-	  nextStep =DeathStarPlayGameSteps::PlayGame;
 	  nextUpdate=0; //start right away
+	  nextStep =DeathStarPlayGameSteps::PlayGame;
 	  pVentPort->setAllLights(0x00);  // turn all lights off
 	  pDeathStarFace->setAllLights(0x00); // turn all lights off
 	  stepStartTime = millis();
@@ -99,13 +98,14 @@ void DeathStarPlayGame::doTwinkle()
 	// the face has a sparkel effect
 	if(millis()> nextFaceFadeTime)
 	{
-		pDeathStarFace->fadeLights(-5,-1,-5, 0x0000000,0x00ffffff);    //fade all
+		pDeathStarFace->fadeLights(-1,-1,-1, 0x0000000,0x00ffffff);    //fade all
 		nextFaceFadeTime = millis()+FadeTime;
 		faceNeedsUdate|=true;
 	}
 	if(millis()>nextTwinkleTime)
 	{
-		pDeathStarFace->setRandomLight(0,200,0x004040);
+		uint32_t randColor = NeoPixelColor::joinColor(random(0,40),random(0,40), random(10,60) );
+		pDeathStarFace->setRandomLight(0,200,randColor);
 		nextTwinkleTime = millis() + TwinkleTime;
 		faceNeedsUdate|=true;
 	}

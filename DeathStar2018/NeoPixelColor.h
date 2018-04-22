@@ -31,6 +31,8 @@ public:
 
 
   static void splitColor(uint32_t input, int & red, int & green, int & blue );
+  static uint32_t joinColor( int  red, int  green, int  blue );
+
 
   static uint8_t shiftOneColor(int start, int delta, int min, int max);
 
