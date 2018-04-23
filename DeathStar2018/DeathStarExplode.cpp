@@ -176,11 +176,11 @@ DeathStarExplode::~DeathStarExplode()
 		  pDeathStarFace->setLight(i, color);
 	  }
 	  pDeathStarFace->updateLights();
-	  if(lightOnCount >= 50)
-		  lightOnCount = 49;
+	  if(lightOnCount >= FaceNumberOfLights)
+		  lightOnCount = FaceNumberOfLights-1;
 
 	  nextUpdate = millis()+50;
-	  if(stepStartTime + 9000 < millis())
+	  if(stepStartTime + 15000 < millis())
 	  {  // move on
 		  nextStep = DeathStarExplodeSteps::TrobFade;
 

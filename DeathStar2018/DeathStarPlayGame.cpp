@@ -73,7 +73,7 @@ void DeathStarPlayGame::run ()
 	   }
 }
 
-#define TwinkleTime 1000 // mil secs between starts of twinlkel
+#define TwinkleTime 250 // mil secs between starts of twinlkel
 #define FadeTime     50
 
 void DeathStarPlayGame::doChase()
