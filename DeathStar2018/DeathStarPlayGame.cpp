@@ -82,8 +82,8 @@ void DeathStarPlayGame::doChase()
 	//DB_NAME_VALUE("doChase", nextUpdate);
 	
 	// THE VENT HAS THE CHASES EFFECT
-	pVentPort->fadeLights(-25,-20,-25, 0x000007000,0x00ffffff);
-	pVentPort->shiftLights(0x00d0d0d0);
+	pVentPort->fadeLights(-10,-07,-10, 0x00000800,0x00f0f0f0);
+	pVentPort->shiftLights(0x00202020);
 	pVentPort->updateLights();
 	nextUpdate = millis()+50;
 

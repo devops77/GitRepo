@@ -76,6 +76,9 @@ void TieFighter::initAttributes ()
 			//set inner lights
 			this->setLightIdsInner(0,3);
 			this->setLightIdsInner(1,4);
+			this->setLightIdsInner(2,8);
+			this->setLightIdsInner(3,9);
+
 			// set outer lights
 			this->setLightIdsOuter(0,0);
 			this->setLightIdsOuter(1,1);
@@ -83,6 +86,7 @@ void TieFighter::initAttributes ()
 			this->setLightIdsOuter(3,5);
 			this->setLightIdsOuter(4,6);
 			this->setLightIdsOuter(5,7);
+
 			break;
 
 		case 2:
@@ -92,6 +96,8 @@ void TieFighter::initAttributes ()
 			//set inner lights
 			this->setLightIdsInner(0,13);
 			this->setLightIdsInner(1,14);
+			this->setLightIdsInner(2,18);
+			this->setLightIdsInner(3,19);
 			// set outer lights
 			this->setLightIdsOuter(0,10);
 			this->setLightIdsOuter(1,11);
@@ -108,6 +114,8 @@ void TieFighter::initAttributes ()
 			//set inner lights
 			this->setLightIdsInner(0,23);
 			this->setLightIdsInner(1,24);
+			this->setLightIdsInner(2,28);
+			this->setLightIdsInner(3,29);
 			// set outer lights
 			this->setLightIdsOuter(0,20);
 			this->setLightIdsOuter(1,21);
@@ -123,6 +131,8 @@ void TieFighter::initAttributes ()
 			//set inner lights
 			this->setLightIdsInner(0,33);
 			this->setLightIdsInner(1,34);
+			this->setLightIdsInner(2,38);
+			this->setLightIdsInner(3,39);
 			// set outer lights
 			this->setLightIdsOuter(0,30);
 			this->setLightIdsOuter(1,31);
@@ -138,6 +148,8 @@ void TieFighter::initAttributes ()
 		//set inner lights
 			this->setLightIdsInner(0,43);
 			this->setLightIdsInner(1,44);
+			this->setLightIdsInner(2,48);
+			this->setLightIdsInner(3,49);
 			// set outer lights
 			this->setLightIdsOuter(0,40);
 			this->setLightIdsOuter(1,41);

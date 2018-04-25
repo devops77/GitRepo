@@ -9,7 +9,7 @@
   * class TieFighter
   *
 */
-#define TieFighterNumberOfLightsInner 2
+#define TieFighterNumberOfLightsInner 4
 #define TieFighterNumberOfLightsOuter 6
 
 

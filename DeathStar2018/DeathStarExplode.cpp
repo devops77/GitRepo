@@ -168,7 +168,7 @@ DeathStarExplode::~DeathStarExplode()
 	  pVentPort->setAllLights(color);  // update the vent port
 
 	  // for the death star face we do the string 1 light at a time
-	  lightOnCount = (millis()- stepStartTime)/150;
+	  lightOnCount = (millis()- stepStartTime)/100;
 
 	  //lightOnCount++;
 	  for(int i=0; i<lightOnCount; i++)
@@ -180,7 +180,7 @@ DeathStarExplode::~DeathStarExplode()
 		  lightOnCount = FaceNumberOfLights-1;
 
 	  nextUpdate = millis()+50;
-	  if(stepStartTime + 15000 < millis())
+	  if(stepStartTime + 10000 < millis())
 	  {  // move on
 		  nextStep = DeathStarExplodeSteps::TrobFade;
 
@@ -226,16 +226,16 @@ DeathStarExplode::~DeathStarExplode()
 	  //DEBUG_PRINT("Trob Fade Fade ");
 	  uint8_t change;
 
-	  change = pVentPort->fadeLights(-5,-20,-20, 0x00200000, 0x00FFFFFF);  // fade to red
+	  change = pVentPort->fadeLights(-5,-15,-15, 0x00200000, 0x00FFFFFF);  // fade to red
 	  pVentPort->updateLights();
-	  change += pDeathStarFace->fadeLights(-5,-20,-20,0x00080000, 0x00FFFFFF);
+	  change += pDeathStarFace->fadeLights(-5,-15,-15,0x00080000, 0x00FFFFFF);
 	  pDeathStarFace->updateLights();
 	  nextUpdate = millis()+50;
 
 
 	  if(change ==0)
 	  {
-		  nextUpdate = millis()+200;
+		  nextUpdate = millis()+300;
 		  nextStep = DeathStarExplodeSteps::Flash1;
 	  }
   }
