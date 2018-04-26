@@ -19,7 +19,7 @@
 	Adafruit_NeoPixel deathStarFaceStrip = Adafruit_NeoPixel(FaceNumberOfLights, NEOPIXEL_DS_FACE_PIN, NEO_RGB + NEO_KHZ800);
 	Adafruit_NeoPixel ring = Adafruit_NeoPixel(VentRingNumberOfLights, NEOPIXEL_RING_PIN, NEO_GRB + NEO_KHZ800);
 
-
+	int numberOfTargetsDown;
 
 	// Tie Fighters
 	TieFighter  tiefighter1 = TieFighter();
@@ -226,6 +226,16 @@ void loop()
 		pDeathStarSceen = &deathStarExplode;
 		pDeathStarSceen->startSceen();
 	}
+
+
+	// now we need a count of number of tagets down
+	numberOfTargetsDown = 0;
+	if(!tiefighter1.getTargetUp()) numberOfTargetsDown++;
+	if(!tiefighter2.getTargetUp()) numberOfTargetsDown++;
+	if(!tiefighter3.getTargetUp()) numberOfTargetsDown++;
+	if(!tiefighter4.getTargetUp()) numberOfTargetsDown++;
+	if(!tiefighter5.getTargetUp()) numberOfTargetsDown++;
+
 
 
 // do the seen updates

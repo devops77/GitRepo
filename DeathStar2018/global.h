@@ -38,6 +38,6 @@
 // pin is used for interanl LED
 
 
-
+extern int numberOfTargetsDown;
 
 #endif // GLOBAL_H

@@ -73,7 +73,7 @@ void DeathStarPlayGame::run ()
 	   }
 }
 
-#define TwinkleTime 250 // mil secs between starts of twinlkel
+#define TwinkleTime 280 // mil secs between starts of twinlkel
 #define FadeTime     50
 
 void DeathStarPlayGame::doChase()
@@ -85,12 +85,19 @@ void DeathStarPlayGame::doChase()
 	pVentPort->fadeLights(-10,-07,-10, 0x00000800,0x00f0f0f0);
 	pVentPort->shiftLights(0x00202020);
 	pVentPort->updateLights();
-	nextUpdate = millis()+50;
+	nextUpdate = millis()+50-(numberOfTargetsDown*7);
 
 }
 
+
+
+
 void DeathStarPlayGame::doTwinkle()
 {
+
+	// try to make
+	int fadeRate = -1 -(5*numberOfTargetsDown); // orig value of -1
+	int newColorMax = 30 + (5*numberOfTargetsDown); //orgi value of 30
 
 
 	//DB_NAME_VALUE("doTwinkle", nextUpdate);
@@ -98,14 +105,21 @@ void DeathStarPlayGame::doTwinkle()
 	// the face has a sparkel effect
 	if(millis()> nextFaceFadeTime)
 	{
-		pDeathStarFace->fadeLights(-1,-1,-1, 0x0000000,0x00ffffff);    //fade all
+		pDeathStarFace->fadeLights(fadeRate,fadeRate,fadeRate, 0x0000000,0x00ffffff);    //fade all
 		nextFaceFadeTime = millis()+FadeTime;
 		faceNeedsUdate|=true;
 	}
 	if(millis()>nextTwinkleTime)
 	{
-		uint32_t randColor = NeoPixelColor::joinColor(random(0,40),random(0,40), random(10,60) );
+		uint32_t randColor = NeoPixelColor::joinColor(random(0,newColorMax),random(0,newColorMax), random(10,newColorMax+20) );
 		pDeathStarFace->setRandomLight(0,200,randColor);
+		if(numberOfTargetsDown>0) pDeathStarFace->setRandomLight(0,200,randColor);
+		if(numberOfTargetsDown>1) pDeathStarFace->setRandomLight(0,200,randColor);
+		if(numberOfTargetsDown>2) pDeathStarFace->setRandomLight(0,200,randColor);
+		if(numberOfTargetsDown>3) pDeathStarFace->setRandomLight(0,200,randColor);
+		if(numberOfTargetsDown>4) pDeathStarFace->setRandomLight(0,200,randColor);
+
+
 		nextTwinkleTime = millis() + TwinkleTime;
 		faceNeedsUdate|=true;
 	}
