@@ -67,13 +67,16 @@ void TieFighter::setIsAlive(bool newValue)
 void TieFighter::initAttributes ()
 {
 	// set up my lights
+	int MyBasePeopixel =0;
 	switch (targetNumber)
 	{
 		case 1:
 			// set Laser outp pin
 			myLaserPin = TIE_FIGHTER1_SHOOT_PIN;
 			myHitSwitchPin = TIE_FIGHTER1_HIT_PIN;
+			MyBasePeopixel = 30;
 			//set inner lights
+			/*
 			this->setLightIdsInner(0,3);
 			this->setLightIdsInner(1,4);
 			this->setLightIdsInner(2,8);
@@ -86,80 +89,93 @@ void TieFighter::initAttributes ()
 			this->setLightIdsOuter(3,5);
 			this->setLightIdsOuter(4,6);
 			this->setLightIdsOuter(5,7);
-
+*/
 			break;
 
 		case 2:
 			// set Laser outp pin
 			myLaserPin = TIE_FIGHTER2_SHOOT_PIN;
 			myHitSwitchPin = TIE_FIGHTER2_HIT_PIN;
+			MyBasePeopixel = 40;
 			//set inner lights
-			this->setLightIdsInner(0,13);
-			this->setLightIdsInner(1,14);
-			this->setLightIdsInner(2,18);
-			this->setLightIdsInner(3,19);
-			// set outer lights
-			this->setLightIdsOuter(0,10);
-			this->setLightIdsOuter(1,11);
-			this->setLightIdsOuter(2,12);
-			this->setLightIdsOuter(3,15);
-			this->setLightIdsOuter(4,16);
-			this->setLightIdsOuter(5,17);
+//			this->setLightIdsInner(0,13);
+//			this->setLightIdsInner(1,14);
+//			this->setLightIdsInner(2,18);
+//			this->setLightIdsInner(3,19);
+//			// set outer lights
+//			this->setLightIdsOuter(0,10);
+//			this->setLightIdsOuter(1,11);
+//			this->setLightIdsOuter(2,12);
+//			this->setLightIdsOuter(3,15);
+//			this->setLightIdsOuter(4,16);
+//			this->setLightIdsOuter(5,17);
 			break;
 
 		case 3:
 			// set Laser outp pin
 			myLaserPin = TIE_FIGHTER3_SHOOT_PIN;
 			myHitSwitchPin = TIE_FIGHTER3_HIT_PIN;
-			//set inner lights
-			this->setLightIdsInner(0,23);
-			this->setLightIdsInner(1,24);
-			this->setLightIdsInner(2,28);
-			this->setLightIdsInner(3,29);
-			// set outer lights
-			this->setLightIdsOuter(0,20);
-			this->setLightIdsOuter(1,21);
-			this->setLightIdsOuter(2,22);
-			this->setLightIdsOuter(3,25);
-			this->setLightIdsOuter(4,26);
-			this->setLightIdsOuter(5,27);
+			MyBasePeopixel = 00;
+//			//set inner lights
+//			this->setLightIdsInner(0,23);
+//			this->setLightIdsInner(1,24);
+//			this->setLightIdsInner(2,28);
+//			this->setLightIdsInner(3,29);
+//			// set outer lights
+//			this->setLightIdsOuter(0,20);
+//			this->setLightIdsOuter(1,21);
+//			this->setLightIdsOuter(2,22);
+//			this->setLightIdsOuter(3,25);
+//			this->setLightIdsOuter(4,26);
+//			this->setLightIdsOuter(5,27);
 			break;
 		case 4:
 			// set Laser outp pin
 			myLaserPin = TIE_FIGHTER4_SHOOT_PIN;
 			myHitSwitchPin = TIE_FIGHTER4_HIT_PIN;
+			MyBasePeopixel = 10;
 			//set inner lights
-			this->setLightIdsInner(0,33);
-			this->setLightIdsInner(1,34);
-			this->setLightIdsInner(2,38);
-			this->setLightIdsInner(3,39);
-			// set outer lights
-			this->setLightIdsOuter(0,30);
-			this->setLightIdsOuter(1,31);
-			this->setLightIdsOuter(2,32);
-			this->setLightIdsOuter(3,35);
-			this->setLightIdsOuter(4,36);
-			this->setLightIdsOuter(5,37);
+//			this->setLightIdsInner(0,33);
+//			this->setLightIdsInner(1,34);
+//			this->setLightIdsInner(2,38);
+//			this->setLightIdsInner(3,39);
+//			// set outer lights
+//			this->setLightIdsOuter(0,30);
+//			this->setLightIdsOuter(1,31);
+//			this->setLightIdsOuter(2,32);
+//			this->setLightIdsOuter(3,35);
+//			this->setLightIdsOuter(4,36);
+//			this->setLightIdsOuter(5,37);
 			break;
 		case 5:
 			// set Laser outp pin
 			myLaserPin = TIE_FIGHTER5_SHOOT_PIN;
 			myHitSwitchPin = TIE_FIGHTER5_HIT_PIN;
-		//set inner lights
-			this->setLightIdsInner(0,43);
-			this->setLightIdsInner(1,44);
-			this->setLightIdsInner(2,48);
-			this->setLightIdsInner(3,49);
-			// set outer lights
-			this->setLightIdsOuter(0,40);
-			this->setLightIdsOuter(1,41);
-			this->setLightIdsOuter(2,42);
-			this->setLightIdsOuter(3,45);
-			this->setLightIdsOuter(4,46);
-			this->setLightIdsOuter(5,47);
+			MyBasePeopixel = 20;
+//		//set inner lights
+//			this->setLightIdsInner(0,43);
+//			this->setLightIdsInner(1,44);
+//			this->setLightIdsInner(2,48);
+//			this->setLightIdsInner(3,49);
+//			// set outer lights
+//			this->setLightIdsOuter(0,40);
+//			this->setLightIdsOuter(1,41);
+//			this->setLightIdsOuter(2,42);
+//			this->setLightIdsOuter(3,45);
+//			this->setLightIdsOuter(4,46);
+//			this->setLightIdsOuter(5,47);
 			break;
 
 		}
+
+	for(int i = 0; i<5;i++)
+	{
+		int  lightPos = i*2;
+		this->setLightIdsOuter(i, MyBasePeopixel+lightPos );
+		this->setLightIdsInner(i, MyBasePeopixel+lightPos+1 );
+	}
+
+
 	pinMode(myLaserPin, OUTPUT);
 	pinMode(myHitSwitchPin,INPUT_PULLUP);
 

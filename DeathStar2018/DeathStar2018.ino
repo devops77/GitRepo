@@ -262,6 +262,7 @@ void loop()
 			{
 				digitalWrite(LED_BUILTIN,HIGH);
 				onBoardLed = 1;
+				DB_NAME_VALUE("keep alive HB", 1)
 			}
 			else
 			{
