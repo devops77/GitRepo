@@ -102,6 +102,7 @@ void DeathStarPlayGame::doTwinkle()
 
 	//DB_NAME_VALUE("doTwinkle", nextUpdate);
 	bool faceNeedsUdate=false;
+
 	// the face has a sparkel effect
 	if(millis()> nextFaceFadeTime)
 	{
