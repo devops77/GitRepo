@@ -18,6 +18,7 @@ VentPort::~VentPort () {
 // Methods
 //  
 
+
 void VentPort::setUp(Adafruit_NeoPixel* newRing)
 {
 	//DEBUG_PRINT("VentPort::setUp");

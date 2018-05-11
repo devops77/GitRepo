@@ -18,7 +18,6 @@
 
 
 
-
 class TieFighter:  public Actor
 {
 private:

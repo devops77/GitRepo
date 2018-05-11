@@ -13,6 +13,7 @@
 		const int tieFighterShoots60AudioPin  = 5;
 		const int tieFighterShoots50AudioPin  = 6;
 		
+
         // mode settings as inteded 	
 		// mode 0 = debug / CLARE
 		// mode 1 = 100/80/80  100% deathStarExplode / 80% tieFighterExplode / 80% tieFighterShoots

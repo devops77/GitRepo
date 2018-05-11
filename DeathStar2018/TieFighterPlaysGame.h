@@ -15,6 +15,7 @@
 enum class TieFighterPlayGameSteps { WaitToShoot, StartLazer, FadeLazer, ShotDown };
 
 
+
 class TieFighterPlaysGame: public SceenBase {
 
 private:

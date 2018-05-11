@@ -42,7 +42,6 @@ class SoundBoard
 		int getTieFighterShootsPin();
 		
 
-
 	public:
 		void setup(ModeSwitch* pModeSwitch);
 		void update();

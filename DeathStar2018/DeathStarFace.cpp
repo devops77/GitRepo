@@ -19,7 +19,6 @@ DeathStarFace::~DeathStarFace() {
 	// TODO Auto-generated destructor stub
 }
 
-
 void DeathStarFace::setUp(Adafruit_NeoPixel* newStrip, SoundBoard* pSoundBoard)
 {
 	//DEBUG_PRINT("VentPort::setUp");

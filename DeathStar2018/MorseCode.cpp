@@ -17,7 +17,6 @@ MorseCode::MorseCode() {
 
 
 
-
 MorseCode::~MorseCode() {
 	// TODO Auto-generated destructor stub
 }

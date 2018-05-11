@@ -15,6 +15,7 @@ enum class TieFighterExplodeSteps { InitialFlash, FadeToRed, FadeToBlack, FinalS
   * 
   */
 
+
 class TieFighterExplode : public SceenBase
 {
 private:

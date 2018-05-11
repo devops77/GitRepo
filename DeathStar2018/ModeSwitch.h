@@ -14,8 +14,8 @@ class ModeSwitch
 		int getCurrentModeNow();
 		int getCurrentMode();
 		
-		
 	
+
 };
 
 #endif  //MODESWITCH

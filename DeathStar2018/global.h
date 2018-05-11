@@ -23,6 +23,7 @@
 #define TIE_FIGHTER4_SHOOT_PIN  29
 #define TIE_FIGHTER5_SHOOT_PIN  30
 
+
 // sensors
 #define TIE_FIGHTER1_HIT_PIN  34    // tells us that
 #define TIE_FIGHTER2_HIT_PIN  35

@@ -169,6 +169,7 @@ void TieFighter::initAttributes ()
 
 		}
 
+
 	for(int i = 0; i<5;i++)
 	{
 		int  lightPos = i*2;

@@ -100,6 +100,7 @@ void DeathStarPlayGame::doTwinkle()
 	int newColorMax = 30 + (5*numberOfTargetsDown); //orgi value of 30
 
 
+
 	//DB_NAME_VALUE("doTwinkle", nextUpdate);
 	bool faceNeedsUdate=false;
 

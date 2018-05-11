@@ -18,6 +18,7 @@
 enum class MoresCodeSteps { PlayCode, Flash, FadeToBlack };
 
 
+
 class MorseCode: public SceenBase {
 
 private:

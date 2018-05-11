@@ -11,7 +11,6 @@
 #include "ModeSwitch.h"
 
 
-
 /*****
 ** read and calc mode value
 **/

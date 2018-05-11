@@ -13,6 +13,7 @@ void TieFighterExplode::initAttributes ()
 // Constructors/Destructors
 //  
 
+
 TieFighterExplode::TieFighterExplode () {
 initAttributes();
 }

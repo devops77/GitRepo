@@ -20,6 +20,7 @@ private:
 	bool isAlive;
 
 
+
 public:
 
 
