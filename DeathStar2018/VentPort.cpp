@@ -42,7 +42,7 @@ void VentPort::setUp(Adafruit_NeoPixel* newRing)
    */
   void VentPort::startPlayExplodeSound()
   {
-	  digitalWrite(DEATH_STAR_EXPLODE_PIN,LOW);   // must be low for 150 ms
+	//  digitalWrite(DEATH_STAR_EXPLODE_PIN,LOW);   // must be low for 150 ms
   }
 
 /*
@@ -50,7 +50,7 @@ void VentPort::setUp(Adafruit_NeoPixel* newRing)
    */
   void VentPort::endPlayExplodeSound()
   {
-	  digitalWrite(DEATH_STAR_EXPLODE_PIN,HIGH);   // must be low for 150 ms
+	//  digitalWrite(DEATH_STAR_EXPLODE_PIN,HIGH);   // must be low for 150 ms
   }
 
 

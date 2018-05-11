@@ -9,6 +9,9 @@
   * class TieFighter
   *
 */
+
+#include "SoundBoard.h"
+
 #define TieFighterNumberOfLightsInner 5
 #define TieFighterNumberOfLightsOuter 5
 
@@ -27,7 +30,7 @@ private:
 	uint8_t myLaserPin;
 	uint8_t myHitSwitchPin;
 	bool myIsAlive;
-
+	SoundBoard* pMySoundBoard;
 
 	void initAttributes () ;
 
@@ -48,7 +51,7 @@ public:
   virtual ~TieFighter ();
 
 
-  void setUp(uint8_t newTargetNumber, Adafruit_NeoPixel* newStrip);
+  void setUp(uint8_t newTargetNumber, Adafruit_NeoPixel* newStrip, SoundBoard* pSoundBoard);
 
   bool getTargetUp();
   bool getIsAlive();

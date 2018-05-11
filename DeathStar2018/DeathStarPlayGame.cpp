@@ -96,7 +96,7 @@ void DeathStarPlayGame::doTwinkle()
 {
 
 	// try to make
-	int fadeRate = -1 -(5*numberOfTargetsDown); // orig value of -1
+	int fadeRate = -1 -(4*numberOfTargetsDown); // orig value of -1
 	int newColorMax = 30 + (5*numberOfTargetsDown); //orgi value of 30
 
 
@@ -106,7 +106,7 @@ void DeathStarPlayGame::doTwinkle()
 	if(millis()> nextFaceFadeTime)
 	{
 		pDeathStarFace->fadeLights(fadeRate,fadeRate,fadeRate, 0x0000000,0x00ffffff);    //fade all
-		nextFaceFadeTime = millis()+FadeTime;
+		nextFaceFadeTime = millis()+25+FadeTime;
 		faceNeedsUdate|=true;
 	}
 	if(millis()>nextTwinkleTime)
@@ -115,8 +115,17 @@ void DeathStarPlayGame::doTwinkle()
 		pDeathStarFace->setRandomLight(0,200,randColor);
 		if(numberOfTargetsDown>0) pDeathStarFace->setRandomLight(0,200,randColor);
 		if(numberOfTargetsDown>1) pDeathStarFace->setRandomLight(0,200,randColor);
+		if(numberOfTargetsDown>1) pDeathStarFace->setRandomLight(0,200,randColor);
+		if(numberOfTargetsDown>2) pDeathStarFace->setRandomLight(0,200,randColor);
+		if(numberOfTargetsDown>2) pDeathStarFace->setRandomLight(0,200,randColor);
 		if(numberOfTargetsDown>2) pDeathStarFace->setRandomLight(0,200,randColor);
 		if(numberOfTargetsDown>3) pDeathStarFace->setRandomLight(0,200,randColor);
+		if(numberOfTargetsDown>3) pDeathStarFace->setRandomLight(0,200,randColor);
+		if(numberOfTargetsDown>3) pDeathStarFace->setRandomLight(0,200,randColor);
+		if(numberOfTargetsDown>4) pDeathStarFace->setRandomLight(0,200,randColor);
+		if(numberOfTargetsDown>4) pDeathStarFace->setRandomLight(0,200,randColor);
+		if(numberOfTargetsDown>4) pDeathStarFace->setRandomLight(0,200,randColor);
+		if(numberOfTargetsDown>4) pDeathStarFace->setRandomLight(0,200,randColor);
 		if(numberOfTargetsDown>4) pDeathStarFace->setRandomLight(0,200,randColor);
 
 

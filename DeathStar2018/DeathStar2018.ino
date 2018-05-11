@@ -9,7 +9,8 @@
 #include "DeathStarPlayGame.h"
 #include "DeathStarExplode.h"
 #include "MorseCode.h"
-
+#include "ModeSwitch.h"
+#include "soundBoard.h"
 
 
 #include "global.h"  //global defines
@@ -18,6 +19,9 @@
 	Adafruit_NeoPixel strip = Adafruit_NeoPixel(50, NEOPIXEL_STRIP_PIN, NEO_RGB + NEO_KHZ800);
 	Adafruit_NeoPixel deathStarFaceStrip = Adafruit_NeoPixel(FaceNumberOfLights, NEOPIXEL_DS_FACE_PIN, NEO_RGB + NEO_KHZ800);
 	Adafruit_NeoPixel ring = Adafruit_NeoPixel(VentRingNumberOfLights, NEOPIXEL_RING_PIN, NEO_GRB + NEO_KHZ800);
+
+	ModeSwitch modeSwitch = ModeSwitch();
+	SoundBoard soundBoard =SoundBoard();
 
 	int numberOfTargetsDown;
 
@@ -71,6 +75,10 @@ void setup()
 	Serial.begin(9600);
 	pinMode(LED_BUILTIN, OUTPUT);
 
+	modeSwitch.setup();
+	soundBoard.setup(&modeSwitch);
+
+
 	strip.begin();
 	strip.show(); // Initialize all pixels to 'off'
 	deathStarFaceStrip.begin();
@@ -79,11 +87,11 @@ void setup()
 	ring.show();
 
 
-	tiefighter1.setUp(1, &strip);
-	tiefighter2.setUp(2, &strip);
-	tiefighter3.setUp(3, &strip);
-	tiefighter4.setUp(4, &strip);
-	tiefighter5.setUp(5, &strip);
+	tiefighter1.setUp(1, &strip, &soundBoard);
+	tiefighter2.setUp(2, &strip, &soundBoard);
+	tiefighter3.setUp(3, &strip, &soundBoard);
+	tiefighter4.setUp(4, &strip, &soundBoard);
+	tiefighter5.setUp(5, &strip, &soundBoard);
 
 	tieFighter1ExplodesSceen.linkFighter(&tiefighter1);
 	tieFighter2ExplodesSceen.linkFighter(&tiefighter2);
@@ -100,7 +108,7 @@ void setup()
 
 
 	ventPort.setUp(&ring);
-	deathStarFace.setUp(&deathStarFaceStrip);
+	deathStarFace.setUp(&deathStarFaceStrip, &soundBoard);
 
 	deathStarExplode.linkVentPort(&ventPort);
 	deathStarExplode.linkDeathStarFace(&deathStarFace);

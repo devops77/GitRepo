@@ -8,13 +8,14 @@
 #ifndef DEATHSTARFACE_H_
 #define DEATHSTARFACE_H_
 
-
+#include "SoundBoard.h"
 
 #include "Actor.h"
 
 class DeathStarFace: public Actor {
 private:
 	Adafruit_NeoPixel* pLightStrip;
+	SoundBoard* pMySoundBoard;
 
 
 public:
@@ -24,7 +25,7 @@ public:
 	/**
 	** set things up
 	*/
-	void setUp(Adafruit_NeoPixel* newRing);
+	void setUp(Adafruit_NeoPixel* newRing, SoundBoard* pMySoundBoard);
 
   /**
    * update the Neopixels to show new settings

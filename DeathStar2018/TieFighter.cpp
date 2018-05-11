@@ -14,8 +14,9 @@ TieFighter::TieFighter(){};  // must give the target number
 
 TieFighter::~TieFighter () { }
 
-void TieFighter::setUp(uint8_t newTargetNumber, Adafruit_NeoPixel* newStrip)
+void TieFighter::setUp(uint8_t newTargetNumber, Adafruit_NeoPixel* newStrip, SoundBoard* pSoundBoard)
 {
+	pMySoundBoard = pSoundBoard;
 	targetNumber = newTargetNumber;
 	pLightStrip = newStrip;
 
@@ -253,7 +254,8 @@ void TieFighter::updateLights()
  */
 void TieFighter::startPlayLaserSound()
 {
-	digitalWrite(TIE_FIGHTER_SHOOT_SOUND,LOW);   // must be low for 150 ms
+	pMySoundBoard->tieFighterShoots();
+//	digitalWrite(TIE_FIGHTER_SHOOT_SOUND,LOW);   // must be low for 150 ms
 }
 
 
@@ -262,7 +264,7 @@ void TieFighter::startPlayLaserSound()
  */
 void TieFighter::endPlayLaserSound()
 {
-	digitalWrite(TIE_FIGHTER_SHOOT_SOUND,LOW);   // must be low for 150 ms
+//	digitalWrite(TIE_FIGHTER_SHOOT_SOUND,LOW);   // must be low for 150 ms
 }
 
 /**
@@ -270,7 +272,7 @@ void TieFighter::endPlayLaserSound()
  */
 void TieFighter::startPlayExplodeSound()
 {
-	digitalWrite(TIE_FIGHTER_EXPLODE_PIN,HIGH);   // must be low for 150 ms
+	pMySoundBoard->tieFighterExplodes();
 }
 
 
@@ -279,7 +281,8 @@ void TieFighter::startPlayExplodeSound()
  */
 void TieFighter::endPlayExplodeSound()
 {
-	digitalWrite(TIE_FIGHTER_EXPLODE_PIN,HIGH);   // must be low for 150 ms
+
+
 }
 
 

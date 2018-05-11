@@ -214,6 +214,7 @@ DeathStarExplode::~DeathStarExplode()
   void DeathStarExplode::doFlash2()
   {
 	  DEBUG_PRINT("Flash2");
+	  pDeathStarFace->startPlayExplodeSound();
 	  pVentPort->setAllLights(0x00FFFFFF);  // update the vent port
 	  pDeathStarFace->setAllLights(0x00FFFF80);
 	  nextUpdate = millis()+700;

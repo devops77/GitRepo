@@ -2,7 +2,7 @@
 //This is a automatic generated file
 //Please do not modify this file
 //If you touch this file your change will be overwritten during the next build
-//This file has been generated on 2018-05-08 07:13:14
+//This file has been generated on 2018-05-09 21:26:45
 
 #include "Arduino.h"
 #define DEBUG
@@ -16,6 +16,8 @@
 #include "DeathStarPlayGame.h"
 #include "DeathStarExplode.h"
 #include "MorseCode.h"
+#include "ModeSwitch.h"
+#include "soundBoard.h"
 #include "global.h"
 
 void setup() ;

@@ -20,10 +20,11 @@ DeathStarFace::~DeathStarFace() {
 }
 
 
-void DeathStarFace::setUp(Adafruit_NeoPixel* newStrip)
+void DeathStarFace::setUp(Adafruit_NeoPixel* newStrip, SoundBoard* pSoundBoard)
 {
 	//DEBUG_PRINT("VentPort::setUp");
 	pLightStrip = newStrip;
+	pMySoundBoard = pSoundBoard;
 
 }
   /**
@@ -40,7 +41,8 @@ void DeathStarFace::setUp(Adafruit_NeoPixel* newStrip)
    */
   void DeathStarFace::startPlayExplodeSound()
   {
-	  digitalWrite(DEATH_STAR_EXPLODE_PIN,LOW);   // must be low for 150 ms
+	  pMySoundBoard->deathStarExplodes();
+	  //digitalWrite(DEATH_STAR_EXPLODE_PIN,LOW);   // must be low for 150 ms
   }
 
 /*
@@ -48,7 +50,7 @@ void DeathStarFace::setUp(Adafruit_NeoPixel* newStrip)
    */
   void DeathStarFace::endPlayExplodeSound()
   {
-	  digitalWrite(DEATH_STAR_EXPLODE_PIN,HIGH);   // must be low for 150 ms
+	  //digitalWrite(DEATH_STAR_EXPLODE_PIN,HIGH);   // must be low for 150 ms
   }
 
 

@@ -10,7 +10,8 @@ DeathRay.cpp.o: ..\DeathRay.cpp ..\DeathRay.h ..\TieFighter.h ..\Actor.h \
  C:\E\sloeber\arduinoPlugin\packages\arduino\hardware\avr\1.6.21\cores\arduino/USBAPI.h \
  C:\E\sloeber\arduinoPlugin\packages\arduino\hardware\avr\1.6.21\cores\arduino/Arduino.h \
  C:\E\sloeber\arduinoPlugin\packages\arduino\hardware\avr\1.6.21\variants\mega/pins_arduino.h \
- C:\E\Libs\AdaFruitNeoPixels/Adafruit_NeoPixel.h ..\NeoPixelColor.h
+ C:\E\Libs\AdaFruitNeoPixels/Adafruit_NeoPixel.h ..\NeoPixelColor.h \
+ ..\SoundBoard.h ..\ModeSwitch.h
 
 ..\DeathRay.h:
 
@@ -43,3 +44,7 @@ C:\E\sloeber\arduinoPlugin\packages\arduino\hardware\avr\1.6.21\variants\mega/pi
 C:\E\Libs\AdaFruitNeoPixels/Adafruit_NeoPixel.h:
 
 ..\NeoPixelColor.h:
+
+..\SoundBoard.h:
+
+..\ModeSwitch.h:
