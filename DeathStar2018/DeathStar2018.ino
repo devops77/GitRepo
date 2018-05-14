@@ -161,6 +161,7 @@ void loop()
 // check if revied first so as not to bounce
 
 	soundBoard.update();   // see if we have to change state of sound pins
+
 	if( !tiefighter1.getIsAlive() && tiefighter1.getTargetUp() )
 	{
 		DB_NAME_VALUE("Target up  ", 1);
@@ -187,6 +188,16 @@ void loop()
 		pTieFighter5Sceen = &tieFighter5PlaysGame;
 		pTieFighter5Sceen->startSceen();
 	}
+/*
+
+	if(!ventPort.getIsAlive() && !ventPort.isHit())
+	{
+		pDeathStarSceen = &deathStarPlayGame;
+		pDeathStarSceen->startSceen();
+	}
+
+*/
+
 
 //
 // check if target down
