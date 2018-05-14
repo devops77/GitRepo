@@ -7,7 +7,7 @@ class SoundBoard
 {
 	// Controls Sound board sounds
 	private:
-		const int myBasePin = 6;  // pin for lowest trigger
+		const int myBasePin = 0;  // pin for lowest trigger
 		const unsigned long triggerDownTime = 130; // time in ms that trigger must be down  (min is 125)
 		const int deathStarExplodeAudioPin = 0;
 		const int tieFighterExplode80AudioPin = 1;

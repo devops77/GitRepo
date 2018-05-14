@@ -1,9 +1,20 @@
+/**********************
+ *
+ * No idea why but not all pins work for sound
+ *   tie fighter shoots owrks on Pin ,5,6
+ *   Tie fighter explodes works on pin 2,
+ */
+
+
+
 #define DEBUG
+#include "debugArduino.h"
+
 #include "Arduino.h"
 #include "global.h"  //global defines
 #include "SoundBoard.h"
 
-		const int myBasePin = 6;  // pin for lowest trigger
+		const int myBasePin = 0;  // pin for lowest trigger
 		
 		const int deathStarExplodeAudioPin = 0;
 		const int tieFighterExplode80AudioPin = 1;
@@ -25,11 +36,14 @@
 
 		void SoundBoard::setup(ModeSwitch* pModeSwitch)
 		{
+			DEBUG_PRINT("setup");
 			pMyModeSwitch = pModeSwitch;
 			for(uint8_t i=0; i<8; i++)
 			{
-				pinMode(myBasePin+i, OUTPUT);
-				digitalWrite(myBasePin+i,HIGH);  // need voltage high so it does not trigger
+				int pin = myBasePin+i;
+				DB_NAME_VALUE("pin ", pin);
+				pinMode(pin, OUTPUT);
+				digitalWrite(pin,HIGH);  // need voltage high so it does not trigger
 			}
 			
 			deathStarExplodeEndTime = END_OF_TIME;
@@ -65,37 +79,49 @@
 		void SoundBoard::deathStarExplodes()
 		{
 			// start sound first
+			DEBUG_PRINT("Sound");
 			digitalWrite(getDeathStarExplodePin(), LOW);   // trigger sound
 			deathStarExplodeEndTime = millis()+ triggerDownTime;   // when the trigger must go up
 		}		
 		
 		void SoundBoard::endDeathStartExplodes()
 		{
+			DEBUG_PRINT("Sound");
 			digitalWrite(getDeathStarExplodePin(), HIGH);   // trigger end
 			deathStarExplodeEndTime = END_OF_TIME;
 		}		
 		
 		void SoundBoard::tieFighterExplodes()
 		{
-			digitalWrite(getTieFighterExplodesPin(), LOW);   // trigger sound
+			DEBUG_PRINT("Sound");
+			int pin = getTieFighterExplodesPin();
+			DB_NAME_VALUE("pin ", pin);
+
+			digitalWrite(pin, LOW);   // trigger sound
 			tieFighterExplodeEndTime = millis()+ triggerDownTime;   // when the trigger must go up
 		}		
 		
 		void SoundBoard::endTieFighterExplodes()
 		{
+			DEBUG_PRINT("Sound");
 			digitalWrite(getTieFighterExplodesPin(), HIGH);   // trigger end
 			tieFighterExplodeEndTime = END_OF_TIME;   
 		}
 		
 		void SoundBoard::tieFighterShoots()
 		{
-			digitalWrite(getTieFighterShootsPin(), LOW);   // trigger sound
+			DEBUG_PRINT("Sound");
+			int pin = getTieFighterShootsPin();
+			DB_NAME_VALUE("pin ", pin);
+
+			digitalWrite(pin, LOW);   // trigger sound
 			tieFighterShootsEndTime = millis()+ triggerDownTime;   // when the trigger must go up
 			
 		}
 		
 		void SoundBoard::endTieFighterShoots()
 		{
+			DEBUG_PRINT("Sound");
 			digitalWrite(getTieFighterShootsPin(), HIGH);   // trigger end
 			tieFighterShootsEndTime = END_OF_TIME;   // when the trigger must go up
 			
@@ -113,11 +139,17 @@
 		
 		int SoundBoard::getDeathStarExplodePin()
 		{
+			return 2;
+			DEBUG_PRINT("Sound");
 				return myBasePin; // always have as loudes
 		}
 		
 		int SoundBoard::getTieFighterExplodesPin()
 		{
+			return 5;
+
+
+			DEBUG_PRINT("Sound");
 			int myPin = 1;  // assume 80% default
 			switch( pMyModeSwitch->getCurrentModeNow() )
 			{
@@ -142,25 +174,27 @@
 		
 		int SoundBoard::getTieFighterShootsPin()
 		{
+			return 6;
+			//DEBUG_PRINT("Sound");
 			int myPin = 4;  // assume 60% default
 			switch( pMyModeSwitch->getCurrentModeNow() )
 			{
 				case 1: 
 					// 80%
-					myPin = 3;
+					myPin = 4;
 					break;
 				case 2: 
 				case 4:
 					//60%
-					myPin = 4;
+					myPin = 5;
 					break;
 				case 3: 
 				case 5:
 					//50%
-					myPin = 5;
+					myPin = 6;
 					break;
 				default:
-					myPin = 1;
+					myPin = 4;
 					
 			}
 			return myPin;

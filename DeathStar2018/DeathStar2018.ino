@@ -127,8 +127,10 @@ void setup()
 	pTieFighter5Sceen = &tieFighter5PlaysGame;
 	pDeathStarSceen = &deathStarExplode;
 	pDeathStarSceen = &deathStarPlayGame;
-	pDeathStarSceen = &morseCode;
-
+	if(modeSwitch.getCurrentMode() == 6 )
+	{
+		pDeathStarSceen = &morseCode;
+	}
 
 
 	pTieFighter1Sceen->startSceen();
@@ -157,6 +159,8 @@ void loop()
 //	DB_NAME_VALUE("Free Mem", freeMemory());
 //	DB_NAME_VALUE("after delay  ", 2);
 // check if revied first so as not to bounce
+
+	soundBoard.update();   // see if we have to change state of sound pins
 	if( !tiefighter1.getIsAlive() && tiefighter1.getTargetUp() )
 	{
 		DB_NAME_VALUE("Target up  ", 1);
@@ -269,7 +273,7 @@ void loop()
 			{
 				digitalWrite(LED_BUILTIN,HIGH);
 				onBoardLed = 1;
-				DB_NAME_VALUE("keep alive HB", 1)
+				//DB_NAME_VALUE("keep alive HB", 1)
 			}
 			else
 			{
