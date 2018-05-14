@@ -40,15 +40,16 @@ void DeathStarFace::setUp(Adafruit_NeoPixel* newStrip, SoundBoard* pSoundBoard)
    */
   void DeathStarFace::startPlayExplodeSound()
   {
-	  pMySoundBoard->deathStarExplodes();
+	  pMySoundBoard->tieFighterExplodes();  // use same sound so becaus not all pins working
 	  //digitalWrite(DEATH_STAR_EXPLODE_PIN,LOW);   // must be low for 150 ms
   }
 
 /*
-   * end trigger (not sound)
+   * play as fina explosion
    */
   void DeathStarFace::endPlayExplodeSound()
   {
+	  pMySoundBoard->deathStarExplodes();
 	  //digitalWrite(DEATH_STAR_EXPLODE_PIN,HIGH);   // must be low for 150 ms
   }
 

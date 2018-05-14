@@ -40,7 +40,7 @@ DeathStarExplode::~DeathStarExplode()
   void DeathStarExplode::startSceen ()
   {
 	  DEBUG_PRINT("DeathStarExplode::startSceen()");
-
+	  pDeathStarFace->startPlayExplodeSound();  //inial explosion
 	  stepStartTime = millis();
 	  pVentPort->setIsAlive(false);
 	  lightOnCount =0;
@@ -167,7 +167,7 @@ DeathStarExplode::~DeathStarExplode()
 	  pVentPort->setAllLights(color);  // update the vent port
 
 	  // for the death star face we do the string 1 light at a time
-	  lightOnCount = (millis()- stepStartTime)/100;
+	  lightOnCount = (millis()- stepStartTime)/50;
 
 	  //lightOnCount++;
 	  for(int i=0; i<lightOnCount; i++)
@@ -179,7 +179,7 @@ DeathStarExplode::~DeathStarExplode()
 		  lightOnCount = FaceNumberOfLights-1;
 
 	  nextUpdate = millis()+50;
-	  if(stepStartTime + 10000 < millis())
+	  if(stepStartTime + 5000 < millis())
 	  {  // move on
 		  nextStep = DeathStarExplodeSteps::TrobFade;
 
@@ -193,7 +193,7 @@ DeathStarExplode::~DeathStarExplode()
   void DeathStarExplode::doFlash1()
   {
 	  DEBUG_PRINT("Flash1");
-	  pVentPort->setAllLights(0x00FFFFFF);  // update the vent port
+	  pVentPort->setAllLights(0x00);  // update the vent port
 	  pDeathStarFace->setAllLights(0x00FFFF80);
 	  nextUpdate = millis()+30;
 	  nextStep = DeathStarExplodeSteps::FastBlack;
@@ -213,10 +213,10 @@ DeathStarExplode::~DeathStarExplode()
   void DeathStarExplode::doFlash2()
   {
 	  DEBUG_PRINT("Flash2");
-	  pDeathStarFace->startPlayExplodeSound();
+	  pDeathStarFace->endPlayExplodeSound();
 	  pVentPort->setAllLights(0x00FFFFFF);  // update the vent port
 	  pDeathStarFace->setAllLights(0x00FFFF80);
-	  nextUpdate = millis()+700;
+	  nextUpdate = millis()+350;
 	  nextStep = DeathStarExplodeSteps::FadeToBlack;
 
   }
@@ -235,7 +235,7 @@ DeathStarExplode::~DeathStarExplode()
 
 	  if(change ==0)
 	  {
-		  nextUpdate = millis()+300;
+		  nextUpdate = millis()+0;
 		  nextStep = DeathStarExplodeSteps::Flash1;
 	  }
   }
@@ -245,14 +245,14 @@ DeathStarExplode::~DeathStarExplode()
  	 // DEBUG_PRINT("Fade To Black");
  	  uint8_t change;
 
- 	  change = pVentPort->fadeLights(-10,-20,-20, 0x00000000, 0x00FFFFFF);  // fade to red
+ 	  change = pVentPort->fadeLights(-14,-14,-25, 0x00000000, 0x00FFFFFF);  // fade to red
  	  pVentPort->updateLights();
- 	  change += pDeathStarFace->fadeLights(-12,-15,-20,0x00000000, 0x00FFFFFF);
+ 	  change += pDeathStarFace->fadeLights(-8,-12,-20,0x00000000, 0x00FFFFFF);
  	  pDeathStarFace->updateLights();
  	  if(change > 0)
  	  {
  		  // more to change
- 		  nextUpdate = millis()+40;
+ 		  nextUpdate = millis()+100;
  		  nextStep = DeathStarExplodeSteps::FadeToBlack;
  	  }
  	  else

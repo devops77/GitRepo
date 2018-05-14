@@ -3,11 +3,16 @@
  * No idea why but not all pins work for sound
  *   tie fighter shoots owrks on Pin ,5,6
  *   Tie fighter explodes works on pin 2,
+ *
+ *
+ *   things broke so we have to use these settings
+ *   pin 2 Death start main explosion
+ *   pin 5 Tie fighter explodes
  */
 
 
 
-#define DEBUG
+//#define DEBUG
 #include "debugArduino.h"
 
 #include "Arduino.h"

@@ -255,7 +255,7 @@ void TieFighter::updateLights()
  */
 void TieFighter::startPlayLaserSound()
 {
-	pMySoundBoard->tieFighterShoots();
+//	pMySoundBoard->tieFighterShoots();
 //	digitalWrite(TIE_FIGHTER_SHOOT_SOUND,LOW);   // must be low for 150 ms
 }
 
