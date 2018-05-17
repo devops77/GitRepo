@@ -130,6 +130,9 @@ void DeathStarPlayGame::doTwinkle()
 		if(numberOfTargetsDown>4) pDeathStarFace->setRandomLight(0,200,randColor);
 		if(numberOfTargetsDown>4) pDeathStarFace->setRandomLight(0,200,randColor);
 
+		randColor = NeoPixelColor::joinColor(random(20,0xff),random(20,0xff), random(10,0xff) );
+		pDeathStarFace->setLight(4, randColor);
+
 
 		nextTwinkleTime = millis() + TwinkleTime;
 		faceNeedsUdate|=true;
