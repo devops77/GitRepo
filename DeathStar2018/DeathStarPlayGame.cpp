@@ -38,9 +38,11 @@ void DeathStarPlayGame::startSceen ()
 {
 	  DEBUG_PRINT("DeathStarPlayGame::startSceen()");
 	  nextUpdate=0; //start right away
-	  nextStep =DeathStarPlayGameSteps::PlayGame;
-	  pVentPort->setAllLights(0x00);  // turn all lights off
-	  pDeathStarFace->setAllLights(0x00); // turn all lights off
+
+
+	  nextStep =DeathStarPlayGameSteps::FadeToBlack;
+	  pVentPort->setAllLights(0x0000f0);  // turn all lights blue
+	  pDeathStarFace->setAllLights(0x0000ff); // turn all lights blue
 	  stepStartTime = millis();
 	  nextFaceFadeTime = stepStartTime;
 	  nextTwinkleTime =  stepStartTime;
@@ -62,7 +64,10 @@ void DeathStarPlayGame::run ()
 	   // if we get here there is work to do
 	   switch(nextStep)
 	   {
-		   case DeathStarPlayGameSteps::PlayGame: // get things started
+	   	   case DeathStarPlayGameSteps::FadeToBlack:
+	   		   doFadeToBlack();
+	   		   break;
+	   	   case DeathStarPlayGameSteps::PlayGame: // get things started
 			   doChase();
 			   doTwinkle();
 			   break;
@@ -96,7 +101,7 @@ void DeathStarPlayGame::doTwinkle()
 {
 
 	// try to make
-	int fadeRate = -1 -(4*numberOfTargetsDown); // orig value of -1
+	int fadeRate = -1 -(2*numberOfTargetsDown); // orig value of -1
 	int newColorMax = 30 + (5*numberOfTargetsDown); //orgi value of 30
 
 
@@ -113,25 +118,50 @@ void DeathStarPlayGame::doTwinkle()
 	}
 	if(millis()>nextTwinkleTime)
 	{
-		uint32_t randColor = NeoPixelColor::joinColor(random(0,newColorMax),random(0,newColorMax), random(10,newColorMax+20) );
-		pDeathStarFace->setRandomLight(0,200,randColor);
-		if(numberOfTargetsDown>0) pDeathStarFace->setRandomLight(0,200,randColor);
-		if(numberOfTargetsDown>1) pDeathStarFace->setRandomLight(0,200,randColor);
-		if(numberOfTargetsDown>1) pDeathStarFace->setRandomLight(0,200,randColor);
-		if(numberOfTargetsDown>2) pDeathStarFace->setRandomLight(0,200,randColor);
-		if(numberOfTargetsDown>2) pDeathStarFace->setRandomLight(0,200,randColor);
-		if(numberOfTargetsDown>2) pDeathStarFace->setRandomLight(0,200,randColor);
-		if(numberOfTargetsDown>3) pDeathStarFace->setRandomLight(0,200,randColor);
-		if(numberOfTargetsDown>3) pDeathStarFace->setRandomLight(0,200,randColor);
-		if(numberOfTargetsDown>3) pDeathStarFace->setRandomLight(0,200,randColor);
-		if(numberOfTargetsDown>4) pDeathStarFace->setRandomLight(0,200,randColor);
-		if(numberOfTargetsDown>4) pDeathStarFace->setRandomLight(0,200,randColor);
-		if(numberOfTargetsDown>4) pDeathStarFace->setRandomLight(0,200,randColor);
-		if(numberOfTargetsDown>4) pDeathStarFace->setRandomLight(0,200,randColor);
-		if(numberOfTargetsDown>4) pDeathStarFace->setRandomLight(0,200,randColor);
+		int numberOfRandomLights =0;
+		switch(numberOfTargetsDown)
+		{
+			case 0:
+				numberOfRandomLights = 2;
+				break;
 
-		randColor = NeoPixelColor::joinColor(random(20,0xff),random(20,0xff), random(10,0xff) );
-		pDeathStarFace->setLight(4, randColor);
+			case 1:
+				numberOfRandomLights = 4;
+				break;
+
+			case 2:
+				numberOfRandomLights = 8;
+				break;
+
+			case 3:
+				numberOfRandomLights = 12;
+				break;
+
+			case 4:
+				numberOfRandomLights = 20;
+				break;
+
+			case 5:
+				numberOfRandomLights = 30;
+				break;
+
+			case 6:
+				numberOfRandomLights = 45;
+				break;
+			default:
+				numberOfRandomLights = 10;
+
+		}
+
+		for( int i=0; i<numberOfRandomLights; i++)
+		{
+			uint32_t randColor = NeoPixelColor::joinColor(random(0,newColorMax),random(0,newColorMax), random(10,newColorMax+20) );
+			pDeathStarFace->setRandomLight(0,200,randColor);
+
+		}
+
+		uint32_t randColor = NeoPixelColor::joinColor(random(20,0xff),random(20,0xff), random(10,0xff) );
+		pDeathStarFace->setLight(4, randColor); // this is the neopixel in the vent port
 
 
 		nextTwinkleTime = millis() + TwinkleTime;
@@ -147,3 +177,23 @@ void DeathStarPlayGame::doTwinkle()
 
 }
 
+
+void DeathStarPlayGame::doFadeToBlack()
+{
+
+	int change = pVentPort->fadeLights(-15,-15,-15, 0x00000000, 0x00FFFFFF);  // fade
+	pVentPort->updateLights();
+	change += pDeathStarFace->fadeLights(-15,-15,-15,0x00000000, 0x00FFFFFF);
+	pDeathStarFace->updateLights();
+	if(change > 0)
+	{
+	  // more to change
+	  nextUpdate = millis()+40;
+	}
+	else
+	{
+	// done
+	  nextStep = DeathStarPlayGameSteps::PlayGame;
+	}
+
+}

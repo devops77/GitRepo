@@ -16,7 +16,7 @@
 #include "SceenBase.h"
 
 // order of steps
-enum class DeathStarPlayGameSteps { PlayGame, FinalState };
+enum class DeathStarPlayGameSteps { FadeToBlack, PlayGame, FinalState };
 
 class DeathStarPlayGame: public SceenBase {
 private:
@@ -49,6 +49,7 @@ public:
 
 	void doChase();
 	void doTwinkle();
+	void doFadeToBlack();
 
 };
 

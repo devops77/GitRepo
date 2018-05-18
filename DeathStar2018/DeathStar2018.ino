@@ -78,10 +78,10 @@ void setup()
 	soundBoard.setup(&modeSwitch);
 
 
-	strip.begin();
-	strip.show(); // Initialize all pixels to 'off'
 	deathStarFaceStrip.begin();
 	deathStarFaceStrip.show(); // Initialize all pixels to 'off'
+	strip.begin();
+	strip.show(); // Initialize all pixels to 'off'
 	ring.begin();
 	ring.show();
 
@@ -127,7 +127,7 @@ void setup()
 	pTieFighter5Sceen = &tieFighter5PlaysGame;
 	pDeathStarSceen = &deathStarExplode;
 	pDeathStarSceen = &deathStarPlayGame;
-	if(modeSwitch.getCurrentMode() == 6 )
+	if(modeSwitch.getCurrentModeNow() == 2 )
 	{
 		pDeathStarSceen = &morseCode;
 	}
